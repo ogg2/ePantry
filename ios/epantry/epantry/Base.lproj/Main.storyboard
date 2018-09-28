@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Launch PageVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LaunchPageVC" customModule="epantry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="bxm-Qd-qjj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bxm-Qd-qjj" secondAttribute="height" multiplier="375:667" id="OI7-5T-TwL"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKd-Sh-Pci">
+                                <rect key="frame" x="106.5" y="360" width="161" height="55"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="36"/>
+                                <state key="normal" title="My Pantry">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC3-yD-qZO">
+                                <rect key="frame" x="60" y="456" width="254" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oC3-yD-qZO" secondAttribute="height" multiplier="254:55" id="2vH-wJ-mmp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="36"/>
+                                <state key="normal" title="My Grocery List">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvC-ep-Xem">
+                                <rect key="frame" x="70" y="552" width="227" height="55"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="36"/>
+                                <state key="normal" title="Recipe Search">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to your ePantry!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g35-nL-5UN">
+                                <rect key="frame" x="16" y="111" width="343" height="176"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="3pA-dw-8a5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="48"/>
+                                <size key="shadowOffset" width="0.0" height="-2"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="g35-nL-5UN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="91" id="3ud-z1-RzM"/>
+                            <constraint firstItem="g35-nL-5UN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="23" id="8OT-7e-g8p"/>
+                            <constraint firstItem="bxm-Qd-qjj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="IY6-wk-W7d"/>
+                            <constraint firstItem="oC3-yD-qZO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="MBA-gN-1aX"/>
+                            <constraint firstItem="oC3-yD-qZO" firstAttribute="top" secondItem="KKd-Sh-Pci" secondAttribute="bottom" constant="41" id="PAq-GI-NrT"/>
+                            <constraint firstItem="ZvC-ep-Xem" firstAttribute="centerX" secondItem="oC3-yD-qZO" secondAttribute="centerX" constant="-3.5" id="RJf-co-MvW"/>
+                            <constraint firstItem="bxm-Qd-qjj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XTv-Hd-sxq"/>
+                            <constraint firstItem="ZvC-ep-Xem" firstAttribute="centerX" secondItem="KKd-Sh-Pci" secondAttribute="centerX" constant="-3.5" id="anS-it-sN7"/>
+                            <constraint firstItem="g35-nL-5UN" firstAttribute="centerX" secondItem="KKd-Sh-Pci" secondAttribute="centerX" id="av2-Qu-TOf"/>
+                            <constraint firstItem="ZvC-ep-Xem" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="dFw-4r-BDx"/>
+                            <constraint firstItem="bxm-Qd-qjj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="efF-ad-zHD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZvC-ep-Xem" secondAttribute="bottom" constant="60" id="ffF-EW-Myu"/>
+                            <constraint firstItem="ZvC-ep-Xem" firstAttribute="top" secondItem="oC3-yD-qZO" secondAttribute="bottom" constant="41" id="gcv-JS-mlB"/>
+                            <constraint firstItem="bxm-Qd-qjj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qez-GU-23h"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oC3-yD-qZO" secondAttribute="trailing" constant="61" id="xnc-l3-QnF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="groceryListButton" destination="oC3-yD-qZO" id="acZ-L4-ibq"/>
+                        <outlet property="pantryButton" destination="KKd-Sh-Pci" id="3wm-gE-H9D"/>
+                        <outlet property="recipeButton" destination="ZvC-ep-Xem" id="gdX-XH-aO3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="130.88455772113943"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pantry.png" width="895" height="1350"/>
+    </resources>
+</document>
