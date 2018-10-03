@@ -12,7 +12,7 @@
         <!--Launch PageVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LaunchPageVC" customModule="epantry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchPage" id="BYZ-38-t0r" customClass="LaunchPageVC" customModule="epantry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,6 +39,9 @@
                                 <state key="normal" title="My Grocery List">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="groceryListButtonDidClick:" destination="BYZ-38-t0r" eventType="touchDown" id="iU0-Ed-ib4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvC-ep-Xem">
                                 <rect key="frame" x="70" y="552" width="227" height="55"/>
@@ -85,6 +88,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="130.88455772113943"/>
+        </scene>
+        <!--Grocery ListVC-->
+        <scene sceneID="ark-Mx-pza">
+            <objects>
+                <viewController storyboardIdentifier="GroceryList" id="vlg-83-sIh" customClass="GroceryListVC" customModule="epantry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lBX-R8-Nc8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pzj-aZ-dpC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1350"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbg-v0-vQr">
+                                <rect key="frame" x="22" y="20" width="36.5" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonDidClick:" destination="vlg-83-sIh" eventType="touchDown" id="948-ws-OXI"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yJu-UD-1wF">
+                                <rect key="frame" x="22" y="108" width="337" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wJr-7S-XaJ">
+                                        <rect key="frame" x="0.0" y="28" width="337" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wJr-7S-XaJ" id="vgy-71-EQA">
+                                            <rect key="frame" x="0.0" y="0.0" width="337" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Grocery List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Do4-kp-HVM">
+                                <rect key="frame" x="74" y="58" width="226" height="42"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTo-ei-vlZ">
+                                <rect key="frame" x="127.5" y="20" width="120" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Import to Pantry">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="importButtonDidClick:" destination="vlg-83-sIh" eventType="touchDown" id="PAR-hB-3XZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePY-nc-U0n">
+                                <rect key="frame" x="322.5" y="20" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="editButtonDidClick:" destination="vlg-83-sIh" eventType="touchDown" id="BwO-Xj-zSN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yJu-UD-1wF" firstAttribute="bottom" secondItem="DaH-MB-QiG" secondAttribute="bottom" id="2Nn-xV-rTq"/>
+                            <constraint firstItem="Pzj-aZ-dpC" firstAttribute="leading" secondItem="lBX-R8-Nc8" secondAttribute="leading" id="4v4-HL-UQi"/>
+                            <constraint firstItem="Do4-kp-HVM" firstAttribute="top" secondItem="DaH-MB-QiG" secondAttribute="top" constant="38" id="9WF-Mx-CLQ"/>
+                            <constraint firstItem="RTo-ei-vlZ" firstAttribute="top" secondItem="DaH-MB-QiG" secondAttribute="top" id="CCI-TM-8BL"/>
+                            <constraint firstItem="ePY-nc-U0n" firstAttribute="leading" secondItem="RTo-ei-vlZ" secondAttribute="trailing" constant="75" id="ErM-Et-AqP"/>
+                            <constraint firstItem="yJu-UD-1wF" firstAttribute="leading" secondItem="DaH-MB-QiG" secondAttribute="leading" constant="22" id="HX3-db-kUT"/>
+                            <constraint firstItem="yJu-UD-1wF" firstAttribute="top" secondItem="Do4-kp-HVM" secondAttribute="bottom" constant="8" symbolic="YES" id="LUM-qx-KVd"/>
+                            <constraint firstItem="Do4-kp-HVM" firstAttribute="centerX" secondItem="lBX-R8-Nc8" secondAttribute="centerX" id="Su4-eh-N71"/>
+                            <constraint firstItem="Pzj-aZ-dpC" firstAttribute="centerX" secondItem="Do4-kp-HVM" secondAttribute="centerX" id="XTJ-KW-5vE"/>
+                            <constraint firstItem="Do4-kp-HVM" firstAttribute="leading" secondItem="DaH-MB-QiG" secondAttribute="leading" constant="74" id="Zpt-8O-ErQ"/>
+                            <constraint firstItem="yJu-UD-1wF" firstAttribute="trailing" secondItem="lBX-R8-Nc8" secondAttribute="trailingMargin" id="azn-qd-GHt"/>
+                            <constraint firstItem="Pzj-aZ-dpC" firstAttribute="top" secondItem="lBX-R8-Nc8" secondAttribute="top" id="b9R-w5-RbB"/>
+                            <constraint firstItem="RTo-ei-vlZ" firstAttribute="baseline" secondItem="fbg-v0-vQr" secondAttribute="baseline" id="g1E-9u-4xt"/>
+                            <constraint firstItem="RTo-ei-vlZ" firstAttribute="baseline" secondItem="ePY-nc-U0n" secondAttribute="baseline" id="gqq-2E-dhk"/>
+                            <constraint firstItem="yJu-UD-1wF" firstAttribute="leading" secondItem="fbg-v0-vQr" secondAttribute="leading" id="kQh-UM-YWe"/>
+                            <constraint firstItem="RTo-ei-vlZ" firstAttribute="leading" secondItem="fbg-v0-vQr" secondAttribute="trailing" constant="69" id="lce-xS-y1N"/>
+                            <constraint firstItem="RTo-ei-vlZ" firstAttribute="centerX" secondItem="Pzj-aZ-dpC" secondAttribute="centerX" id="zie-lP-MLz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DaH-MB-QiG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ugz-wK-Jot"/>
+                    <connections>
+                        <outlet property="backButton" destination="fbg-v0-vQr" id="Jcp-bM-ror"/>
+                        <outlet property="editButton" destination="ePY-nc-U0n" id="71e-7Z-JDG"/>
+                        <outlet property="importButton" destination="RTo-ei-vlZ" id="jTW-4q-REN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hoD-FA-948" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.79999999999995" y="130.88455772113943"/>
         </scene>
     </scenes>
     <resources>

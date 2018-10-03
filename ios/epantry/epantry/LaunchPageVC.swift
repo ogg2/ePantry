@@ -19,6 +19,11 @@ class LaunchPageVC: UIViewController {
     @IBOutlet weak var recipeButton: UIButton!
     @IBOutlet weak var groceryListButton: UIButton!
 
-
+    @IBAction func groceryListButtonDidClick(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroceryList")
+        self.present(vc!, animated: true, completion: {
+            print("Grocery List Presented")
+        })
+    }
 }
 
