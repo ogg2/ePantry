@@ -89,6 +89,21 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="130.88455772113943"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="HPO-FA-hE8">
+            <objects>
+                <viewController id="VnT-zb-ORg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xFE-z2-I6S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="js4-58-f97"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odO-im-e2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="985" y="-576"/>
+        </scene>
         <!--Grocery ListVC-->
         <scene sceneID="ark-Mx-pza">
             <objects>
@@ -114,7 +129,7 @@
                                 <rect key="frame" x="22" y="108" width="337" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wJr-7S-XaJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" id="wJr-7S-XaJ">
                                         <rect key="frame" x="0.0" y="28" width="337" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wJr-7S-XaJ" id="vgy-71-EQA">
@@ -177,6 +192,7 @@
                     <connections>
                         <outlet property="backButton" destination="fbg-v0-vQr" id="Jcp-bM-ror"/>
                         <outlet property="editButton" destination="ePY-nc-U0n" id="71e-7Z-JDG"/>
+                        <outlet property="groceryList" destination="yJu-UD-1wF" id="KhE-83-1lF"/>
                         <outlet property="importButton" destination="RTo-ei-vlZ" id="jTW-4q-REN"/>
                     </connections>
                 </viewController>
