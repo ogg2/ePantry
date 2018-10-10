@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */; };
+		5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */; };
 		75378AB6216411410014D903 /* GroceryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB5216411410014D903 /* GroceryListVC.swift */; };
 		75A568AE215E7F1B00084870 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A568AD215E7F1B00084870 /* AppDelegate.swift */; };
 		75A568B0215E7F1B00084870 /* LaunchPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A568AF215E7F1B00084870 /* LaunchPageVC.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
+		5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		75378AB5216411410014D903 /* GroceryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListVC.swift; sourceTree = "<group>"; };
 		75A568AA215E7F1B00084870 /* epantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = epantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A568AD215E7F1B00084870 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
 				75A568B1215E7F1B00084870 /* Main.storyboard */,
 				75378AB5216411410014D903 /* GroceryListVC.swift */,
+				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
+				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
 				75A568B4215E7F1C00084870 /* Assets.xcassets */,
 				75A568B6215E7F1C00084870 /* LaunchScreen.storyboard */,
 				75A568B9215E7F1C00084870 /* Info.plist */,
@@ -266,6 +272,8 @@
 				75378AB6216411410014D903 /* GroceryListVC.swift in Sources */,
 				75A568B0215E7F1B00084870 /* LaunchPageVC.swift in Sources */,
 				75A568AE215E7F1B00084870 /* AppDelegate.swift in Sources */,
+				5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */,
+				5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
