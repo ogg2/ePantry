@@ -50,7 +50,7 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ groceryList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = groceryList.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        let cell = groceryList.dequeueReusableCell(withIdentifier: "groceryItemCell", for: indexPath)
         cell.textLabel?.text = "Grocery Item"
         return cell
     }
