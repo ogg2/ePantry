@@ -29,6 +29,9 @@
                                 <state key="normal" title="My Pantry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="pantryButtonDidClick:" destination="BYZ-38-t0r" eventType="touchDown" id="APg-9Y-CSk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC3-yD-qZO">
                                 <rect key="frame" x="60" y="456" width="254" height="55"/>
@@ -89,6 +92,74 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="130.88455772113943"/>
         </scene>
+        <!--My PantryVC-->
+        <scene sceneID="HPO-FA-hE8">
+            <objects>
+                <viewController storyboardIdentifier="PantryList" id="VnT-zb-ORg" customClass="myPantryVC" customModule="epantry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xFE-z2-I6S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-M2-lNz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Pantry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-Ic-bTc">
+                                <rect key="frame" x="92" y="57" width="191" height="42"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQZ-gi-v4r">
+                                <rect key="frame" x="22" y="20" width="37" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonDidClick:" destination="VnT-zb-ORg" eventType="touchDown" id="nqJ-pc-DJG"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rvo-7K-BmC">
+                                <rect key="frame" x="22" y="124" width="337" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pantryItemCell" id="XLh-Mx-cFm">
+                                        <rect key="frame" x="0.0" y="28" width="337" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XLh-Mx-cFm" id="VIg-Vr-qG7">
+                                            <rect key="frame" x="0.0" y="0.0" width="337" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Rvo-7K-BmC" firstAttribute="trailing" secondItem="xFE-z2-I6S" secondAttribute="trailingMargin" id="101-KP-qa1"/>
+                            <constraint firstItem="fcl-Ic-bTc" firstAttribute="centerX" secondItem="7xf-M2-lNz" secondAttribute="centerX" id="3WC-u7-YIJ"/>
+                            <constraint firstItem="HQZ-gi-v4r" firstAttribute="top" secondItem="js4-58-f97" secondAttribute="top" id="60a-jf-vaJ"/>
+                            <constraint firstItem="HQZ-gi-v4r" firstAttribute="leading" secondItem="js4-58-f97" secondAttribute="leading" constant="22" id="6ka-eO-oUd"/>
+                            <constraint firstItem="Rvo-7K-BmC" firstAttribute="top" secondItem="fcl-Ic-bTc" secondAttribute="bottom" constant="25" id="6mx-oe-cxT"/>
+                            <constraint firstItem="Rvo-7K-BmC" firstAttribute="top" secondItem="HQZ-gi-v4r" secondAttribute="bottom" constant="74" id="Ccm-qB-79O"/>
+                            <constraint firstAttribute="trailing" secondItem="7xf-M2-lNz" secondAttribute="trailing" id="G0V-5c-Tac"/>
+                            <constraint firstItem="7xf-M2-lNz" firstAttribute="leading" secondItem="xFE-z2-I6S" secondAttribute="leading" id="OHT-bp-Jbh"/>
+                            <constraint firstItem="7xf-M2-lNz" firstAttribute="bottom" secondItem="js4-58-f97" secondAttribute="bottom" id="PbM-Kb-B68"/>
+                            <constraint firstItem="Rvo-7K-BmC" firstAttribute="bottom" secondItem="7xf-M2-lNz" secondAttribute="bottom" id="Z7Z-rZ-6sh"/>
+                            <constraint firstItem="HQZ-gi-v4r" firstAttribute="leading" secondItem="Rvo-7K-BmC" secondAttribute="leading" id="c91-Wy-s9Y"/>
+                            <constraint firstItem="fcl-Ic-bTc" firstAttribute="leading" secondItem="js4-58-f97" secondAttribute="leading" constant="92" id="gaP-wY-VVM"/>
+                            <constraint firstItem="7xf-M2-lNz" firstAttribute="top" secondItem="xFE-z2-I6S" secondAttribute="top" id="mvV-lR-Ngq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="js4-58-f97"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="HQZ-gi-v4r" id="hro-PF-6x9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odO-im-e2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.79999999999995" y="-576.1619190404798"/>
+        </scene>
         <!--Grocery ListVC-->
         <scene sceneID="ark-Mx-pza">
             <objects>
@@ -114,7 +185,7 @@
                                 <rect key="frame" x="22" y="108" width="337" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wJr-7S-XaJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groceryItemCell" id="wJr-7S-XaJ">
                                         <rect key="frame" x="0.0" y="28" width="337" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wJr-7S-XaJ" id="vgy-71-EQA">
@@ -177,6 +248,7 @@
                     <connections>
                         <outlet property="backButton" destination="fbg-v0-vQr" id="Jcp-bM-ror"/>
                         <outlet property="editButton" destination="ePY-nc-U0n" id="71e-7Z-JDG"/>
+                        <outlet property="groceryList" destination="yJu-UD-1wF" id="KhE-83-1lF"/>
                         <outlet property="importButton" destination="RTo-ei-vlZ" id="jTW-4q-REN"/>
                     </connections>
                 </viewController>
