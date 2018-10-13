@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "nodemon app.js"
-  
-},
+  },
   "repository": {
     "type": "git",
     "url": "https://csevcs.case.edu/git/eecs395_fall2018_epantry"
@@ -16,8 +15,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "mongoose": "^5.2.18",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "request": "^2.88.0"
   }
 }
