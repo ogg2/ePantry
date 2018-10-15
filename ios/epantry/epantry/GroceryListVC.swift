@@ -14,14 +14,17 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         print("grocery list loaded")
-        groceryList.delegate = self
-        groceryList.dataSource = self
+        groceryListTable.delegate = self
+        groceryListTable.dataSource = self
     }
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var importButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var groceryList: UITableView!
+    @IBOutlet weak var groceryListTable: UITableView!
+    
+    // Will populate this list from database grocery list items
+    var groceryList: [String] = ["Apple", "Pear", "Bread"]
     
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")
@@ -43,21 +46,20 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         print("Edit items now")
     }
     
-    func tableView(_ groceryList: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // This will be the number of grocery list unique items in their data base table
-        print("4 rows")
-        return 4
+    func tableView(_ groceryListTable: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // This will be the number of unique grocery list items in their data base table
+        return groceryList.count
     }
     
-    func tableView(_ groceryList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = groceryList.dequeueReusableCell(withIdentifier: "groceryItemCell", for: indexPath)
-        cell.textLabel?.text = "Grocery Item"
+    func tableView(_ groceryListTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = groceryListTable.dequeueReusableCell(withIdentifier: "groceryItemCell", for: indexPath)
+        cell.textLabel?.text = groceryList[indexPath.row]
         return cell
     }
     
-    func tableView(_ groceryList: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCell = groceryList.cellForRow(at:indexPath)! as UITableViewCell
-        print(indexPath)
+    func tableView(_ groceryListTable: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = groceryListTable.cellForRow(at:indexPath)! as UITableViewCell
+        print(indexPath.row)
     }
     
 }
