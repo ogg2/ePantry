@@ -32,5 +32,12 @@ class LaunchPageVC: UIViewController {
             print("Pantry list presented")
         })
     }
+    
+    @IBAction func recipeButtonDidClick(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeSearch")
+        self.present(vc!, animated: true, completion: {
+            print("Recipe search presented")
+        })
+    }
 }
 

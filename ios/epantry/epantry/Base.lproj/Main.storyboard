@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,6 +52,9 @@
                                 <state key="normal" title="Recipe Search">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="recipeButtonDidClick:" destination="BYZ-38-t0r" eventType="touchDown" id="w3t-Hq-U4J"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to your ePantry!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="32" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g35-nL-5UN">
                                 <rect key="frame" x="16" y="111" width="343" height="176"/>
@@ -253,6 +256,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hoD-FA-948" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="984.79999999999995" y="130.88455772113943"/>
+        </scene>
+        <!--Recipe SearchVC-->
+        <scene sceneID="Gdt-9r-BQa">
+            <objects>
+                <viewController storyboardIdentifier="RecipeSearch" title="Recipe SearchVC" id="Bzg-Yl-aeM" customClass="RecipeSearchVC" customModule="epantry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ybC-my-74z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" highlightedImage="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zlc-GJ-k7h">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="5hC-i6-nqc"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="74K-rl-oub">
+                                <rect key="frame" x="0.0" y="28" width="375" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZa-iu-VnJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonDidClick:" destination="Bzg-Yl-aeM" eventType="touchDown" id="5Ty-04-TWn"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar contentMode="redraw" placeholder="Enter Ingredients" showsSearchResultsButton="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
+                                        <rect key="frame" x="0.0" y="34" width="375" height="56"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Suggestions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgf-2i-0O6">
+                                        <rect key="frame" x="0.0" y="94" width="375" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Oda-wP-ueq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="lZa-iu-VnJ" secondAttribute="trailing" constant="330" id="dMh-28-zoM"/>
+                                    <constraint firstItem="lZa-iu-VnJ" firstAttribute="leading" secondItem="74K-rl-oub" secondAttribute="leading" constant="20" id="nhJ-iB-3Zm"/>
+                                    <constraint firstAttribute="trailing" secondItem="cgf-2i-0O6" secondAttribute="trailing" id="rog-k6-SFl"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="DYH-qi-QYc"/>
+                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="bottom" secondItem="ibC-mq-cIT" secondAttribute="bottom" id="L7H-Z6-cxJ"/>
+                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="top" secondItem="ybC-my-74z" secondAttribute="top" id="T3t-64-zTz"/>
+                            <constraint firstItem="74K-rl-oub" firstAttribute="top" secondItem="ibC-mq-cIT" secondAttribute="top" constant="8" id="Yp3-Dx-MzP"/>
+                            <constraint firstItem="74K-rl-oub" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="ZKZ-0H-Zlb"/>
+                            <constraint firstItem="74K-rl-oub" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="d6j-YL-Hok"/>
+                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="zSa-nK-HEk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ibC-mq-cIT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D68-q5-PVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="850.52473763118451"/>
         </scene>
     </scenes>
     <resources>
