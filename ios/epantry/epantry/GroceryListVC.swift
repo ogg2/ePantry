@@ -26,6 +26,13 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     // Will populate this list from database grocery list items
     var groceryList: [String] = ["Apple", "Pear", "Bread"]
     
+    /*
+     Need a function to populate the grocery list from the database
+     Need a function to update the database when the list is updated
+        Don't need to send data between view controllers because it is all being stored on the backend
+        Just need to make sure that the presentation is correct
+    */
+    
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")
         self.present(vc!, animated: false, completion: {
@@ -37,6 +44,8 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Present check boxes for selecting items
         // Selected items will be removed from list and moved to pantry
         // Non selected items will stay on list
+        // Database operation to add selected items to pantry
+        // Database operation to remove selected items from grocery list
         print("Import items to Pantry")
     }
     
