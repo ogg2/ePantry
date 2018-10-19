@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 let app = express();
+app.listen(8888);
 
 mongoose.connect(process.env.MONGODB_URI);
 
