@@ -34,7 +34,7 @@ app.post("/login", (req, res)=> {
   }).then (result => {
     res.json({userid: result._id});
   }).catch(err => {
-    res.status({status: 400});
+    res.sendStatus(400).json({error: err});
   })
 });
 
@@ -64,11 +64,11 @@ app.post("/register", (req, res) => {
     });
     newUser.save()
     .then(()=> {
-      res.json({status:200});
+      res.sendStatus(200);
     })
     .catch(err=> {
       console.log("problem saving user");
-      res.json({status: 400});
+      res.sendStatus(400).json({error:err});
     })
   })
 });
@@ -80,7 +80,7 @@ app.get("/groceryList/:userid", (req,res)=> {
     res.json({groceryList: result.groceryList});
   })
   .catch(err => {
-    res.json({status: 400});
+    res.sendStatus(400).json({error: err});
   })
 });
 
@@ -91,20 +91,45 @@ app.get("/pantry/:userid", (req,res) => {
     res.json({pantry: result.pantry})
   })
   .catch(err => {
-    res.json({status: 400});
+    res.sendStatus(400).json({error: err});
   })
 })
 
 app.post("/addItemsToList/:userid", (req, res) => {
   let userid = req.params.userid;
   let items = req.body.items;
-  res.json({status: 200});
+
+  User.findById(userid)
+  .then(user => {
+    items.forEach(item=> {
+      user.groceryList.push(item);
+    })
+    res.sendStatus(200);
+  })
+  .catch(err=> {
+    res.sendStatus(400).json({error: err});
+  })
+
 });
 
 app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
-  res.json({status: 200});
+
+  User.findById(userid)
+  .then(user => {
+    items.forEach(item => {
+      let newItem = {
+        itemName: item,
+        daysSincePurchase: 0
+      }
+      user.pantry.push(newItem);
+    })
+    res.sendStatus(200);
+  })
+  .catch(err=> {
+    res.sendStatus(400).json({error: err});
+  })
 })
 
 app.post("/removeFromPantry/:userid",(req, res)=> {
@@ -121,7 +146,7 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
         }
       }
     }
-    res.json({status:200});
+    res.sendStatus(200);
   })
   .catch(err=> {
     res.sendStatus(400).json({error: err});
@@ -137,9 +162,9 @@ app.post("/moveItemsToPantry/:userid",(req, res)=> {
   .then(result=> {
     let groceryList = result.groceryList;
     groceryList = groceryList.concat(items);
-    res.json({status: 200});
+    res.sendStatus(200);
   })
   .catch(err=> {
-    res.json({status: 400});
+    res.sendStatus(400).json({error: err});
   })
 })
