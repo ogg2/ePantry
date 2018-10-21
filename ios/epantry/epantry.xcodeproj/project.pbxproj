@@ -149,18 +149,13 @@
 		75A568AC215E7F1B00084870 /* epantry */ = {
 			isa = PBXGroup;
 			children = (
+				75E5F5A9217D27A800AC28AD /* Controllers */,
+				75E5F5A8217D279C00AC28AD /* Images */,
+				75E5F5A7217D277100AC28AD /* Supporting */,
 				75E5F5A2217C550800AC28AD /* Models */,
-				75A568E1215E869700084870 /* pantry.png */,
 				75A568AD215E7F1B00084870 /* AppDelegate.swift */,
-				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
 				75A568B1215E7F1B00084870 /* Main.storyboard */,
-				75378AB7216FFE760014D903 /* myPantryVC.swift */,
-				75378AB5216411410014D903 /* GroceryListVC.swift */,
-				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
-				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
-				75A568B4215E7F1C00084870 /* Assets.xcassets */,
 				75A568B6215E7F1C00084870 /* LaunchScreen.storyboard */,
-				75A568B9215E7F1C00084870 /* Info.plist */,
 			);
 			path = epantry;
 			sourceTree = "<group>";
@@ -189,6 +184,35 @@
 				75E5F5A3217C551500AC28AD /* GroceryList.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		75E5F5A7217D277100AC28AD /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				75A568B9215E7F1C00084870 /* Info.plist */,
+				75A568B4215E7F1C00084870 /* Assets.xcassets */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		75E5F5A8217D279C00AC28AD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				75A568E1215E869700084870 /* pantry.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		75E5F5A9217D27A800AC28AD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				75378AB5216411410014D903 /* GroceryListVC.swift */,
+				75378AB7216FFE760014D903 /* myPantryVC.swift */,
+				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
+				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
+				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
