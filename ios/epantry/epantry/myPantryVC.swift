@@ -26,6 +26,21 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         print("grocery list loaded")
         pantryListTable.delegate = self
         pantryListTable.dataSource = self
+        
+        /*
+        API.getItems is call to get items and then it reloads the table data ..
+        make another API file that has methods (getitems) -> completion blocl
+        gives you an array of items that is stored in items.. should be a bunch of
+        static methods in the file so that all of our networking code is abstracted
+        in to that file and not dealt with in our view controllers
+        */
+        
+        /*
+        API.getItems { items in
+            self.pantryList = items
+            self.pantryListTable.reloadData()
+        }
+        */
     }
     
     var pantryList: [String] = ["Apple", "Pear", "Bread"]
