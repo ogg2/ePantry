@@ -149,6 +149,7 @@
 		75A568AC215E7F1B00084870 /* epantry */ = {
 			isa = PBXGroup;
 			children = (
+				75A568B9215E7F1C00084870 /* Info.plist */,
 				75E5F5A9217D27A800AC28AD /* Controllers */,
 				75E5F5A8217D279C00AC28AD /* Images */,
 				75E5F5A7217D277100AC28AD /* Supporting */,
@@ -189,7 +190,6 @@
 		75E5F5A7217D277100AC28AD /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				75A568B9215E7F1C00084870 /* Info.plist */,
 				75A568B4215E7F1C00084870 /* Assets.xcassets */,
 			);
 			path = Supporting;
