@@ -43,5 +43,3 @@ struct User: Codable {
 let jsonEncoder = JSONEncoder()
 let user = User(id: 0, name: "Jack")
 let data = try! jsonEncoder.encode(user)
-
-

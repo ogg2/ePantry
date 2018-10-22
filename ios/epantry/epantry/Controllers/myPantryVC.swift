@@ -21,6 +21,8 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         })
     }
     
+    var pantryList: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("grocery list loaded")
@@ -35,16 +37,12 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         in to that file and not dealt with in our view controllers
         */
         
-        /*
-        API.getItems { items in
+        
+        API.getPantryItems(userId: "dummy") { items in
             self.pantryList = items
             self.pantryListTable.reloadData()
         }
-        */
     }
-    
-    var pantryList: [String] = ["Apple", "Pear", "Bread"]
-    
     
     /*
     Load pantry list from backend

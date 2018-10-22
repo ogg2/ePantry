@@ -16,6 +16,11 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         print("grocery list loaded")
         groceryListTable.delegate = self
         groceryListTable.dataSource = self
+        
+        API.getGroceryListItems(userId: "dummy") { items in
+            groceryList = items
+            groceryListTable.reloadData()
+        }
     }
     
     @IBOutlet weak var backButton: UIButton!
@@ -24,7 +29,7 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var groceryListTable: UITableView!
     
     // Will populate this list from database grocery list items
-    var groceryList: [String] = ["Apple", "Pear", "Bread"]
+    var groceryList: [String] = []
     
     /*
      Need a function to populate the grocery list from the database
