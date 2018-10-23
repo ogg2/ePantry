@@ -52,25 +52,37 @@ app.post("/register", (req, res) => {
   let password = req.body.password;
 
 //if this username is taken
-  User.findOne ({username: username})
-  .then(result => {
-    console.log("username taken");
-    res.json({status: 400});
-  }).catch(err=> {
-    //add the user
-    let newUser = new User({
-      username: username,
-      password: password
-    });
-    newUser.save()
-    .then(()=> {
-      res.sendStatus(200);
-    })
-    .catch(err=> {
-      console.log("problem saving user");
-      res.sendStatus(400).json({error:err});
-    })
-  })
+
+let newUser = new User({
+  username: username,
+  password: password
+});
+newUser.save(err => {
+  if (err){
+    console.log(err);
+    res.sendStatus(400).json({error:err});
+  }else{
+    res.sendStatus(200);
+  }
+})
+  // User.findOne ({username: username})
+  // .then(result => {
+  //   console.log("username taken");
+  //   res.json({status: 400});
+  // }).catch(err=> {
+  //   //add the user
+  //   let newUser = new User({
+  //     username: username,
+  //     password: password
+  //   });
+  //   newUser.save()
+  //   .then(()=> {
+  //     res.sendStatus(200);
+  //   })
+  //   .catch(err=> {
+  //     console.log("problem saving user");
+  //   })
+  // })
 });
 
 app.get("/groceryList/:userid", (req,res)=> {
@@ -93,22 +105,44 @@ app.get("/pantry/:userid", (req,res) => {
   .catch(err => {
     res.sendStatus(400).json({error: err});
   })
-})
+});
 
 app.post("/addItemsToList/:userid", (req, res) => {
   let userid = req.params.userid;
   let items = req.body.items;
+  items = items.map(eachItem => {
+    return {
+      itemName: eachItem
+    }
+  })
 
-  User.findById(userid)
-  .then(user => {
-    items.forEach(item=> {
-      user.groceryList.push(item);
-    })
-    res.sendStatus(200);
-  })
-  .catch(err=> {
-    res.sendStatus(400).json({error: err});
-  })
+  User.findByIdAndUpdate(userid,
+    {$push: {groceryList: {$each: items}}},
+    {safe: true, upsert: true},
+    function(err, doc) {
+        if(err){
+        console.log(err);
+        }else{
+          res.sendStatus(200);
+        }
+    }
+);
+
+  // User.findByIdAndUpdate(userid,
+  //
+  //   // { $push: { scores: { $each: [ 90, 92, 85 ] } } }
+  // {$push: {groceryList: {$each: items}}}, err => {
+  //   if (err){
+  //     console.log("error");
+  //   }
+  // })
+  // .then(user => {
+  //   user.groceryList = items;
+  //   user.save(err => {
+  //     if (err){
+  //     }
+  //   });
+  // })
 
 });
 
