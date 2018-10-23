@@ -127,39 +127,28 @@ app.post("/addItemsToList/:userid", (req, res) => {
         }
     }
 );
-
-  // User.findByIdAndUpdate(userid,
-  //
-  //   // { $push: { scores: { $each: [ 90, 92, 85 ] } } }
-  // {$push: {groceryList: {$each: items}}}, err => {
-  //   if (err){
-  //     console.log("error");
-  //   }
-  // })
-  // .then(user => {
-  //   user.groceryList = items;
-  //   user.save(err => {
-  //     if (err){
-  //     }
-  //   });
-  // })
-
 });
 
 app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
 
-  User.findById(userid)
-  .then(user => {
-    items.forEach(item => {
-      let newItem = {
-        itemName: item,
-        daysSincePurchase: 0
-      }
-      user.pantry.push(newItem);
-    })
-    res.sendStatus(200);
+  items = items.map(eachItem => {
+    return {
+      itemName: eachItem,
+      daysSincePurchase: 0
+    };
+  })
+
+  User.findByIdAndUpdate(userid,
+  {$push: {pantry: {$each: items}}},
+  {safe: true, upsert: true},
+  function(err, doc){
+    if (err) {
+      console.log(err);
+    }else{
+      res.sendStatus(200);
+    }
   })
   .catch(err=> {
     res.sendStatus(400).json({error: err});
