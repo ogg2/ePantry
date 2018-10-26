@@ -76,7 +76,8 @@ User.findOne({username: username})
 
 })
 
-/* returns the user's groceryList as groceryList: [a, b, c]*/
+/* returns the user's groceryList as groceryList: [a, b, c]
+*/
 app.get("/groceryList/:userid", (req,res)=> {
   let userid = req.params.userid;
   User.findById(userid)
@@ -112,33 +113,39 @@ app.post("/addToGroceryList/:userid", (req, res) => {
   let userid = req.params.userid;
   let items = req.body.items;
 
-  //map the input array to the correct format for db storage
-  items = items.map(eachItem => {
-    return {
-      itemName: eachItem
-    }
-  })
+  User.findByIdAndUpdate(userid)
+  .then(result => {
 
-  User.findByIdAndUpdate(userid,
-    {$push: {groceryList: {$each: items}}},
-    {safe: true, upsert: true},
-    function(err, doc) {
-        if(err){
-        console.log(err);
-        }else{
-          res.sendStatus(200);
+    //do not allow duplicate items in groceryList
+    items.forEach((addItem, i) => {
+      result.groceryList.forEach(groceryItem => {
+        if (groceryItem.itemName === addItem){
+          items.splice(i, 1);
         }
-    }
-);
+      })
+    })
+
+      //map the input array to the correct format for db storage
+      items = items.map(eachItem => {
+        return {
+          itemName: eachItem
+        }
+      })
+
+      result.groceryList = result.groceryList.concat(items);
+      result.save()
+      .then(()=> {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.sendStatus(400).json({error: err});
+      })
+  })
 });
 
 app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
-
-
-
-  console.log(items);
 
   User.findById(userid)
   .then(result=> {
@@ -190,26 +197,9 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
         res.sendStatus(400);
       }else{
         res.sendStatus(200);
-
       }
     })
   })
-
-
-  // .then(result => {
-  //   let pantry = result.pantry;
-  //   for (let i=0; i<items.length; i++){
-  //     for (let j=0;j<pantry.length; j++){
-  //       if (pantry[j].itemName === items[i]){
-  //         pantry.splice(j, 1);
-  //       }
-  //     }
-  //   }
-  //   res.sendStatus(200);
-  // })
-  // .catch(err=> {
-  //   res.sendStatus(400).json({error: err});
-  // })
 })
 
 /* from grocery list to pantry */
