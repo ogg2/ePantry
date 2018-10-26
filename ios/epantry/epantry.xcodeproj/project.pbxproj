@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		418ED95EF6E4871B47D3CE02 /* Pods_epantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */; };
 		5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */; };
 		5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */; };
 		75378AB6216411410014D903 /* GroceryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB5216411410014D903 /* GroceryListVC.swift */; };
@@ -19,6 +20,10 @@
 		75A568C3215E7F1D00084870 /* epantryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A568C2215E7F1D00084870 /* epantryTests.swift */; };
 		75A568CE215E7F1D00084870 /* epantryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A568CD215E7F1D00084870 /* epantryUITests.swift */; };
 		75A568E2215E869700084870 /* pantry.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A568E1215E869700084870 /* pantry.png */; };
+		75E5F5A4217C551500AC28AD /* GroceryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E5F5A3217C551500AC28AD /* GroceryList.swift */; };
+		75E5F5AB217E7EAE00AC28AD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E5F5AA217E7EAE00AC28AD /* API.swift */; };
+		C3714349F8DA68C824099EAC /* Pods_epantryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9FEC4C5C9D6BD2345BF823C /* Pods_epantryUITests.framework */; };
+		F7C2D354559A4FFC2CFF6CF3 /* Pods_epantry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2A7D4247EB792673DF4075 /* Pods_epantry.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		061DB9C3493437DA5EA0AD84 /* Pods-epantryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-epantryUITests/Pods-epantryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		41A5A085B73407A072059AD3 /* Pods-epantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantry/Pods-epantry.release.xcconfig"; sourceTree = "<group>"; };
+		4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantryTests/Pods-epantryTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
 		5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		75378AB5216411410014D903 /* GroceryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListVC.swift; sourceTree = "<group>"; };
@@ -57,6 +65,14 @@
 		75A568CD215E7F1D00084870 /* epantryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = epantryUITests.swift; sourceTree = "<group>"; };
 		75A568CF215E7F1D00084870 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75A568E1215E869700084870 /* pantry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pantry.png; sourceTree = "<group>"; };
+		75E5F5A3217C551500AC28AD /* GroceryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryList.swift; sourceTree = "<group>"; };
+		75E5F5AA217E7EAE00AC28AD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		77D20E7CA6C6EA11A54F016C /* Pods-epantryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-epantryTests/Pods-epantryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A9FEC4C5C9D6BD2345BF823C /* Pods_epantryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_epantryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2A7D4247EB792673DF4075 /* Pods_epantry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_epantry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0FE97A84B6AE34DDEC0F036 /* Pods-epantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-epantry/Pods-epantry.debug.xcconfig"; sourceTree = "<group>"; };
+		D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_epantryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E38AB0BFB25D3A3AB78C24D6 /* Pods-epantryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantryUITests/Pods-epantryUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C2D354559A4FFC2CFF6CF3 /* Pods_epantry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				418ED95EF6E4871B47D3CE02 /* Pods_epantryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +96,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3714349F8DA68C824099EAC /* Pods_epantryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06570CDE9F58A350FE7F86BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA2A7D4247EB792673DF4075 /* Pods_epantry.framework */,
+				D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */,
+				A9FEC4C5C9D6BD2345BF823C /* Pods_epantryUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50697D41EBF79BD96E9D7ADA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D0FE97A84B6AE34DDEC0F036 /* Pods-epantry.debug.xcconfig */,
+				41A5A085B73407A072059AD3 /* Pods-epantry.release.xcconfig */,
+				77D20E7CA6C6EA11A54F016C /* Pods-epantryTests.debug.xcconfig */,
+				4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */,
+				061DB9C3493437DA5EA0AD84 /* Pods-epantryUITests.debug.xcconfig */,
+				E38AB0BFB25D3A3AB78C24D6 /* Pods-epantryUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		75A568A1215E7F1B00084870 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +133,8 @@
 				75A568C1215E7F1D00084870 /* epantryTests */,
 				75A568CC215E7F1D00084870 /* epantryUITests */,
 				75A568AB215E7F1B00084870 /* Products */,
+				50697D41EBF79BD96E9D7ADA /* Pods */,
+				06570CDE9F58A350FE7F86BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,15 +151,12 @@
 		75A568AC215E7F1B00084870 /* epantry */ = {
 			isa = PBXGroup;
 			children = (
-				75A568E1215E869700084870 /* pantry.png */,
+				75E5F5A9217D27A800AC28AD /* Controllers */,
+				75E5F5A2217C550800AC28AD /* Models */,
+				75E5F5A8217D279C00AC28AD /* Images */,
+				75E5F5A7217D277100AC28AD /* Supporting */,
 				75A568AD215E7F1B00084870 /* AppDelegate.swift */,
-				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
 				75A568B1215E7F1B00084870 /* Main.storyboard */,
-				75378AB7216FFE760014D903 /* myPantryVC.swift */,
-				75378AB5216411410014D903 /* GroceryListVC.swift */,
-				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
-				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
-				75A568B4215E7F1C00084870 /* Assets.xcassets */,
 				75A568B6215E7F1C00084870 /* LaunchScreen.storyboard */,
 				75A568B9215E7F1C00084870 /* Info.plist */,
 			);
@@ -140,6 +181,43 @@
 			path = epantryUITests;
 			sourceTree = "<group>";
 		};
+		75E5F5A2217C550800AC28AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				75E5F5A3217C551500AC28AD /* GroceryList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		75E5F5A7217D277100AC28AD /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				75A568B4215E7F1C00084870 /* Assets.xcassets */,
+				75E5F5AA217E7EAE00AC28AD /* API.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		75E5F5A8217D279C00AC28AD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				75A568E1215E869700084870 /* pantry.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		75E5F5A9217D27A800AC28AD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				75378AB5216411410014D903 /* GroceryListVC.swift */,
+				75378AB7216FFE760014D903 /* myPantryVC.swift */,
+				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
+				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
+				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +225,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75A568D2215E7F1D00084870 /* Build configuration list for PBXNativeTarget "epantry" */;
 			buildPhases = (
+				09CADC419E204D1701B33C9F /* [CP] Check Pods Manifest.lock */,
 				75A568A6215E7F1B00084870 /* Sources */,
 				75A568A7215E7F1B00084870 /* Frameworks */,
 				75A568A8215E7F1B00084870 /* Resources */,
+				1B71F9610982F9191C549464 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -164,6 +244,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75A568D5215E7F1D00084870 /* Build configuration list for PBXNativeTarget "epantryTests" */;
 			buildPhases = (
+				35E5060CC6AE8ABD1C513E6A /* [CP] Check Pods Manifest.lock */,
 				75A568BA215E7F1D00084870 /* Sources */,
 				75A568BB215E7F1D00084870 /* Frameworks */,
 				75A568BC215E7F1D00084870 /* Resources */,
@@ -182,6 +263,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75A568D8215E7F1D00084870 /* Build configuration list for PBXNativeTarget "epantryUITests" */;
 			buildPhases = (
+				351B53386122D9E901478708 /* [CP] Check Pods Manifest.lock */,
 				75A568C5215E7F1D00084870 /* Sources */,
 				75A568C6215E7F1D00084870 /* Frameworks */,
 				75A568C7215E7F1D00084870 /* Resources */,
@@ -267,6 +349,97 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09CADC419E204D1701B33C9F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-epantry-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B71F9610982F9191C549464 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-epantry/Pods-epantry-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-epantry/Pods-epantry-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		351B53386122D9E901478708 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-epantryUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35E5060CC6AE8ABD1C513E6A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-epantryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		75A568A6215E7F1B00084870 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -274,9 +447,11 @@
 			files = (
 				75378AB6216411410014D903 /* GroceryListVC.swift in Sources */,
 				75A568B0215E7F1B00084870 /* LaunchPageVC.swift in Sources */,
+				75E5F5A4217C551500AC28AD /* GroceryList.swift in Sources */,
 				75378AB8216FFE760014D903 /* myPantryVC.swift in Sources */,
 				75A568AE215E7F1B00084870 /* AppDelegate.swift in Sources */,
 				5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */,
+				75E5F5AB217E7EAE00AC28AD /* API.swift in Sources */,
 				5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +625,7 @@
 		};
 		75A568D3215E7F1D00084870 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0FE97A84B6AE34DDEC0F036 /* Pods-epantry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,6 +644,7 @@
 		};
 		75A568D4215E7F1D00084870 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41A5A085B73407A072059AD3 /* Pods-epantry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +663,7 @@
 		};
 		75A568D6215E7F1D00084870 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77D20E7CA6C6EA11A54F016C /* Pods-epantryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -507,6 +685,7 @@
 		};
 		75A568D7215E7F1D00084870 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -528,6 +707,7 @@
 		};
 		75A568D9215E7F1D00084870 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 061DB9C3493437DA5EA0AD84 /* Pods-epantryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +728,7 @@
 		};
 		75A568DA215E7F1D00084870 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E38AB0BFB25D3A3AB78C24D6 /* Pods-epantryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
