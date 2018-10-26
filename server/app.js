@@ -71,7 +71,7 @@ User.findOne({username: username})
   }
 
 }).catch(err => {
-  res.sendStatus(400).json({error: "This username has been taken"});
+  console.log(err);
 })
 
 })
@@ -93,7 +93,13 @@ app.get("/pantry/:userid", (req,res) => {
   let userid = req.params.userid;
   User.findById(userid)
   .then(result => {
-    res.json({pantry: result.pantry})
+    let mappedPantry = result.pantry.map(item => {
+      return {
+        itemName: item.itemName,
+        daysSincePurchase: item.daysSincePurchase
+      };
+    })
+    res.json({pantry: mappedPantry})
   })
   .catch(err => {
     res.sendStatus(400).json({error: err});
@@ -105,6 +111,8 @@ app.get("/pantry/:userid", (req,res) => {
 app.post("/addItemsToList/:userid", (req, res) => {
   let userid = req.params.userid;
   let items = req.body.items;
+
+  //map the input array to the correct format for db storage
   items = items.map(eachItem => {
     return {
       itemName: eachItem
@@ -128,6 +136,7 @@ app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
 
+  //map the input array to the correct format for db storage
   items = items.map(eachItem => {
     return {
       itemName: eachItem,
@@ -135,15 +144,16 @@ app.post("/addToPantry/:userid",(req, res)=> {
     };
   })
 
-  User.findByIdAndUpdate(userid,
-  {$push: {pantry: {$each: items}}},
-  {safe: true, upsert: true},
-  function(err, doc){
-    if (err) {
-      console.log(err);
-    }else{
-      res.sendStatus(200);
-    }
+  console.log(items);
+
+  User.findById(userid)
+  .then(result=> {
+    result.pantry = result.pantry.concat(items);
+    result.save(err=> {
+      if(!err){
+        res.sendStatus(200);
+      }
+    })
   })
   .catch(err=> {
     res.sendStatus(400).json({error: err});
@@ -153,18 +163,30 @@ app.post("/addToPantry/:userid",(req, res)=> {
 app.post("/removeFromPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
+  console.log("items to delete: " + items);
+  User.findById(userid) //    { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } },
+  // {$pull: {pantry: {$in: items}}},
+  // {multi: true},
+  .then(result => {
+    let newPantry;
+    items.forEach(item => {
+      newPantry = result.pantry.filter(pantryItem => {
+        console.log("delete " + item + " pantry " + pantryItem.itemName);
+        console.log("delete? " + pantryItem.itemName === item);
+        return pantryItem.itemName !== item
+      });
+    })
 
-  User.findById(userid, //    { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } },
-  {$pull: {pantry: {$in: items}}},
-  {multi: true},
-  function(err, doc){
-    if (err){
-      console.log(err);
-    }else {
-      res.sendStatus(200);
-    }
+    result.pantry = newPantry;
+    result.save(err=> {
+      if (err){
+        res.sendStatus(400);
+      }else{
+        res.sendStatus(200);
+
+      }
+    })
   })
-
 
 
   // .then(result => {
