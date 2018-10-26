@@ -136,27 +136,38 @@ app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
 
-  //map the input array to the correct format for db storage
-  items = items.map(eachItem => {
-    return {
-      itemName: eachItem,
-      daysSincePurchase: 0
-    };
-  })
+
 
   console.log(items);
 
   User.findById(userid)
   .then(result=> {
-    result.pantry = result.pantry.concat(items);
-    result.save(err=> {
-      if(!err){
-        res.sendStatus(200);
-      }
+
+    //if the pantry contains these items already, do not re-add them
+    items.forEach((addItem, i) => {
+      result.pantry.forEach(pantryItem => {
+        if (pantryItem.itemName === addItem){
+          items.splice(i, 1);
+        }
+      })
     })
-  })
-  .catch(err=> {
-    res.sendStatus(400).json({error: err});
+
+    //map the input array to the correct format for db storage
+    items = items.map(eachItem => {
+      return {
+        itemName: eachItem,
+        daysSincePurchase: 0
+      };
+    })
+
+    result.pantry = result.pantry.concat(items);
+    result.save()
+    .then(()=> {
+      res.sendStatus(200);
+    })
+    .catch(err=> {
+      res.sendStatus(400).json({error: err});
+    })
   })
 })
 
@@ -164,20 +175,16 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
   console.log("items to delete: " + items);
-  User.findById(userid) //    { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } },
-  // {$pull: {pantry: {$in: items}}},
-  // {multi: true},
+  User.findById(userid)
   .then(result => {
-    let newPantry;
-    items.forEach(item => {
-      newPantry = result.pantry.filter(pantryItem => {
-        console.log("delete " + item + " pantry " + pantryItem.itemName);
-        console.log("delete? " + pantryItem.itemName === item);
-        return pantryItem.itemName !== item
-      });
+    // let newPantry;
+    result.pantry.forEach((pantryItem, i) => {
+      if (items.indexOf(pantryItem.itemName) > -1){
+        result.pantry.splice(i, 1);
+      }
     })
 
-    result.pantry = newPantry;
+    // result.pantry = newPantry;
     result.save(err=> {
       if (err){
         res.sendStatus(400);
