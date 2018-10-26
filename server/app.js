@@ -108,7 +108,7 @@ app.get("/pantry/:userid", (req,res) => {
 
 
 /* adds an array of items to user's grocery list */
-app.post("/addItemsToList/:userid", (req, res) => {
+app.post("/addToGroceryList/:userid", (req, res) => {
   let userid = req.params.userid;
   let items = req.body.items;
 
@@ -219,11 +219,27 @@ app.post("/moveItemsToPantry/:userid",(req, res)=> {
 
   User.findById(userid)
   .then(result=> {
-    let groceryList = result.groceryList;
-    groceryList = groceryList.concat(items);
-    res.sendStatus(200);
-  })
-  .catch(err=> {
-    res.sendStatus(400).json({error: err});
+    let pantryItems = items.map(item => {
+      return {
+        itemName: item,
+        daysSincePurchase: 0
+      }
+    })
+    //adds items to pantry
+    result.pantry = result.pantry.concat(pantryItems);
+
+    //removes items from groceryList
+    result.groceryList.forEach((groceryItem, i) => {
+      if (items.indexOf(groceryItem.itemName) > -1){
+        result.groceryList.splice(i, 1);
+      }
+    })
+    result.save()
+    .then( ()=> {
+      res.sendStatus(200);
+    })
+    .catch(err=> {
+      res.sendStatus(400).json({error: err});
+    })
   })
 })
