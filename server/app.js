@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 let User = require('./models.js').User;
-
+// User.createIndex( "username: 1", { unique: true } );
 
 /* returns the userid
 {
@@ -52,39 +52,31 @@ app.post("/register", (req, res) => {
   let password = req.body.password;
 
 //if this username is taken
-
-let newUser = new User({
-  username: username,
-  password: password
-});
-newUser.save(err => {
-  if (err){
-    console.log(err);
-    res.sendStatus(400).json({error:err});
+User.findOne({username: username})
+.then(result=> {
+  if (!result){
+    let newUser = new User({
+      username: username,
+      password: password
+    });
+    newUser.save(err => {
+      if (err){
+        console.log(err);
+      }else{
+        res.sendStatus(200);
+      }
+    })
   }else{
-    res.sendStatus(200);
+    res.sendStatus(400).json({error: "This username has been taken"});
   }
-})
-  // User.findOne ({username: username})
-  // .then(result => {
-  //   console.log("username taken");
-  //   res.json({status: 400});
-  // }).catch(err=> {
-  //   //add the user
-  //   let newUser = new User({
-  //     username: username,
-  //     password: password
-  //   });
-  //   newUser.save()
-  //   .then(()=> {
-  //     res.sendStatus(200);
-  //   })
-  //   .catch(err=> {
-  //     console.log("problem saving user");
-  //   })
-  // })
-});
 
+}).catch(err => {
+  res.sendStatus(400).json({error: "This username has been taken"});
+})
+
+})
+
+/* returns the user's groceryList as groceryList: [a, b, c]*/
 app.get("/groceryList/:userid", (req,res)=> {
   let userid = req.params.userid;
   User.findById(userid)
@@ -96,6 +88,7 @@ app.get("/groceryList/:userid", (req,res)=> {
   })
 });
 
+/* returns the user's pantry as pantry: [a, b, c]*/
 app.get("/pantry/:userid", (req,res) => {
   let userid = req.params.userid;
   User.findById(userid)
@@ -107,6 +100,8 @@ app.get("/pantry/:userid", (req,res) => {
   })
 });
 
+
+/* adds an array of items to user's grocery list */
 app.post("/addItemsToList/:userid", (req, res) => {
   let userid = req.params.userid;
   let items = req.body.items;
@@ -159,21 +154,33 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
 
-  User.findbyId(userid)
-  .then(result => {
-    let pantry = result.pantry;
-    for (let i=0; i<items.length; i++){
-      for (let j=0;j<pantry.length; j++){
-        if (pantry[j].itemName === items[i]){
-          pantry.splice(j, 1);
-        }
-      }
+  User.findById(userid, //    { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } },
+  {$pull: {pantry: {$in: items}}},
+  {multi: true},
+  function(err, doc){
+    if (err){
+      console.log(err);
+    }else {
+      res.sendStatus(200);
     }
-    res.sendStatus(200);
   })
-  .catch(err=> {
-    res.sendStatus(400).json({error: err});
-  })
+
+
+
+  // .then(result => {
+  //   let pantry = result.pantry;
+  //   for (let i=0; i<items.length; i++){
+  //     for (let j=0;j<pantry.length; j++){
+  //       if (pantry[j].itemName === items[i]){
+  //         pantry.splice(j, 1);
+  //       }
+  //     }
+  //   }
+  //   res.sendStatus(200);
+  // })
+  // .catch(err=> {
+  //   res.sendStatus(400).json({error: err});
+  // })
 })
 
 /* from grocery list to pantry */
