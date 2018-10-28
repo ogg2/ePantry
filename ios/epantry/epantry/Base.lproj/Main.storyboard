@@ -285,51 +285,61 @@
                                     <constraint firstAttribute="width" constant="375" id="5hC-i6-nqc"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="74K-rl-oub">
-                                <rect key="frame" x="0.0" y="28" width="375" height="119"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZa-iu-VnJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Back">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="backButtonDidClick:" destination="Bzg-Yl-aeM" eventType="touchDown" id="5Ty-04-TWn"/>
-                                        </connections>
-                                    </button>
-                                    <searchBar contentMode="redraw" placeholder="Enter Ingredients" showsSearchResultsButton="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
-                                        <rect key="frame" x="0.0" y="34" width="375" height="56"/>
-                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                        <scopeButtonTitles>
-                                            <string>Title</string>
-                                        </scopeButtonTitles>
-                                    </searchBar>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Suggestions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgf-2i-0O6">
-                                        <rect key="frame" x="0.0" y="94" width="375" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="Oda-wP-ueq"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <searchBar contentMode="redraw" placeholder="Enter Ingredients" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
+                                <rect key="frame" x="0.0" y="50" width="375" height="56"/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZa-iu-VnJ">
+                                <rect key="frame" x="16" y="20" width="45" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonDidClick:" destination="Bzg-Yl-aeM" eventType="touchDown" id="5Ty-04-TWn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Suggestions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgf-2i-0O6">
+                                <rect key="frame" x="0.0" y="106" width="375" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="lZa-iu-VnJ" secondAttribute="trailing" constant="330" id="dMh-28-zoM"/>
-                                    <constraint firstItem="lZa-iu-VnJ" firstAttribute="leading" secondItem="74K-rl-oub" secondAttribute="leading" constant="20" id="nhJ-iB-3Zm"/>
-                                    <constraint firstAttribute="trailing" secondItem="cgf-2i-0O6" secondAttribute="trailing" id="rog-k6-SFl"/>
+                                    <constraint firstAttribute="height" constant="25" id="Oda-wP-ueq"/>
                                 </constraints>
-                            </stackView>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPo-7x-uvI">
+                                <rect key="frame" x="16" y="163" width="121" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Apple">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Zlc-GJ-k7h" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="DYH-qi-QYc"/>
+                            <constraint firstItem="lZa-iu-VnJ" firstAttribute="top" secondItem="ibC-mq-cIT" secondAttribute="top" id="Dpu-cs-LuO"/>
+                            <constraint firstItem="cgf-2i-0O6" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="FS2-d3-VXC"/>
                             <constraint firstItem="Zlc-GJ-k7h" firstAttribute="bottom" secondItem="ibC-mq-cIT" secondAttribute="bottom" id="L7H-Z6-cxJ"/>
                             <constraint firstItem="Zlc-GJ-k7h" firstAttribute="top" secondItem="ybC-my-74z" secondAttribute="top" id="T3t-64-zTz"/>
-                            <constraint firstItem="74K-rl-oub" firstAttribute="top" secondItem="ibC-mq-cIT" secondAttribute="top" constant="8" id="Yp3-Dx-MzP"/>
-                            <constraint firstItem="74K-rl-oub" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="ZKZ-0H-Zlb"/>
-                            <constraint firstItem="74K-rl-oub" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="d6j-YL-Hok"/>
+                            <constraint firstItem="UcX-7x-rfu" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="ee8-LV-Lki"/>
+                            <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="lZa-iu-VnJ" secondAttribute="trailing" constant="314" id="g8o-p5-Q1s"/>
+                            <constraint firstItem="lZa-iu-VnJ" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="16" id="gvO-30-VTp"/>
+                            <constraint firstItem="cgf-2i-0O6" firstAttribute="top" secondItem="UcX-7x-rfu" secondAttribute="bottom" id="jvB-ea-Mcx"/>
+                            <constraint firstItem="cgf-2i-0O6" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="l2r-i9-qWZ"/>
+                            <constraint firstItem="UcX-7x-rfu" firstAttribute="top" secondItem="lZa-iu-VnJ" secondAttribute="bottom" id="lg3-gw-1AD"/>
+                            <constraint firstItem="UcX-7x-rfu" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="m8k-jY-Ps5"/>
                             <constraint firstItem="Zlc-GJ-k7h" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="zSa-nK-HEk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ibC-mq-cIT"/>

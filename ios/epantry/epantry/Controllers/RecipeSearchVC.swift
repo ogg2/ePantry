@@ -25,8 +25,11 @@ class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var recipeList: UITableView?
     
     //MARK: Properties for Recipe Search
-    @IBOutlet weak var searchBar: UITextInput!
-    @IBOutlet weak var ingredientSuggestions: UIButton?
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    let ingredientArray = ["Apple", "Banana", "Orange"]
+    
+    var ingredient = [String]()
     
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")
@@ -43,5 +46,11 @@ class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = recipeList.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
         cell.textLabel?.text = "Recipe"
         return cell
+    }
+}
+
+extension RecipeSearchVC: UISearchBarDelegate {
+    func searchBar ( searchBar: UISearchBar, textDidChange searchText: String) {
+        ingredient = ingredientArray.filter({$0.prefix(searchText.count) == searchText})
     }
 }
