@@ -18,6 +18,8 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var invalidLoginLabel: UILabel!
+    
     @IBAction func loginAttempt(_ sender: Any) {
         DispatchQueue.main.async {
             let user = self.username.text!
@@ -36,8 +38,12 @@ class LoginVC: UIViewController {
                 })
             } else {
                 print("Invalid Login")
-                // Present Invalid Login Text
+                self.invalidLoginLabel.isHidden = false
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        self.invalidLoginLabel.isHidden = true
     }
 }
