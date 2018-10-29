@@ -18,6 +18,7 @@ class LaunchPageVC: UIViewController {
     @IBOutlet weak var pantryButton: UIButton!
     @IBOutlet weak var recipeButton: UIButton!
     @IBOutlet weak var groceryListButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
 
     @IBAction func groceryListButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "GroceryList")
@@ -37,6 +38,13 @@ class LaunchPageVC: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeSearch")
         self.present(vc!, animated: true, completion: {
             print("Recipe search presented")
+        })
+    }
+    
+    @IBAction func logoutButtonDidClick(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage")
+        self.present(vc!, animated: false, completion : {
+            print("Logout performed")
         })
     }
 }
