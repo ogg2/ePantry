@@ -11,25 +11,36 @@ import UIKit
 
 class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    let ingredientArray = ["Apple", "Banana", "Orange"]
+    let button = UIButton()
+    var ingredient = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButton()
     }
     
-    //MARK: Properites for Specific Recipe
-    @IBOutlet weak var recipeName: UILabel?
-    @IBOutlet weak var recipePhoto: UIImageView?
-    @IBOutlet weak var recipeRating: UILabel?
-    @IBOutlet weak var prepTime: UILabel?
-    @IBOutlet weak var cuisine: UILabel?
-    @IBOutlet weak var instructions: UITextField?
-    @IBOutlet weak var recipeList: UITableView?
+    func setupSearchBar() {
+        
+    }
     
-    //MARK: Properties for Recipe Search
-    @IBOutlet weak var searchBar: UISearchBar!
+    func setupButton () {
+        //let button = UIButton()
+        button.frame = CGRect(x: 10, y: 630, width: 300, height: 70)
+        view.addSubview(button)
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle(ingredientArray[0], for: .normal)
+        button.backgroundColor = UIColor.black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button.layer.cornerRadius = 17
+        
+        button.addTarget(self, action: #selector(buttonWasTapped), for: .touchUpInside)
+    }
     
-    let ingredientArray = ["Apple", "Banana", "Orange"]
-    
-    var ingredient = [String]()
+    @objc func buttonWasTapped() {
+        searchBar.text = "\(searchBar.text!) \(button.currentTitle!)"
+    }
     
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")

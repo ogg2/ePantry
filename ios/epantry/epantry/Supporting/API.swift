@@ -30,7 +30,7 @@ class API {
     static func loginAttempt(username: String, password: String, completionHandler: (Bool, Any?, Error?) -> Void) {
         Alamofire.request("url")
         var responseContent: Any?
-        if (username == "admin" && password == "12345"/*request login is successful statusZ*/) {
+        if (username == "" && password == ""/*request login is successful statusZ*/) {
             completionHandler(true, responseContent, nil)
         } else {
             completionHandler(false, responseContent, nil)
