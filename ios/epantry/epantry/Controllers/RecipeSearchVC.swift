@@ -12,34 +12,46 @@ import UIKit
 class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    let ingredientArray = ["Apple", "Banana", "Orange"]
+    let ingredientArray = ["Apple", "Banana", "Orange", "Avocado", "Bread", "Cheese", "Eggs", "Milk"]
     let button = UIButton()
     var ingredient = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButton()
+        for i in 1...ingredientArray.count {
+            setupButton(idx: i)
+        }
     }
     
     func setupSearchBar() {
         
     }
     
-    func setupButton () {
-        //let button = UIButton()
-        button.frame = CGRect(x: 10, y: 630, width: 300, height: 70)
-        view.addSubview(button)
+    func setupButton (idx: Int) {
+        let button = UIButton()
+        if idx % 2 == 1 {
+            button.frame = CGRect(x: 30, y: 150 + idx * 50, width: 150, height: 70)
+        } else {
+            button.frame = CGRect(x: 235, y: 100 + idx * 50, width: 150, height: 70)
+        }
         button.setTitleColor(.white, for: .normal)
-        button.setTitle(ingredientArray[0], for: .normal)
+        button.setTitle(ingredientArray[idx - 1], for: .normal)
         button.backgroundColor = UIColor.black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.layer.cornerRadius = 17
+        //button.sizeToFit()
+        view.addSubview(button)
+        /*button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
+        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
+        button.topAnchor.constraint(equalTo: searchBar.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        button.widthAnchor.*/
         
         button.addTarget(self, action: #selector(buttonWasTapped), for: .touchUpInside)
     }
     
-    @objc func buttonWasTapped() {
-        searchBar.text = "\(searchBar.text!) \(button.currentTitle!)"
+    @objc func buttonWasTapped(sender:UIButton!) {
+        searchBar.text = "\(searchBar.text!) \(sender.currentTitle!)"
     }
     
     @IBAction func backButtonDidClick(_ sender: Any) {
