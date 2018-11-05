@@ -10,6 +10,7 @@
 		418ED95EF6E4871B47D3CE02 /* Pods_epantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */; };
 		5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */; };
 		5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */; };
+		7517A5192190C75F00024F06 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517A5182190C75F00024F06 /* RegisterVC.swift */; };
 		75378AB6216411410014D903 /* GroceryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB5216411410014D903 /* GroceryListVC.swift */; };
 		75378AB8216FFE760014D903 /* myPantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB7216FFE760014D903 /* myPantryVC.swift */; };
 		753C6167218787320063CA14 /* loginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753C6166218787320063CA14 /* loginVC.swift */; };
@@ -50,6 +51,7 @@
 		4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantryTests/Pods-epantryTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
 		5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
+		7517A5182190C75F00024F06 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		75378AB5216411410014D903 /* GroceryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListVC.swift; sourceTree = "<group>"; };
 		75378AB7216FFE760014D903 /* myPantryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myPantryVC.swift; sourceTree = "<group>"; };
 		753C6166218787320063CA14 /* loginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginVC.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
 				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
 				753C6166218787320063CA14 /* loginVC.swift */,
+				7517A5182190C75F00024F06 /* RegisterVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				75E5F5AB217E7EAE00AC28AD /* API.swift in Sources */,
 				753C6167218787320063CA14 /* loginVC.swift in Sources */,
 				5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */,
+				7517A5192190C75F00024F06 /* RegisterVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

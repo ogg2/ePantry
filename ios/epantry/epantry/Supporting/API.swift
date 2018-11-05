@@ -33,7 +33,20 @@ class API {
     static func loginAttempt(username: String, password: String, completionHandler: (Bool, Any?, Error?) -> Void) {
         Alamofire.request("url")
         var responseContent: Any?
-        if (username == "" && password == ""/*request login is successful statusZ*/) {
+        if (/*request login is successful status*/username == "" && password == "") {
+            completionHandler(true, responseContent, nil)
+        } else {
+            completionHandler(false, responseContent, nil)
+        }
+    }
+    
+    /*
+     Perform networking code to attempt to register a user
+    */
+    static func registrationAttempt(username: String, password: String, completionHandler: (Bool, Any?, Error?) -> Void) {
+        Alamofire.request("url")
+        var responseContent: Any?
+        if (/*registration is successful status*/username == "" && password == "") {
             completionHandler(true, responseContent, nil)
         } else {
             completionHandler(false, responseContent, nil)
