@@ -27,6 +27,9 @@ class API {
         completionHandler(["Tomato", "Pear", "Soup", "Bread"])
     }
     
+    /*
+     Perform networking code to attempt to login
+    */
     static func loginAttempt(username: String, password: String, completionHandler: (Bool, Any?, Error?) -> Void) {
         Alamofire.request("url")
         var responseContent: Any?
