@@ -42,6 +42,7 @@ class LaunchPageVC: UIViewController {
     }
     
     @IBAction func logoutButtonDidClick(_ sender: Any) {
+        /* LOGOUT CONFIRMATIN MODAL PRESENT */
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage")
         self.present(vc!, animated: false, completion : {
             print("Logout performed")

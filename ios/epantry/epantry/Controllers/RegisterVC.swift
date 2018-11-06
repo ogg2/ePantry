@@ -41,8 +41,11 @@ class RegisterVC: UIViewController {
                 })
             
                 if (registered) {
-                    /* Need to tell user they registered successfully somehow */
-                    
+                    /* POPUP REGISTRATION SUCCESSFUL MODAL */
+                    let vc: LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage") as! LoginVC
+                    self.present(vc, animated: false, completion: {
+                        print("Registration successful")
+                    })
                     self.invalidRegisterLabel.isHidden = true
                 } else {
                     self.invalidRegisterLabel.text = "Username already taken"
