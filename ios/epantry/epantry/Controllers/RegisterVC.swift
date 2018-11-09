@@ -18,9 +18,8 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var confirmPassword: UITextField!
     
     @IBOutlet weak var invalidRegisterLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var confirmPasswordLabel: UILabel!
+    
+    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var registerButton: UIButton!
     
@@ -55,16 +54,15 @@ class RegisterVC: UIViewController {
         }
     }
     
+    @IBAction func backButtonDidClick(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage")
+        self.present(vc!, animated: false, completion : {
+            print("Logout performed")
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.registerButton.center = view.center
-        self.password.center = view.center
-        self.confirmPassword.center = view.center
-        self.username.center = view.center
-        self.usernameLabel.center = view.center
-        self.passwordLabel.center = view.center
-        self.confirmPasswordLabel.center = view.center
-        self.invalidRegisterLabel.center = view.center
         self.invalidRegisterLabel.isHidden = true
     }
 }
