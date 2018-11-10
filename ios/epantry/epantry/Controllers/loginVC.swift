@@ -20,6 +20,8 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var invalidLoginLabel: UILabel!
     
+    @IBOutlet weak var registerButton: UIButton!
+    
     @IBAction func loginAttempt(_ sender: Any) {
         DispatchQueue.main.async {
             let user = self.username.text!
@@ -43,7 +45,15 @@ class LoginVC: UIViewController {
         }
     }
     
+    @IBAction func registerButtonDidClick(_ sender: Any) {
+        let vcRegister = self.storyboard?.instantiateViewController(withIdentifier: "RegisterPage") as! RegisterVC
+        self.present(vcRegister, animated: true, completion: {
+            print("Registration page presented")
+        })
+    }
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.invalidLoginLabel.isHidden = true
     }
 }
