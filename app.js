@@ -24,6 +24,11 @@ output:
 {
 userid: userid
 }}*/
+
+app.get("/", (req, res)=> {
+  res.send("Welcome to ePantry backend");
+})
+
 app.post("/login", (req, res)=> {
   let username = req.body.username;
   let password = req.body.password;
