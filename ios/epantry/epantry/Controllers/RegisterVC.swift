@@ -16,9 +16,7 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     @IBOutlet weak var confirmPassword: UITextField!
-    
-    @IBOutlet weak var invalidRegisterLabel: UILabel!
-    
+        
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var registerButton: UIButton!
@@ -32,8 +30,7 @@ class RegisterVC: UIViewController {
             var registered: Bool = Bool()
         
             if (pw != pwConfirm) {
-                self.invalidRegisterLabel.isHidden = false
-                self.invalidRegisterLabel.text = "Passwords don't match"
+                self.invalidRegistration(alertMessage: "Passwords don't match")
             } else {
                 API.registrationAttempt(username: user, password: pw, completionHandler: { (success, content, error) in
                     registered = success
@@ -45,13 +42,26 @@ class RegisterVC: UIViewController {
                     self.present(vc, animated: false, completion: {
                         print("Registration successful")
                     })
-                    self.invalidRegisterLabel.isHidden = true
                 } else {
-                    self.invalidRegisterLabel.text = "Username already taken"
-                    self.invalidRegisterLabel.isHidden = false
+                    self.invalidRegistration(alertMessage: "Username already taken")
                 }
             }
         }
+    }
+    
+    func invalidRegistration(alertMessage: String) {
+        let dialogMessage = UIAlertController(title: "Invalid Registration", message: alertMessage, preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     @IBAction func backButtonDidClick(_ sender: Any) {
@@ -63,6 +73,5 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.invalidRegisterLabel.isHidden = true
     }
 }

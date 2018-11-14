@@ -18,8 +18,6 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var password: UITextField!
     
-    @IBOutlet weak var invalidLoginLabel: UILabel!
-    
     @IBOutlet weak var registerButton: UIButton!
     
     @IBAction func loginAttempt(_ sender: Any) {
@@ -39,10 +37,24 @@ class LoginVC: UIViewController {
                     print("login successful")
                 })
             } else {
-                print("Invalid Login")
-                self.invalidLoginLabel.isHidden = false
+                self.invalidLogin()
             }
         }
+    }
+    
+    func invalidLogin() {
+        let dialogMessage = UIAlertController(title: "Invalid Login", message: "Login attempt failed.", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     @IBAction func registerButtonDidClick(_ sender: Any) {
@@ -54,6 +66,5 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.invalidLoginLabel.isHidden = true
     }
 }
