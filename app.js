@@ -38,6 +38,7 @@ app.post("/login", (req, res)=> {
     username: username,
     password: password
   }).then (result => {
+    console.log(result._id);
     res.json({userid: result._id});
   }).catch(err => {
     res.sendStatus(400).json({error: err});
@@ -88,7 +89,7 @@ app.get("/groceryList/:userid", (req,res)=> {
   let userid = req.params.userid;
   User.findById(userid)
   .then(result => {
-    res.json({groceryList: result.groceryList});
+    res.sendStatus(200).json({groceryList: result.groceryList});
   })
   .catch(err => {
     res.sendStatus(400).json({error: err});
