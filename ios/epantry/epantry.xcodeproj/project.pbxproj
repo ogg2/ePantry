@@ -10,6 +10,8 @@
 		418ED95EF6E4871B47D3CE02 /* Pods_epantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */; };
 		5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */; };
 		5A63EDA7216D8A51003DFFE5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */; };
+		5A89619C219BF13D00A4A01C /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */; };
+		5A89619E219BF51400A4A01C /* RecipeDisplaysTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A89619D219BF51400A4A01C /* RecipeDisplaysTableVC.swift */; };
 		7517A5192190C75F00024F06 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517A5182190C75F00024F06 /* RegisterVC.swift */; };
 		75378AB6216411410014D903 /* GroceryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB5216411410014D903 /* GroceryListVC.swift */; };
 		75378AB8216FFE760014D903 /* myPantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB7216FFE760014D903 /* myPantryVC.swift */; };
@@ -51,6 +53,8 @@
 		4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantryTests/Pods-epantryTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
 		5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
+		5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = Controllers/RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		5A89619D219BF51400A4A01C /* RecipeDisplaysTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDisplaysTableVC.swift; sourceTree = "<group>"; };
 		7517A5182190C75F00024F06 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		75378AB5216411410014D903 /* GroceryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListVC.swift; sourceTree = "<group>"; };
 		75378AB7216FFE760014D903 /* myPantryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myPantryVC.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				75E5F5A7217D277100AC28AD /* Supporting */,
 				75A568AD215E7F1B00084870 /* AppDelegate.swift */,
 				75A568B1215E7F1B00084870 /* Main.storyboard */,
+				5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */,
 				75A568B6215E7F1C00084870 /* LaunchScreen.storyboard */,
 				75A568B9215E7F1C00084870 /* Info.plist */,
 			);
@@ -218,6 +223,7 @@
 				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
 				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
 				5A63EDA6216D8A51003DFFE5 /* RecipeTableViewController.swift */,
+				5A89619D219BF51400A4A01C /* RecipeDisplaysTableVC.swift */,
 				753C6166218787320063CA14 /* loginVC.swift */,
 				7517A5182190C75F00024F06 /* RegisterVC.swift */,
 			);
@@ -451,9 +457,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A89619E219BF51400A4A01C /* RecipeDisplaysTableVC.swift in Sources */,
 				75378AB6216411410014D903 /* GroceryListVC.swift in Sources */,
 				75A568B0215E7F1B00084870 /* LaunchPageVC.swift in Sources */,
 				75E5F5A4217C551500AC28AD /* GroceryList.swift in Sources */,
+				5A89619C219BF13D00A4A01C /* RecipeTableViewCell.swift in Sources */,
 				75378AB8216FFE760014D903 /* myPantryVC.swift in Sources */,
 				75A568AE215E7F1B00084870 /* AppDelegate.swift in Sources */,
 				5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */,
