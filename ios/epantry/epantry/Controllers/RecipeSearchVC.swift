@@ -12,6 +12,7 @@ import UIKit
 class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var backButton: UIButton!
     let ingredientArray = ["Apple", "Banana", "Orange", "Avocado", "Bread", "Cheese", "Eggs", "Milk"]
     let button = UIButton()
     var ingredient = [String]()
@@ -21,6 +22,7 @@ class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         for i in 1...ingredientArray.count {
             setupButton(idx: i)
         }
+        self.searchBar.delegate = self
     }
     
     func setupSearchBar() {
@@ -75,5 +77,12 @@ class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 extension RecipeSearchVC: UISearchBarDelegate {
     func searchBar ( searchBar: UISearchBar, textDidChange searchText: String) {
         ingredient = ingredientArray.filter({$0.prefix(searchText.count) == searchText})
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults")
+        self.present(vc!, animated: true, completion: {
+            print("Search Results Presented")
+        })
     }
 }

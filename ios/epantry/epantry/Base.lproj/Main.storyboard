@@ -569,7 +569,7 @@
                             <searchBar contentMode="redraw" placeholder="Enter Ingredients" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
                                 <rect key="frame" x="0.0" y="50" width="375" height="56"/>
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
                                 </scopeButtonTitles>
@@ -616,6 +616,7 @@
                         <viewLayoutGuide key="safeArea" id="ibC-mq-cIT"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="lZa-iu-VnJ" id="HDU-xO-UWU"/>
                         <outlet property="searchBar" destination="UcX-7x-rfu" id="DKx-Kb-PfH"/>
                     </connections>
                 </viewController>
@@ -626,11 +627,16 @@
         <!--Recipe DisplaysVC-->
         <scene sceneID="zxB-lL-O3N">
             <objects>
-                <tableViewController id="p7G-Zd-Dye" customClass="RecipeDisplaysVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RecipeResults" id="p7G-Zd-Dye" customClass="RecipeDisplaysVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nbc-xH-60t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1tu-qx-5fv">
+                            <rect key="frame" x="0.0" y="118" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Back"/>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeTableViewCell" rowHeight="90" id="vBp-vf-yha" customClass="RecipeTableViewCell" customModule="epantry" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
@@ -666,7 +672,44 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wmd-gd-j0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805.5999999999999" y="850.52473763118451"/>
+            <point key="canvasLocation" x="2306" y="851"/>
+        </scene>
+        <!--Recipe ResultsVC-->
+        <scene sceneID="rqG-1b-1el">
+            <objects>
+                <viewController storyboardIdentifier="RecipeResult" id="ofh-nz-EmX" customClass="RecipeResultsVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kLm-SX-imc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pantry.png" highlightedImage="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="PB1-gp-Pah">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E19-74-esb">
+                                <rect key="frame" x="16" y="20" width="50" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonDidClick:" destination="ofh-nz-EmX" eventType="touchUpInside" id="omQ-xg-X6I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="E19-74-esb" firstAttribute="top" secondItem="U5m-ux-ji5" secondAttribute="top" id="v7U-Js-SQQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="U5m-ux-ji5"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="E19-74-esb" id="tsv-Ye-zpP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kE4-Q7-w5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="851"/>
         </scene>
     </scenes>
     <resources>
