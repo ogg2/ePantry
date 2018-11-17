@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+let router=express.Router;
 
 let app = express();
 app.listen(process.env.PORT || 8888);
@@ -26,7 +27,7 @@ userid: userid
 }}*/
 
 app.get("/", (req, res)=> {
-  res.send("Welcome to ePantry backend");
+  res.send("Welcome to ePantry backend").sendStatus(200);
 })
 
 app.post("/login", (req, res)=> {
@@ -238,3 +239,5 @@ app.post("/moveItemsToPantry/:userid",(req, res)=> {
     })
   })
 })
+
+module.exports = router;
