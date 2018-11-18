@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		418ED95EF6E4871B47D3CE02 /* Pods_epantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */; };
-		5A3710A521A0BEB60075FF58 /* RecipeResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3710A421A0BEB60075FF58 /* RecipeResultsVC.swift */; };
 		5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */; };
 		5A89619C219BF13D00A4A01C /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */; };
-		5A89619E219BF51400A4A01C /* RecipeDisplaysTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A89619D219BF51400A4A01C /* RecipeDisplaysTableVC.swift */; };
+		5AA310AA21A1FE4B00974392 /* RecipeResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */; };
+		5AA310AC21A2079D00974392 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA310AB21A2079D00974392 /* Recipe.swift */; };
+		5AA310AE21A2124F00974392 /* avocado.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA310AD21A2124F00974392 /* avocado.png */; };
 		7517A5192190C75F00024F06 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517A5182190C75F00024F06 /* RegisterVC.swift */; };
 		75378AB6216411410014D903 /* GroceryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB5216411410014D903 /* GroceryListVC.swift */; };
 		75378AB8216FFE760014D903 /* myPantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75378AB7216FFE760014D903 /* myPantryVC.swift */; };
@@ -51,10 +52,11 @@
 		061DB9C3493437DA5EA0AD84 /* Pods-epantryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-epantryUITests/Pods-epantryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		41A5A085B73407A072059AD3 /* Pods-epantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantry/Pods-epantry.release.xcconfig"; sourceTree = "<group>"; };
 		4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantryTests/Pods-epantryTests.release.xcconfig"; sourceTree = "<group>"; };
-		5A3710A421A0BEB60075FF58 /* RecipeResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsVC.swift; sourceTree = "<group>"; };
 		5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
 		5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = Controllers/RecipeTableViewCell.swift; sourceTree = "<group>"; };
-		5A89619D219BF51400A4A01C /* RecipeDisplaysTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDisplaysTableVC.swift; sourceTree = "<group>"; };
+		5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsVC.swift; sourceTree = "<group>"; };
+		5AA310AB21A2079D00974392 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		5AA310AD21A2124F00974392 /* avocado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avocado.png; sourceTree = "<group>"; };
 		7517A5182190C75F00024F06 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		75378AB5216411410014D903 /* GroceryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListVC.swift; sourceTree = "<group>"; };
 		75378AB7216FFE760014D903 /* myPantryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myPantryVC.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				75E5F5A3217C551500AC28AD /* GroceryList.swift */,
+				5AA310AB21A2079D00974392 /* Recipe.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 		75E5F5A8217D279C00AC28AD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5AA310AD21A2124F00974392 /* avocado.png */,
 				75A568E1215E869700084870 /* pantry.png */,
 			);
 			path = Images;
@@ -221,9 +225,8 @@
 				75378AB5216411410014D903 /* GroceryListVC.swift */,
 				75378AB7216FFE760014D903 /* myPantryVC.swift */,
 				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
+				5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */,
 				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
-				5A3710A421A0BEB60075FF58 /* RecipeResultsVC.swift */,
-				5A89619D219BF51400A4A01C /* RecipeDisplaysTableVC.swift */,
 				753C6166218787320063CA14 /* loginVC.swift */,
 				7517A5182190C75F00024F06 /* RegisterVC.swift */,
 			);
@@ -342,6 +345,7 @@
 				75A568B5215E7F1C00084870 /* Assets.xcassets in Resources */,
 				75A568E2215E869700084870 /* pantry.png in Resources */,
 				75A568B3215E7F1B00084870 /* Main.storyboard in Resources */,
+				5AA310AE21A2124F00974392 /* avocado.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,12 +461,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A89619E219BF51400A4A01C /* RecipeDisplaysTableVC.swift in Sources */,
 				75378AB6216411410014D903 /* GroceryListVC.swift in Sources */,
 				75A568B0215E7F1B00084870 /* LaunchPageVC.swift in Sources */,
-				5A3710A521A0BEB60075FF58 /* RecipeResultsVC.swift in Sources */,
 				75E5F5A4217C551500AC28AD /* GroceryList.swift in Sources */,
+				5AA310AC21A2079D00974392 /* Recipe.swift in Sources */,
 				5A89619C219BF13D00A4A01C /* RecipeTableViewCell.swift in Sources */,
+				5AA310AA21A1FE4B00974392 /* RecipeResultsVC.swift in Sources */,
 				75378AB8216FFE760014D903 /* myPantryVC.swift in Sources */,
 				75A568AE215E7F1B00084870 /* AppDelegate.swift in Sources */,
 				5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */,

@@ -26,7 +26,6 @@ class RecipeSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func setupSearchBar() {
-        
     }
     
     func setupButton (idx: Int) {
