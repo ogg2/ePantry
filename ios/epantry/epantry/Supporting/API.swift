@@ -30,13 +30,20 @@ class API {
     /*
      Perform networking code to attempt to login
     */
-    static func loginAttempt(username: String, password: String, completionHandler: (Bool, Any?, Error?) -> Void) {
-        Alamofire.request("url")
-        var responseContent: Any?
-        if (/*request login is successful status*/username == "" && password == "") {
-            completionHandler(true, responseContent, nil)
-        } else {
-            completionHandler(false, responseContent, nil)
+    static func loginAttempt(username: String, password: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            let parameters: [String: String] = ["username": username, "password": password]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    print(response.result.value!)
+                    completionHandler(true, response, nil)
+                case .failure(let error):
+                    print(error)
+                    completionHandler(false, response, nil)
+                }
+            }
         }
     }
     

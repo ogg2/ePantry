@@ -29,16 +29,17 @@ class LoginVC: UIViewController {
             
             API.loginAttempt(username: user, password: pw, completionHandler: { (success, content, error) in
                 loggedIn = success
+                print(loggedIn)
+                
+                if (loggedIn) {
+                    let vc: LaunchPageVC = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage") as! LaunchPageVC
+                    self.present(vc, animated: true, completion: {
+                        print("login successful")
+                    })
+                } else {
+                    self.invalidLogin()
+                }
             })
-            
-            if (loggedIn) {
-                let vc: LaunchPageVC = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage") as! LaunchPageVC
-                self.present(vc, animated: true, completion: {
-                    print("login successful")
-                })
-            } else {
-                self.invalidLogin()
-            }
         }
     }
     
