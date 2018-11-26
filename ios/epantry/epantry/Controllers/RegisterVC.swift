@@ -36,17 +36,36 @@ class RegisterVC: UIViewController {
                     registered = success
                     print(registered)
                     if (registered) {
-                        /* POPUP REGISTRATION SUCCESSFUL MODAL */
-                        let vc: LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage") as! LoginVC
-                        self.present(vc, animated: false, completion: {
-                            print("Registration successful")
-                        })
+                        self.registrationSuccessful()
                     } else {
                         self.invalidRegistration(alertMessage: "Username already taken")
                     }
                 })
             }
         }
+    }
+    
+    func backToLogin() {
+        let vc: LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage") as! LoginVC
+        self.present(vc, animated: false, completion: {
+            print("Registration successful")
+        })
+    }
+    
+    func registrationSuccessful() {
+        let dialogMessage = UIAlertController(title: "Registration Sucessful", message: "Account created successfully", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+            self.backToLogin()
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     func invalidRegistration(alertMessage: String) {
