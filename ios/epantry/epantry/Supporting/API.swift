@@ -50,13 +50,22 @@ class API {
     /*
      Perform networking code to attempt to register a user
     */
-    static func registrationAttempt(username: String, password: String, completionHandler: (Bool, Any?, Error?) -> Void) {
-        Alamofire.request("url")
-        var responseContent: Any?
-        if (/*registration is successful status*/username == "" && password == "") {
-            completionHandler(true, responseContent, nil)
-        } else {
-            completionHandler(false, responseContent, nil)
+    static func registrationAttempt(username: String, password: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
+        let SUCCESS_CODE: Int
+        SUCCESS_CODE = 200
+        DispatchQueue.main.async {
+            let parameters: [String: String] = ["username": username, "password": password]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/register", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true, response, nil)
+                } else {
+                    print("Error")
+                    completionHandler(false, response, nil)
+                }
+            }
         }
     }
     

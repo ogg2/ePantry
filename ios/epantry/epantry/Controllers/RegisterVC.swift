@@ -34,17 +34,17 @@ class RegisterVC: UIViewController {
             } else {
                 API.registrationAttempt(username: user, password: pw, completionHandler: { (success, content, error) in
                     registered = success
+                    print(registered)
+                    if (registered) {
+                        /* POPUP REGISTRATION SUCCESSFUL MODAL */
+                        let vc: LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage") as! LoginVC
+                        self.present(vc, animated: false, completion: {
+                            print("Registration successful")
+                        })
+                    } else {
+                        self.invalidRegistration(alertMessage: "Username already taken")
+                    }
                 })
-            
-                if (registered) {
-                    /* POPUP REGISTRATION SUCCESSFUL MODAL */
-                    let vc: LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginPage") as! LoginVC
-                    self.present(vc, animated: false, completion: {
-                        print("Registration successful")
-                    })
-                } else {
-                    self.invalidRegistration(alertMessage: "Username already taken")
-                }
             }
         }
     }
