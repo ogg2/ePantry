@@ -39,11 +39,11 @@ class API {
                     print("Validation Successful")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
+                        //Defaults.userId = JSON["userid"]! as! String
+                        
                         //print(JSON["userid"]!)
-                        var userId: String
-                        userId = JSON["userid"]! as! String
-                        Defaults.userId = userId
-                        print(Defaults.userId!)
+                        //Defaults.userId = userId
+                        //print(Defaults.userId!)
                     }
                     completionHandler(true, response, nil)
                 case .failure(let error):
@@ -77,4 +77,3 @@ class API {
     }
     
 }
-

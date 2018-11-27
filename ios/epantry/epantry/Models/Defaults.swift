@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Defaults.swift
 //  epantry
 //
 //  Created by Caleb Cain on 11/27/18.
@@ -18,8 +18,4 @@ struct Defaults {
             return UserDefaults.standard.string(forKey: #function)
         }
     }
-}
-
-struct LoginResponse {
-    let userId: String
 }
