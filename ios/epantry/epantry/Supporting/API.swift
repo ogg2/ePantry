@@ -39,11 +39,8 @@ class API {
                     print("Validation Successful")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
-                        //Defaults.userId = JSON["userid"]! as! String
-                        
-                        //print(JSON["userid"]!)
-                        //Defaults.userId = userId
-                        //print(Defaults.userId!)
+                        setUserId(userId: JSON["userid"]! as! String)
+                        print(getUserId())
                     }
                     completionHandler(true, response, nil)
                 case .failure(let error):
@@ -74,6 +71,14 @@ class API {
                 }
             }
         }
+    }
+    
+    static func getUserId() -> String {
+        return UserDefaults.standard.value(forKey: "userId") as! String
+    }
+    
+    static func setUserId(userId: String) {
+        UserDefaults.standard.set(userId, forKey: "userId")
     }
     
 }

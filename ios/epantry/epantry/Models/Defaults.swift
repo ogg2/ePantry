@@ -8,14 +8,9 @@
 
 import Foundation
 
-struct Defaults {
-    static var userId: String? {
-        set {
-            UserDefaults.setValue(newValue, forKey: #function)
-        }
-        
-        get {
-            return UserDefaults.standard.string(forKey: #function)
-        }
+extension UserDefaults {
+    var userId: String? {
+        get { return string(forKey: #function) }
+        set { set(newValue, forKey: #function) }
     }
 }
