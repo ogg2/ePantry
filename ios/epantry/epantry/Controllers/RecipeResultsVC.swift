@@ -71,5 +71,10 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ recipeResultsTable: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = recipeResultsTable.cellForRow(at: indexPath)! as UITableViewCell
         print(indexPath.row)
+        //performSegue(withIdentifier: "segue", sender: self)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeInstruct")
+        self.present(vc!, animated: false, completion: {
+            print("Load Instructions for Selected Recipe")
+        })
     }
 }

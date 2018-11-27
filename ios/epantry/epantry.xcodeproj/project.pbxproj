@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		418ED95EF6E4871B47D3CE02 /* Pods_epantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65D6E12D6A5E84AFD20AB7C /* Pods_epantryTests.framework */; };
 		5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */; };
+		5A821C6A21ACE1FB0018617C /* RecipeInstructVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A821C6921ACE1FB0018617C /* RecipeInstructVC.swift */; };
 		5A89619C219BF13D00A4A01C /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */; };
 		5AA310AA21A1FE4B00974392 /* RecipeResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */; };
 		5AA310AC21A2079D00974392 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA310AB21A2079D00974392 /* Recipe.swift */; };
@@ -53,6 +54,7 @@
 		41A5A085B73407A072059AD3 /* Pods-epantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantry/Pods-epantry.release.xcconfig"; sourceTree = "<group>"; };
 		4CB15F47ADD5E835E79EA4CC /* Pods-epantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-epantryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-epantryTests/Pods-epantryTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchVC.swift; sourceTree = "<group>"; };
+		5A821C6921ACE1FB0018617C /* RecipeInstructVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstructVC.swift; sourceTree = "<group>"; };
 		5A89619B219BF13D00A4A01C /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = Controllers/RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResultsVC.swift; sourceTree = "<group>"; };
 		5AA310AB21A2079D00974392 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -225,8 +227,9 @@
 				75378AB5216411410014D903 /* GroceryListVC.swift */,
 				75378AB7216FFE760014D903 /* myPantryVC.swift */,
 				75A568AF215E7F1B00084870 /* LaunchPageVC.swift */,
-				5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */,
 				5A4E7D4B216D7C3F00F88F49 /* RecipeSearchVC.swift */,
+				5AA310A921A1FE4B00974392 /* RecipeResultsVC.swift */,
+				5A821C6921ACE1FB0018617C /* RecipeInstructVC.swift */,
 				753C6166218787320063CA14 /* loginVC.swift */,
 				7517A5182190C75F00024F06 /* RegisterVC.swift */,
 			);
@@ -472,6 +475,7 @@
 				5A4E7D4C216D7C3F00F88F49 /* RecipeSearchVC.swift in Sources */,
 				75E5F5AB217E7EAE00AC28AD /* API.swift in Sources */,
 				753C6167218787320063CA14 /* loginVC.swift in Sources */,
+				5A821C6A21ACE1FB0018617C /* RecipeInstructVC.swift in Sources */,
 				7517A5192190C75F00024F06 /* RegisterVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
