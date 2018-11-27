@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+struct Defaults {
+    static var userId: String? {
+        set {
+            UserDefaults.setValue(newValue, forKey: #function)
+        }
+        
+        get {
+            return UserDefaults.standard.string(forKey: #function)
+        }
+    }
+}
+
+struct LoginResponse {
+    let userId: String
+}
