@@ -786,58 +786,92 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A2e-lX-pNk">
-                                <rect key="frame" x="16" y="135" width="343" height="243"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2eL-OH-pc1">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2eL-OH-pc1" id="lgJ-oB-8nd">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingredient and Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62a-42-zHI">
-                                                    <rect key="frame" x="15" y="11" width="313" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EXK-Rr-29L">
-                                <rect key="frame" x="16" y="398" width="343" height="249"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOe-wi-8A1">
+                                <rect key="frame" x="21" y="381" width="338" height="266"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwj-if-XyU">
+                                        <rect key="frame" x="8" y="8" width="322" height="1258"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="322" id="x0J-eP-Esz"/>
+                                        </constraints>
+                                        <mutableString key="text">Cut the florets off the stems and and then chop them into tiny florets. You can also chop up the stems into tiny pieces if you want. You should have about 6 cups of chopped cauliflower. In a large skillet heat 2 tablespoons of olive oil over medium-high heat. Add the cauliflower, 1 teaspoon of salt, rosemary, and sumac. Sauté until cauliflower is tender and starts to brown a bit, stirring as necessary, about 15 minutes. You can also add a bit of olive oil if the pan starts to get too dry or the cauliflower is starting to stick. Meanwhile, in a small skillet, toast the pinenuts over medium heat until golden brown. Set aside. Heat the remaining 2 tablespoons of olive oil in the same pan. Once oil is shimmering, toss in the breadcrumbs and stir, toasting the breadcrumbs. Season with a pinch of kosher salt and a few turns of freshly ground black pepper. Remove from the heat and toss in half of the chopped parsley. When cauliflower is done, remove from the heat and season to taste with freshly ground black pepper and a pinch or so of salt if necessary. Toss in the toasted pine nuts, the chopped raisins, and the remaining parsley. When ready to serve, sprinkle the top with the toasted breadcrumbs and some pecorino. Cut the florets off the stems and and then chop them into tiny florets. You can also chop up the stems into tiny pieces if you want. You should have about 6 cups of chopped cauliflower. In a large skillet heat 2 tablespoons of olive oil over medium-high heat. Add the cauliflower, 1 teaspoon of salt, rosemary, and sumac. Sauté until cauliflower is tender and starts to brown a bit, stirring as necessary, about 15 minutes. You can also add a bit of olive oil if the pan starts to get too dry or the cauliflower is starting to stick. Meanwhile, in a small skillet, toast the pinenuts over medium heat until golden brown. Set aside. Heat the remaining 2 tablespoons of olive oil in the same pan. Once oil is shimmering, toss in the breadcrumbs and stir, toasting the breadcrumbs. Season with a pinch of kosher salt and a few turns of freshly ground black pepper. Remove from the heat and toss in half of the chopped parsley. When cauliflower is done, remove from the heat and season to taste with freshly ground black pepper and a pinch or so of salt if necessary. Toss in the toasted pine nuts, the chopped raisins, and the remaining parsley. When ready to serve, sprinkle the top with the toasted breadcrumbs and some pecorino.</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="cwj-if-XyU" firstAttribute="leading" secondItem="TOe-wi-8A1" secondAttribute="leading" constant="8" id="3Q9-eD-44o"/>
+                                    <constraint firstItem="cwj-if-XyU" firstAttribute="top" secondItem="TOe-wi-8A1" secondAttribute="top" constant="8" id="QRr-dx-157"/>
+                                    <constraint firstAttribute="trailing" secondItem="cwj-if-XyU" secondAttribute="trailing" constant="8" id="XMB-zw-23w"/>
+                                    <constraint firstAttribute="bottom" secondItem="cwj-if-XyU" secondAttribute="bottom" constant="8" id="hkL-hH-SWb"/>
+                                </constraints>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3K7-h5-Ple">
+                                <rect key="frame" x="21" y="145.5" width="333" height="206.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMs-ig-YzW">
+                                        <rect key="frame" x="8" y="8" width="317" height="243.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="317" id="kxL-Im-nWi"/>
+                                        </constraints>
+                                        <string key="text">Apple
+Banana
+Orange
+Chicken
+Turkey Salt
+Pepper
+Olive Oil
+Cumin
+Milk
+Egg
+Avocado</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="hMs-ig-YzW" firstAttribute="top" secondItem="3K7-h5-Ple" secondAttribute="top" constant="8" id="Z56-pw-0Cz"/>
+                                    <constraint firstAttribute="bottom" secondItem="hMs-ig-YzW" secondAttribute="bottom" constant="8" id="e4o-wX-cHc"/>
+                                    <constraint firstAttribute="trailing" secondItem="hMs-ig-YzW" secondAttribute="trailing" constant="8" id="eYv-Bq-CSD"/>
+                                    <constraint firstItem="hMs-ig-YzW" firstAttribute="leading" secondItem="3K7-h5-Ple" secondAttribute="leading" constant="8" id="xka-Ph-hWs"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FxR-Gd-QHp" firstAttribute="top" secondItem="XSd-2f-Lbb" secondAttribute="bottom" constant="10" id="751-dq-Pcx"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="XSd-2f-Lbb" secondAttribute="trailing" constant="21" id="75s-db-4ZO"/>
-                            <constraint firstItem="EXK-Rr-29L" firstAttribute="top" secondItem="A2e-lX-pNk" secondAttribute="bottom" constant="20" id="BqR-3y-s7v"/>
+                            <constraint firstItem="bE4-cJ-lDK" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="83O-ra-SS9"/>
+                            <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="3K7-h5-Ple" secondAttribute="bottom" constant="29" id="Bb3-qf-IyX"/>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" id="DcV-8D-BWt"/>
-                            <constraint firstItem="A2e-lX-pNk" firstAttribute="top" secondItem="FxR-Gd-QHp" secondAttribute="bottom" constant="16" id="G2P-9T-VGM"/>
-                            <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="A2e-lX-pNk" secondAttribute="trailing" constant="16" id="GXk-M6-iGt"/>
+                            <constraint firstItem="TOe-wi-8A1" firstAttribute="trailing" secondItem="8mY-9E-bDK" secondAttribute="trailingMargin" id="H6Y-3v-eCx"/>
                             <constraint firstItem="FxR-Gd-QHp" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="Hwq-ak-2Oq"/>
-                            <constraint firstItem="bE4-cJ-lDK" firstAttribute="top" secondItem="lVk-oK-BLH" secondAttribute="top" id="MVL-JW-PhV"/>
-                            <constraint firstItem="XSd-2f-Lbb" firstAttribute="top" secondItem="bE4-cJ-lDK" secondAttribute="bottom" constant="10" id="QAt-8p-c7L"/>
-                            <constraint firstItem="A2e-lX-pNk" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="16" id="RKw-LP-Dnq"/>
+                            <constraint firstItem="3K7-h5-Ple" firstAttribute="top" secondItem="FxR-Gd-QHp" secondAttribute="bottom" constant="29" id="Jfx-h8-3jT"/>
+                            <constraint firstItem="TOe-wi-8A1" firstAttribute="leading" secondItem="FxR-Gd-QHp" secondAttribute="leading" id="L5Y-GY-M46"/>
+                            <constraint firstItem="3K7-h5-Ple" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="Q6V-jL-gba"/>
+                            <constraint firstAttribute="bottom" secondItem="TOe-wi-8A1" secondAttribute="bottom" constant="20" symbolic="YES" id="UJ9-hU-Uc3"/>
                             <constraint firstItem="XSd-2f-Lbb" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="UVE-Xi-vQB"/>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="top" secondItem="8mY-9E-bDK" secondAttribute="top" id="VsJ-Y0-jKX"/>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="bottom" secondItem="lVk-oK-BLH" secondAttribute="bottom" id="X0e-gZ-DNe"/>
+                            <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="8mY-9E-bDK" secondAttribute="top" constant="381" id="YEo-L0-hBd"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="FxR-Gd-QHp" secondAttribute="trailing" constant="21" id="ZWo-AM-Kl8"/>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="trailing" secondItem="lVk-oK-BLH" secondAttribute="trailing" id="a6Q-F1-lyp"/>
-                            <constraint firstItem="lVk-oK-BLH" firstAttribute="bottom" secondItem="EXK-Rr-29L" secondAttribute="bottom" constant="20" id="gVb-IZ-aRZ"/>
-                            <constraint firstItem="EXK-Rr-29L" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="16" id="sRh-xL-wTu"/>
-                            <constraint firstItem="bE4-cJ-lDK" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="tZc-YY-qtN"/>
-                            <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="EXK-Rr-29L" secondAttribute="trailing" constant="16" id="ufD-If-RJd"/>
+                            <constraint firstItem="XSd-2f-Lbb" firstAttribute="top" secondItem="bE4-cJ-lDK" secondAttribute="bottom" constant="10" id="i0h-Co-5t5"/>
+                            <constraint firstItem="bE4-cJ-lDK" firstAttribute="top" secondItem="lVk-oK-BLH" secondAttribute="top" id="liM-JZ-plj"/>
+                            <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="3K7-h5-Ple" secondAttribute="trailing" constant="21" id="uyg-xL-T14"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lVk-oK-BLH"/>
                     </view>
+                    <connections>
+                        <outlet property="ingredients" destination="hMs-ig-YzW" id="2hc-7S-D7g"/>
+                        <outlet property="instructions" destination="cwj-if-XyU" id="8x5-C3-POP"/>
+                        <outlet property="scrollViewIngredients" destination="3K7-h5-Ple" id="knq-rG-QQE"/>
+                        <outlet property="scrollViewInstructions" destination="TOe-wi-8A1" id="iEX-WR-P84"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc8-Ch-pcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
