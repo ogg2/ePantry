@@ -73,6 +73,33 @@ class API {
         }
     }
     
+    /*
+     Searching for a variety of recipes given input search conditions
+    */
+    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            let parameters: [String: String] = ["query": query, "cuisine": cuisine]
+            /*Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=mexican&number=10&offset=0&query=burger")
+                .header("X-RapidAPI-Key", "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA")
+                .end(function (result) {
+                    console.log(result.status, result.headers, result.body);
+                });)*/
+        }
+    }
+    
+    /*
+     Getting inforation for 1 specific recipe
+    */
+    static func getRecipe (id: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            /*Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information")
+                .header("X-RapidAPI-Key", "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA")
+                .end(function (result) {
+                    console.log(result.status, result.headers, result.body);
+                });)*/
+        }
+    }
+    
     static func getUserId() -> String {
         return UserDefaults.standard.value(forKey: "userId") as! String
     }
