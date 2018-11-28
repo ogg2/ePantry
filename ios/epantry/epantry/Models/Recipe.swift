@@ -11,8 +11,9 @@ import Foundation
 class Recipe {
     var name: String
     var photo: UIImage?
+    var prepTime: Int
     
-    init?(name: String, photo: UIImage?) {
+    init?(name: String, photo: UIImage?, prepTime: Int) {
         
         guard !name.isEmpty else {
             return nil
@@ -20,5 +21,6 @@ class Recipe {
         
         self.name = name
         self.photo = photo
+        self.prepTime = prepTime
     }
 }

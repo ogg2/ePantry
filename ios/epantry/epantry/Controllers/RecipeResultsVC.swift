@@ -36,12 +36,12 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let photo1 = UIImage(named: "avocado.png")
         let photo2 = UIImage(named: "avocado.png")
         
-        guard let recipe1 = Recipe(name: "Pizza", photo: photo1)
+        guard let recipe1 = Recipe(name: "Pizza", photo: photo1, prepTime: 45)
             else {
                 fatalError("Unable to show meal1")
         }
         
-        guard let recipe2 = Recipe(name: "Tacos", photo: photo2)
+        guard let recipe2 = Recipe(name: "Tacos", photo: photo2, prepTime: 60)
             else {
                 fatalError("Unable to show meal1")
         }
@@ -64,6 +64,7 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         cell.recipeImage.image = recipe.photo
         cell.recipeLabel.text = recipe.name
+        cell.prepTime.text = "Ready in \(recipe.prepTime) minutes!"
         
         return cell
     }
