@@ -129,9 +129,18 @@ extension RecipeSearchVC: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults")
-        self.present(vc!, animated: true, completion: {
-            print("Search Results Presented")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
+        API.searchRecipes(query: "burger", cuisine: "japanese", completionHandler: { (ids, names, prepTimes, images, error) in
+            guard let recipe1 = Recipe(name: names[0], photo: images[0], prepTime: 45)
+                else {
+                    fatalError("Unable to show meal1")
+            }
+            
+            //add to the [Recipe]
+            vc.recipes.append(recipe1)
+            self.present(vc, animated: true, completion: {
+                print("Search Results Presented")
+            })
         })
     }
 }

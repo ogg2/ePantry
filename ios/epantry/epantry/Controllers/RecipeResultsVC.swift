@@ -43,7 +43,7 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         guard let recipe2 = Recipe(name: "Tacos", photo: photo2, prepTime: 60)
             else {
-                fatalError("Unable to show meal1")
+                fatalError("Unable to show meal2")
         }
         
         recipes += [recipe1, recipe2]

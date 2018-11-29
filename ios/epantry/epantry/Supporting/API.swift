@@ -76,14 +76,16 @@ class API {
     /*
      Searching for a variety of recipes given input search conditions
     */
-    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
+    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping ([Int], [String], [Int], [UIImage], Error?) -> Void) {
         DispatchQueue.main.async {
-            let parameters: [String: String] = ["query": query, "cuisine": cuisine]
-            /*Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=mexican&number=10&offset=0&query=burger")
-                .header("X-RapidAPI-Key", "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA")
-                .end(function (result) {
-                    console.log(result.status, result.headers, result.body);
-                });)*/
+            let MY_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA"
+            let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
+            //let parameters: [String: String] = ["query": query, "cuisine": cuisine]
+            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)", headers: headers).responseJSON{response in
+                //loop 1 - 10
+                //var id[i] = response[0].id
+                print(response)
+            }
         }
     }
     
