@@ -882,4 +882,7 @@ Avocado</string>
         <image name="avocado.png" width="449" height="307"/>
         <image name="pantry.png" width="895" height="1350"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="7KD-IP-rcl"/>
+    </inferredMetricsTieBreakers>
 </document>

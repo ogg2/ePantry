@@ -14,9 +14,39 @@ class API {
     /*
      Perform networking code in here to access backend and get pantry items for specific user
      */
-    static func getPantryItems(userId: String, completionHandler: (_ result:[String]) -> Void) {
-        Alamofire.request("url")
-        completionHandler(["Bread", "Soup", "Pear", "Tomato"])
+    static func getPantryItems(completionHandler: @escaping ([String]) -> Void) {
+        DispatchQueue.main.async {
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/pantry/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
+                switch response.result {
+                case .success:
+                    var pantryItems: [String] = []
+                    print("Pantry List Clicked")
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        pantryItems = getItemNameArray(JSON)
+                    }
+                    completionHandler(pantryItems)
+                case .failure:
+                    print("Failure")
+                    completionHandler([])
+                }
+            }
+        }
+    }
+    
+    static func getItemNameArray(_ pantry:NSDictionary) -> [String] {
+        
+        let pantryArray = pantry["pantry"]! as! NSArray
+        var pantryItems: [String] = []
+        
+        for i in 0...pantryArray.count - 1 {
+            let pantryIndex = pantryArray[i] as! NSDictionary
+            let itemName = pantryIndex["itemName"] as! String
+            
+            pantryItems.append(itemName)
+        }
+        
+        return pantryItems
     }
     
     /*

@@ -25,7 +25,7 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("grocery list loaded")
+        print("pantry list loaded")
         pantryListTable.delegate = self
         pantryListTable.dataSource = self
         
@@ -37,11 +37,11 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         in to that file and not dealt with in our view controllers
         */
         
-        
-        API.getPantryItems(userId: "dummy") { items in
+        API.getPantryItems(completionHandler: { items in
             self.pantryList = items
             self.pantryListTable.reloadData()
-        }
+        })
+        
     }
     
     /*
