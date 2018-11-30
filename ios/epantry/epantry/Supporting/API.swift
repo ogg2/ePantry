@@ -23,7 +23,7 @@ class API {
                     print("Pantry List Clicked")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
-                        pantryItems = getItemNameArray(JSON)
+                        pantryItems = getItemNameArray(JSON, type: "pantry")
                     }
                     completionHandler(pantryItems)
                 case .failure:
@@ -34,9 +34,9 @@ class API {
         }
     }
     
-    static func getItemNameArray(_ pantry:NSDictionary) -> [String] {
+    static func getItemNameArray(_ pantry:NSDictionary, type:String) -> [String] {
         
-        let pantryArray = pantry["pantry"]! as! NSArray
+        let pantryArray = pantry[type]! as! NSArray
         var pantryItems: [String] = []
         
         for i in 0...pantryArray.count - 1 {
@@ -52,9 +52,24 @@ class API {
     /*
      Perform networking code to access grocery list items for specific user
     */
-    static func getGroceryListItems(userId: String, completionHandler: (_ result:[String]) -> Void) {
-        Alamofire.request("url")
-        completionHandler(["Tomato", "Pear", "Soup", "Bread"])
+    static func getGroceryListItems(completionHandler: @escaping ([String]) -> Void) {
+        DispatchQueue.main.async {
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/groceryList/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
+                switch response.result {
+                case .success:
+                    var groceryItems: [String] = []
+                    print("Pantry List Clicked")
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        groceryItems = getItemNameArray(JSON, type: "groceryList")
+                    }
+                    completionHandler(groceryItems)
+                case .failure:
+                    print("Failure")
+                    completionHandler([])
+                }
+            }
+        }
     }
     
     /*

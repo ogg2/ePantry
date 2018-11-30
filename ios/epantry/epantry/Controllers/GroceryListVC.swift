@@ -17,10 +17,10 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         groceryListTable.delegate = self
         groceryListTable.dataSource = self
         
-        API.getGroceryListItems(userId: "dummy") { items in
-            groceryList = items
-            groceryListTable.reloadData()
-        }
+        API.getGroceryListItems(completionHandler: { items in
+            self.groceryList = items
+            self.groceryListTable.reloadData()
+        })
     }
     
     @IBOutlet weak var backButton: UIButton!
