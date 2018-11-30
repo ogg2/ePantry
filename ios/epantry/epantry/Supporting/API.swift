@@ -23,7 +23,7 @@ class API {
                     print("Pantry List Clicked")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
-                        pantryItems = getItemNameArray(JSON, type: "pantry")
+                        pantryItems = getStringArray(JSON, type: "pantry")
                     }
                     completionHandler(pantryItems)
                 case .failure:
@@ -34,7 +34,30 @@ class API {
         }
     }
     
-    static func getItemNameArray(_ pantry:NSDictionary, type:String) -> [String] {
+    /*
+     Perform networking code to access grocery list items for specific user
+    */
+    static func getGroceryListItems(completionHandler: @escaping ([String]) -> Void) {
+        DispatchQueue.main.async {
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/groceryList/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
+                switch response.result {
+                case .success:
+                    var groceryItems: [String] = []
+                    print("GRocery List Clicked")
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        groceryItems = getStringArray(JSON, type: "groceryList")
+                    }
+                    completionHandler(groceryItems)
+                case .failure:
+                    print("Failure")
+                    completionHandler([])
+                }
+            }
+        }
+    }
+    
+    static func getStringArray(_ pantry:NSDictionary, type:String) -> [String] {
         
         let pantryArray = pantry[type]! as! NSArray
         var pantryItems: [String] = []
@@ -47,29 +70,6 @@ class API {
         }
         
         return pantryItems
-    }
-    
-    /*
-     Perform networking code to access grocery list items for specific user
-    */
-    static func getGroceryListItems(completionHandler: @escaping ([String]) -> Void) {
-        DispatchQueue.main.async {
-            Alamofire.request("https://secret-thicket-47430.herokuapp.com/groceryList/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
-                switch response.result {
-                case .success:
-                    var groceryItems: [String] = []
-                    print("Pantry List Clicked")
-                    if let result = response.result.value {
-                        let JSON = result as! NSDictionary
-                        groceryItems = getItemNameArray(JSON, type: "groceryList")
-                    }
-                    completionHandler(groceryItems)
-                case .failure:
-                    print("Failure")
-                    completionHandler([])
-                }
-            }
-        }
     }
     
     /*
