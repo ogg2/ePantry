@@ -771,8 +771,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonDidClick:" destination="Val-Mc-dzA" eventType="touchUpInside" id="yfR-7M-i69"/>
-                                    <segue destination="nkV-h7-DaT" kind="show" identifier="segueBack" id="cx9-Xp-6sr"/>
+                                    <action selector="backButtonDidClick:" destination="Val-Mc-dzA" eventType="touchUpInside" id="YX3-b8-Uby"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSd-2f-Lbb">
@@ -869,13 +868,13 @@ Avocado</string>
                         <viewLayoutGuide key="safeArea" id="lVk-oK-BLH"/>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="bE4-cJ-lDK" id="oBV-FU-TU3"/>
-                        <outlet property="ingredients" destination="hMs-ig-YzW" id="2hc-7S-D7g"/>
-                        <outlet property="instructions" destination="cwj-if-XyU" id="8x5-C3-POP"/>
-                        <outlet property="prepTime" destination="FxR-Gd-QHp" id="mCl-T8-pR3"/>
-                        <outlet property="recipeName" destination="XSd-2f-Lbb" id="iyR-Vi-uAe"/>
-                        <outlet property="scrollViewIngredients" destination="3K7-h5-Ple" id="knq-rG-QQE"/>
-                        <outlet property="scrollViewInstructions" destination="TOe-wi-8A1" id="iEX-WR-P84"/>
+                        <outlet property="backButton" destination="bE4-cJ-lDK" id="iTz-cp-qaP"/>
+                        <outlet property="ingredientsLabel" destination="hMs-ig-YzW" id="pSp-0d-k3D"/>
+                        <outlet property="instructionsLabel" destination="cwj-if-XyU" id="jbP-ZB-RSc"/>
+                        <outlet property="prepTimeLabel" destination="FxR-Gd-QHp" id="yQC-zi-wy5"/>
+                        <outlet property="recipeNameLabel" destination="XSd-2f-Lbb" id="caY-L9-ZGJ"/>
+                        <outlet property="scrollViewIngredients" destination="3K7-h5-Ple" id="q3I-5A-gfa"/>
+                        <outlet property="scrollViewInstructions" destination="TOe-wi-8A1" id="n5F-tM-iTt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc8-Ch-pcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -887,7 +886,4 @@ Avocado</string>
         <image name="avocado.png" width="449" height="307"/>
         <image name="pantry.png" width="895" height="1350"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="cx9-Xp-6sr"/>
-    </inferredMetricsTieBreakers>
 </document>

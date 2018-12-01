@@ -13,20 +13,19 @@ import UIKit
 
 class RecipeInstructVC: UIViewController {
     
-    
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var scrollViewIngredients: UIScrollView!
+    @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var scrollViewInstructions: UIScrollView!
     @IBOutlet weak var instructionsLabel: UILabel!
-    @IBOutlet weak var ingredientsLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var prepTimeLabel: UILabel!
-    @IBOutlet weak var recipeNameLabel: UILabel!
+    
     
     var recipes = [Recipe]()
-    //var myRecipe: MyRecipe?
+    var myRecipe = MyRecipe(name: "", prepTime: 0, ingredients: [""], instructions: [""])
+    
     //let listofIngredients = ["1 Cup of Milk", "1 T of Pepper"]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +33,36 @@ class RecipeInstructVC: UIViewController {
         scrollViewInstructions.contentLayoutGuide.bottomAnchor.constraint(equalTo: instructionsLabel.bottomAnchor).isActive = true
         scrollViewIngredients.contentLayoutGuide.bottomAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor).isActive = true
         
-        //loadRecipeInfo (name: (myRecipe?.name)!)
+        loadRecipeInfo (name: (myRecipe?.name)!, prepTime: (myRecipe?.prepTime)!, listofIngredients: (myRecipe?.ingredients)!, instructionSteps: (myRecipe?.instructions)!)
         //loadRecipeInfo(name: myRecipe?.name, prepTime: myRecipe?.prepTime, ingredients: myRecipe?.ingredients, instructions: myRecipe?.instructions)
         print("Recipe Instructions Loaded")
     }
     
-    func loadRecipeInfo (name: String) {
+    func loadRecipeInfo (name: String, prepTime: Int, listofIngredients: [String], instructionSteps: [String]) {
         recipeNameLabel.text = name
+        prepTimeLabel.text = "Preparation Time: \(prepTime) min"
+        
+        var oldText = ""
+        for i in 0...(listofIngredients.count - 1) {
+            
+            if oldText.isEmpty {
+                oldText = "\u{2022} \(listofIngredients[0])"
+            } else {
+                oldText += "\n\u{2022} \(listofIngredients[i])"
+            }
+            ingredientsLabel.text = oldText
+        }
+        
+        oldText = ""
+        for i in 0...(instructionSteps.count - 1) {
+            
+            if oldText.isEmpty {
+                oldText = "\(i + 1)) \(instructionSteps[0])\n"
+            } else {
+                oldText += "\n\(i + 1)) \(instructionSteps[i])\n"
+            }
+            instructionsLabel.text = oldText
+        }
     }
     
     /*func loadRecipeInfo(name: String, prepTime: Int, ingredients: [String], instructions: [String]) {

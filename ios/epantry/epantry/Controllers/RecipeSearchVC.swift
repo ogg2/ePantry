@@ -147,7 +147,7 @@ extension RecipeSearchVC: UISearchBarDelegate {
         
         print (query)
         print (cuisine)
-        guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 45)
+        guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
             else {
                 fatalError("Unable to show meal1")
         }

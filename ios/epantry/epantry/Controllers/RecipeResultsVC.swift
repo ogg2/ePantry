@@ -90,10 +90,13 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         //let currentCell = recipeResultsTable.cellForRow(at: indexPath)! as UITableViewCell
         print("This Cell: \(recipes[indexPath.row].name)")
         
-        /*guard let myRecipe = MyRecipe(name: recipes[indexPath.row].name, prepTime: recipes[indexPath.row].prepTime, ingredients: ["chicken"], instructions: ["Cut Chicken"])
+        guard let myRecipe = MyRecipe(name: recipes[indexPath.row].name, prepTime: recipes[indexPath.row].prepTime, ingredients: ["chicken", "egg", "bacon"], instructions: ["Cut Chicken into Cubes. This is a really long instruction set.", "Place chicken on cooking sheet", "put chicken in oven"])
             else {
                 fatalError("Unable to load MyRecipe")
-        }*/
+        }
+        
+        vc.myRecipe = myRecipe
+        vc.recipes = recipes
         
         //vc.myRecipe = myRecipe
         
