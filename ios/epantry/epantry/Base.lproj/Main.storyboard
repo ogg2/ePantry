@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b9P-S4-YQ0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bzg-Yl-aeM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -771,7 +771,8 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="nkV-h7-DaT" kind="show" id="cx9-Xp-6sr"/>
+                                    <action selector="backButtonDidClick:" destination="Val-Mc-dzA" eventType="touchUpInside" id="yfR-7M-i69"/>
+                                    <segue destination="nkV-h7-DaT" kind="show" identifier="segueBack" id="cx9-Xp-6sr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSd-2f-Lbb">
@@ -862,13 +863,17 @@ Avocado</string>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="trailing" secondItem="lVk-oK-BLH" secondAttribute="trailing" id="a6Q-F1-lyp"/>
                             <constraint firstItem="XSd-2f-Lbb" firstAttribute="top" secondItem="bE4-cJ-lDK" secondAttribute="bottom" constant="10" id="i0h-Co-5t5"/>
                             <constraint firstItem="bE4-cJ-lDK" firstAttribute="top" secondItem="lVk-oK-BLH" secondAttribute="top" id="liM-JZ-plj"/>
+                            <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bE4-cJ-lDK" secondAttribute="trailing" symbolic="YES" id="uwu-Co-DOW"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="3K7-h5-Ple" secondAttribute="trailing" constant="21" id="uyg-xL-T14"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lVk-oK-BLH"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="bE4-cJ-lDK" id="oBV-FU-TU3"/>
                         <outlet property="ingredients" destination="hMs-ig-YzW" id="2hc-7S-D7g"/>
                         <outlet property="instructions" destination="cwj-if-XyU" id="8x5-C3-POP"/>
+                        <outlet property="prepTime" destination="FxR-Gd-QHp" id="mCl-T8-pR3"/>
+                        <outlet property="recipeName" destination="XSd-2f-Lbb" id="iyR-Vi-uAe"/>
                         <outlet property="scrollViewIngredients" destination="3K7-h5-Ple" id="knq-rG-QQE"/>
                         <outlet property="scrollViewInstructions" destination="TOe-wi-8A1" id="iEX-WR-P84"/>
                     </connections>
@@ -883,6 +888,6 @@ Avocado</string>
         <image name="pantry.png" width="895" height="1350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7KD-IP-rcl"/>
+        <segue reference="cx9-Xp-6sr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         recipeResultsTable.dataSource = self
         print("Recipe Results Loaded")
         
-        loadSampleRecipes()
+        //loadRecipes()
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -32,9 +32,13 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         })
     }
     
-    private func loadSampleRecipes() {
+    /*private func loadRecipes() {
         let photo1 = UIImage(named: "avocado.png")
         let photo2 = UIImage(named: "avocado.png")
+        
+        /*for i in 0...(recipes.count - 1) {
+            vc.recipes.append(recipes[i])
+        }*/
         
         guard let recipe1 = Recipe(name: "Pizza", photo: photo1, prepTime: 45)
             else {
@@ -47,7 +51,7 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
         recipes += [recipe1, recipe2]
-    }
+    }*/
     
     func tableView(_ recipeResultsTable: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
@@ -69,12 +73,32 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextVC = segue.destination as! RecipeInstructVC
+        
+        guard let myRecipe = MyRecipe(name: "Chicken", prepTime: 45, ingredients: ["chicken"], instructions: ["Cut Chicken"])
+            else {
+                fatalError("Unable to load MyRecipe")
+        }
+        
+        //nextVC.myRecipe = myRecipe
+        nextVC.recipes = recipes
+    }*/
+    
     func tableView(_ recipeResultsTable: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCell = recipeResultsTable.cellForRow(at: indexPath)! as UITableViewCell
-        print(indexPath.row)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeInstruct") as! RecipeInstructVC
+        //let currentCell = recipeResultsTable.cellForRow(at: indexPath)! as UITableViewCell
+        print("This Cell: \(recipes[indexPath.row].name)")
+        
+        /*guard let myRecipe = MyRecipe(name: recipes[indexPath.row].name, prepTime: recipes[indexPath.row].prepTime, ingredients: ["chicken"], instructions: ["Cut Chicken"])
+            else {
+                fatalError("Unable to load MyRecipe")
+        }*/
+        
+        //vc.myRecipe = myRecipe
+        
         //performSegue(withIdentifier: "segue", sender: self)
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeInstruct")
-        self.present(vc!, animated: false, completion: {
+        self.present(vc, animated: false, completion: {
             print("Load Instructions for Selected Recipe")
         })
     }

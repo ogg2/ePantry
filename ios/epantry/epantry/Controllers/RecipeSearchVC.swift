@@ -18,7 +18,9 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var cuisineToggle: UISegmentedControl!
     @IBOutlet weak var cuisineLabel: UILabel!
     
-    let cuisines = ["African", "Chinese", "Japanese", "Korean", "Vietnamese", "Thai", "Indian", "British", "Irish", "French", "Italian", "Mexican", "Spanish", "Middle Eastern", "Jewish", "American", "Cajun", "Southern", "Greek", "German", "Nordic", "Eastern European", "Caribbean", "Latin American"]
+    let cuisinesArray = ["African", "Chinese", "Japanese", "Korean", "Vietnamese", "Thai", "Indian", "British", "Irish", "French", "Italian", "Mexican", "Spanish", "Middle Eastern", "Jewish", "American", "Cajun", "Southern", "Greek", "German", "Nordic", "Eastern European", "Caribbean", "Latin American"]
+    
+    var thisCuisine : String = ""
     
     //let ingredientArray = ["Apple", "Banana", "Orange", "Avocado", "Bread", "Cheese", "Eggs", "Milk"]
     //let button = UIButton()
@@ -47,6 +49,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         default:
             cuisinePicker.isHidden = true
             cuisineLabel.isHidden = true
+            thisCuisine = ""
         }
     }
     
@@ -63,7 +66,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let title = UILabel()
         
         title.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.bold)
-        title.text =  cuisines[row]
+        title.text =  cuisinesArray[row]
         title.textAlignment = .center
         
         return title
@@ -71,11 +74,12 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func pickerView(_ cuisinePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cuisines.count
+        return cuisinesArray.count
     }
     
     func pickerView(_ cuisinePicker: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            cuisineLabel.text = "Search for " + cuisines[row] + " recipes..."
+        thisCuisine = cuisinesArray[row]
+        cuisineLabel.text = "Search for " + cuisinesArray[row] + " recipes..."
     }
     
     /*func setupButton (idx: Int) {
@@ -121,6 +125,13 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         cell.textLabel?.text = "Recipe"
         return cell
     }*/
+    
+    func splitAndJoinString (text: String) -> String {
+        let splitParam = text.components(separatedBy: " ")
+        let joinedParam = splitParam.joined(separator: "+")
+        
+        return joinedParam
+    }
 }
 
 extension RecipeSearchVC: UISearchBarDelegate {
@@ -130,7 +141,25 @@ extension RecipeSearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
-        API.searchRecipes(query: "burger", cuisine: "japanese", completionHandler: { (ids, names, prepTimes, images, error) in
+        let query = splitAndJoinString(text: searchBar.text!)
+        let cuisine = thisCuisine.lowercased()
+        let photo1 = UIImage(named: "avocado.png")
+        
+        print (query)
+        print (cuisine)
+        guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 45)
+            else {
+                fatalError("Unable to show meal1")
+        }
+        print (vc.recipes.count)
+        vc.recipes.append(recipe1)
+        
+        print (vc.recipes.count)
+        
+        self.present(vc, animated: false, completion: {
+            print("Load List of Recipes")
+        })
+        /*API.searchRecipes(query: query, cuisine: "japanese", completionHandler: { (ids, names, prepTimes, images, error) in
             guard let recipe1 = Recipe(name: names[0], photo: images[0], prepTime: 45)
                 else {
                     fatalError("Unable to show meal1")
@@ -141,6 +170,6 @@ extension RecipeSearchVC: UISearchBarDelegate {
             self.present(vc, animated: true, completion: {
                 print("Search Results Presented")
             })
-        })
+        })*/
     }
 }
