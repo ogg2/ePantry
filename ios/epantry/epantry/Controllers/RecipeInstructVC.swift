@@ -20,6 +20,8 @@ class RecipeInstructVC: UIViewController {
     @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var scrollViewInstructions: UIScrollView!
     @IBOutlet weak var instructionsLabel: UILabel!
+    @IBOutlet weak var listTitleLabel: UILabel!
+    @IBOutlet weak var stepsTitleLabel: UILabel!
     
     
     var recipes = [Recipe]()
@@ -32,6 +34,14 @@ class RecipeInstructVC: UIViewController {
         
         scrollViewInstructions.contentLayoutGuide.bottomAnchor.constraint(equalTo: instructionsLabel.bottomAnchor).isActive = true
         scrollViewIngredients.contentLayoutGuide.bottomAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor).isActive = true
+        
+        scrollViewIngredients.layer.cornerRadius = 17
+        scrollViewInstructions.layer.cornerRadius = 17
+        
+        listTitleLabel.layer.masksToBounds = true
+        listTitleLabel.layer.cornerRadius = 4
+        stepsTitleLabel.layer.masksToBounds = true
+        stepsTitleLabel.layer.cornerRadius = 4
         
         loadRecipeInfo (name: (myRecipe?.name)!, prepTime: (myRecipe?.prepTime)!, listofIngredients: (myRecipe?.ingredients)!, instructionSteps: (myRecipe?.instructions)!)
         //loadRecipeInfo(name: myRecipe?.name, prepTime: myRecipe?.prepTime, ingredients: myRecipe?.ingredients, instructions: myRecipe?.instructions)

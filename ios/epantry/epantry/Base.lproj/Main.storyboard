@@ -840,17 +840,35 @@ Avocado</string>
                                     <constraint firstItem="hMs-ig-YzW" firstAttribute="leading" secondItem="3K7-h5-Ple" secondAttribute="leading" constant="8" id="xka-Ph-hWs"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cooking Instructions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCP-YQ-ydo">
+                                <rect key="frame" x="95" y="360" width="185" height="21"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of Ingredients" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxE-Dh-uyT">
+                                <rect key="frame" x="103" y="124.5" width="169" height="21"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FxR-Gd-QHp" firstAttribute="top" secondItem="XSd-2f-Lbb" secondAttribute="bottom" constant="10" id="751-dq-Pcx"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="XSd-2f-Lbb" secondAttribute="trailing" constant="21" id="75s-db-4ZO"/>
                             <constraint firstItem="bE4-cJ-lDK" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="83O-ra-SS9"/>
+                            <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="RxE-Dh-uyT" secondAttribute="trailing" constant="103" id="B14-yz-YPL"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="3K7-h5-Ple" secondAttribute="bottom" constant="29" id="Bb3-qf-IyX"/>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" id="DcV-8D-BWt"/>
+                            <constraint firstItem="UCP-YQ-ydo" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="95" id="EGa-cR-Y08"/>
+                            <constraint firstItem="3K7-h5-Ple" firstAttribute="top" secondItem="RxE-Dh-uyT" secondAttribute="bottom" id="FVJ-vX-27s"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="trailing" secondItem="8mY-9E-bDK" secondAttribute="trailingMargin" id="H6Y-3v-eCx"/>
                             <constraint firstItem="FxR-Gd-QHp" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="Hwq-ak-2Oq"/>
                             <constraint firstItem="3K7-h5-Ple" firstAttribute="top" secondItem="FxR-Gd-QHp" secondAttribute="bottom" constant="29" id="Jfx-h8-3jT"/>
+                            <constraint firstItem="RxE-Dh-uyT" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="103" id="Kgs-Uq-sRT"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="leading" secondItem="FxR-Gd-QHp" secondAttribute="leading" id="L5Y-GY-M46"/>
                             <constraint firstItem="3K7-h5-Ple" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="Q6V-jL-gba"/>
                             <constraint firstAttribute="bottom" secondItem="TOe-wi-8A1" secondAttribute="bottom" constant="20" symbolic="YES" id="UJ9-hU-Uc3"/>
@@ -860,6 +878,8 @@ Avocado</string>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="8mY-9E-bDK" secondAttribute="top" constant="381" id="YEo-L0-hBd"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="FxR-Gd-QHp" secondAttribute="trailing" constant="21" id="ZWo-AM-Kl8"/>
                             <constraint firstItem="8Wl-UO-UeL" firstAttribute="trailing" secondItem="lVk-oK-BLH" secondAttribute="trailing" id="a6Q-F1-lyp"/>
+                            <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="UCP-YQ-ydo" secondAttribute="bottom" id="bmh-pl-vMt"/>
+                            <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="UCP-YQ-ydo" secondAttribute="trailing" constant="95" id="cr3-on-mGI"/>
                             <constraint firstItem="XSd-2f-Lbb" firstAttribute="top" secondItem="bE4-cJ-lDK" secondAttribute="bottom" constant="10" id="i0h-Co-5t5"/>
                             <constraint firstItem="bE4-cJ-lDK" firstAttribute="top" secondItem="lVk-oK-BLH" secondAttribute="top" id="liM-JZ-plj"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bE4-cJ-lDK" secondAttribute="trailing" symbolic="YES" id="uwu-Co-DOW"/>
@@ -871,10 +891,12 @@ Avocado</string>
                         <outlet property="backButton" destination="bE4-cJ-lDK" id="iTz-cp-qaP"/>
                         <outlet property="ingredientsLabel" destination="hMs-ig-YzW" id="pSp-0d-k3D"/>
                         <outlet property="instructionsLabel" destination="cwj-if-XyU" id="jbP-ZB-RSc"/>
+                        <outlet property="listTitleLabel" destination="RxE-Dh-uyT" id="bzE-dh-Aym"/>
                         <outlet property="prepTimeLabel" destination="FxR-Gd-QHp" id="yQC-zi-wy5"/>
                         <outlet property="recipeNameLabel" destination="XSd-2f-Lbb" id="caY-L9-ZGJ"/>
                         <outlet property="scrollViewIngredients" destination="3K7-h5-Ple" id="q3I-5A-gfa"/>
                         <outlet property="scrollViewInstructions" destination="TOe-wi-8A1" id="n5F-tM-iTt"/>
+                        <outlet property="stepsTitleLabel" destination="UCP-YQ-ydo" id="Asf-HZ-1qQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc8-Ch-pcv" userLabel="First Responder" sceneMemberID="firstResponder"/>

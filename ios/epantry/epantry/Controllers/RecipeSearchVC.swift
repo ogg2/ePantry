@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 //UITableViewDelegate, UITableViewDataSource
 class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -39,6 +40,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         case 1:
             cuisinePicker.isHidden = false
             cuisineLabel.isHidden = false
+            thisCuisine = "African"
         default:
             cuisinePicker.isHidden = true
             cuisineLabel.isHidden = true
@@ -82,15 +84,6 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         })
     }
     
-    /*func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(_ recipeList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recipeList.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
-        cell.textLabel?.text = "Recipe"
-        return cell
-    }*/
     
     func splitAndJoinString (text: String) -> String {
         let splitParam = text.components(separatedBy: " ")
@@ -103,6 +96,10 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 extension RecipeSearchVC: UISearchBarDelegate {
     func searchBar ( searchBar: UISearchBar, textDidChange searchText: String) {
         //ingredient = ingredientArray.filter({$0.prefix(searchText.count) == searchText})
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -121,21 +118,36 @@ extension RecipeSearchVC: UISearchBarDelegate {
         
         API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, images, error) in
             
-            for i in 0...names.count - 1 {
-                
-                let photo = UIImage(named: images[i])
-                
-                guard let recipe1 = Recipe(name: names[i], photo: photo, prepTime: prepTimes[i], id: ids[i])
-                    else {
-                        fatalError("Unable to show recipe1")
+            if names.count > 0 {
+                for i in 0...names.count - 1 {
+                    
+                    let photo = UIImage(named: "https://spoonacular.com/recipeImages/\(images[i])")
+                    
+                    guard let recipe1 = Recipe(name: names[i], photo: photo, prepTime: prepTimes[i], id: ids[i])
+                        else {
+                            fatalError("Unable to show recipe1")
+                    }
+                    //add to the [Recipe]
+                    vc.recipes.append(recipe1)
                 }
-                //add to the [Recipe]
-                vc.recipes.append(recipe1)
+                
+                self.present(vc, animated: true, completion: {
+                    print("Search Results Presented with API Call")
+                })
             }
-            
-            self.present(vc, animated: true, completion: {
-                print("Search Results Presented with API Call")
-            })
+            else {
+                let dialogMessage = UIAlertController(title: "Sorry!", message: "No recipe's exist for your search parameters.", preferredStyle: .alert)
+                
+                // Create OK button with action handler
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button tapped")
+                })
+                
+                //Add OK to dialog message
+                dialogMessage.addAction(ok)
+                
+                self.present(dialogMessage, animated: true, completion: nil)
+            }
         })
     }
 }

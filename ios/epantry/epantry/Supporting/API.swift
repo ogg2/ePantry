@@ -136,11 +136,20 @@ class API {
                     
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
-                        names = getRecipeNames(JSON, type: "results")
-                        ids = getIds(JSON, type: "results")
-                        prepTimes = getPrepTimes(JSON, type: "results")
-                        images = getImages(JSON, type: "results")
+                        let json = JSON["results"] as! NSArray
+                        if json.count != 0 {
+                            names = getRecipeNames(JSON, type: "results")
+                            ids = getIds(JSON, type: "results")
+                            prepTimes = getPrepTimes(JSON, type: "results")
+                            images = getImages(JSON, type: "results")
+                        } /*else {
+                            ids = [0]
+                            names = [""]
+                            prepTimes = [0]
+                            images = [""]
+                        }*/
                     }
+                    
                 
                     completionHandler(ids, names, prepTimes, images, nil)
                     
