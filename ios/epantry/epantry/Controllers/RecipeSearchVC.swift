@@ -8,23 +8,20 @@
 
 import Foundation
 import UIKit
+
 //UITableViewDelegate, UITableViewDataSource
 class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var backButton: UIButton!
-    //@IBOutlet weak var cuisineButton: UIButton!
     @IBOutlet weak var cuisinePicker: UIPickerView!
     @IBOutlet weak var cuisineToggle: UISegmentedControl!
     @IBOutlet weak var cuisineLabel: UILabel!
     
-    let cuisinesArray = ["African", "Chinese", "Japanese", "Korean", "Vietnamese", "Thai", "Indian", "British", "Irish", "French", "Italian", "Mexican", "Spanish", "Middle Eastern", "Jewish", "American", "Cajun", "Southern", "Greek", "German", "Nordic", "Eastern European", "Caribbean", "Latin American"]
+    let cuisinesArray = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
+    
     
     var thisCuisine : String = ""
-    
-    //let ingredientArray = ["Apple", "Banana", "Orange", "Avocado", "Bread", "Cheese", "Eggs", "Milk"]
-    //let button = UIButton()
-    //var ingredient = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +33,6 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func setupSearchBar() {
     }
-    
-    /*@IBAction func cuisineButtonDidClick(_ sender: Any) {
-        cuisinePicker.isHidden = false
-    }*/
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -82,33 +75,6 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         cuisineLabel.text = "Search for " + cuisinesArray[row] + " recipes..."
     }
     
-    /*func setupButton (idx: Int) {
-        let button = UIButton()
-        if idx % 2 == 1 {
-            button.frame = CGRect(x: 30, y: 150 + idx * 50, width: 150, height: 70)
-        } else {
-            button.frame = CGRect(x: 235, y: 100 + idx * 50, width: 150, height: 70)
-        }
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle(ingredientArray[idx - 1], for: .normal)
-        button.backgroundColor = UIColor.black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.layer.cornerRadius = 17
-        //button.sizeToFit()
-        view.addSubview(button)
-        /*button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
-        button.topAnchor.constraint(equalTo: searchBar.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        button.widthAnchor.*/
-        
-        button.addTarget(self, action: #selector(buttonWasTapped), for: .touchUpInside)
-    }*/
-    
-    /*@objc func buttonWasTapped(sender:UIButton!) {
-        searchBar.text = "\(searchBar.text!) \(sender.currentTitle!)"
-    }*/
-    
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")
         self.present(vc!, animated: false, completion: {
@@ -143,21 +109,23 @@ extension RecipeSearchVC: UISearchBarDelegate {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
         let query = splitAndJoinString(text: searchBar.text!)
         let cuisine = thisCuisine.lowercased()
-        let photo1 = UIImage(named: "avocado.png")
         
-        guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
+        /*guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
             else {
                 fatalError("Unable to show meal1")
         }
         print (vc.recipes.count)
-        vc.recipes.append(recipe1)
+        vc.recipes.append(recipe1)*/
         
         //print (vc.recipes.count)
         
-        /*API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, images, error) in
+        API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, images, error) in
             
             for i in 0...names.count - 1 {
-                guard let recipe1 = Recipe(name: names[i], photo: photo1, prepTime: prepTimes[i])
+                
+                let photo = UIImage(named: images[i])
+                
+                guard let recipe1 = Recipe(name: names[i], photo: photo, prepTime: prepTimes[i], id: ids[i])
                     else {
                         fatalError("Unable to show recipe1")
                 }
@@ -168,10 +136,6 @@ extension RecipeSearchVC: UISearchBarDelegate {
             self.present(vc, animated: true, completion: {
                 print("Search Results Presented with API Call")
             })
-        })*/
-        
-        self.present(vc, animated: false, completion: {
-            print("Load List of Recipes")
         })
     }
 }

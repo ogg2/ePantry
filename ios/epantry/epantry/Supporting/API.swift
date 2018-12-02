@@ -126,28 +126,23 @@ class API {
         DispatchQueue.main.async {
             let MY_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA"
             let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
-            //let parameters: [String: String] = ["query": query, "cuisine": cuisine]
             Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)", headers: headers).responseJSON{response in
                 switch response.result {
                 case .success:
                     var ids: [Int] = []
                     var names: [String] = []
                     var prepTimes: [Int] = []
-                    //var images: [String] = []
+                    var images: [String] = []
                     
-                    print("API Population...")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
                         names = getRecipeNames(JSON, type: "results")
                         ids = getIds(JSON, type: "results")
                         prepTimes = getPrepTimes(JSON, type: "results")
+                        images = getImages(JSON, type: "results")
                     }
-                    
-                    /*print("First recipe: \(names[0])")
-                    print("First recipe: \(ids[0])")
-                    print("First recipe: \(prepTimes[0])")*/
-                    
-                    completionHandler(ids, names, prepTimes, ["avocado.png"], nil)
+                
+                    completionHandler(ids, names, prepTimes, images, nil)
                     
                 case .failure:
                     print("Failure")
@@ -160,13 +155,36 @@ class API {
     /*
      Getting inforation for 1 specific recipe
     */
-    static func getRecipe (id: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
+    static func getRecipeInfo (id: Int, completionHandler: @escaping (String, Int, [String], [String], Error?) -> Void) {
         DispatchQueue.main.async {
-            /*Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information")
-                .header("X-RapidAPI-Key", "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA")
-                .end(function (result) {
-                    console.log(result.status, result.headers, result.body);
-                });)*/
+            let MY_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA"
+            let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
+            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/\(id)/information", headers: headers).responseJSON{response in
+                switch response.result {
+                case .success:
+                    var name: String
+                    var prepTime: Int
+                    var ingredients: [String] = []
+                    var instructions: [String] = []
+                    
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        
+                        name = JSON["title"] as! String
+                        prepTime = JSON["readyInMinutes"] as! Int
+                        ingredients = getIngredients(JSON, type: "extendedIngredients")
+                        instructions = getInstructions(JSON, type: "analyzedInstructions")
+                        
+                        completionHandler(name, prepTime, ingredients, instructions, nil)
+                        //["Cut Chicken into Cubes. This is a really long instruction set.", "Place chicken on cooking sheet", "put chicken in oven"]
+                    }
+                    
+                    
+                case .failure:
+                    print("Failure")
+                    completionHandler("", 0, [""], [""], nil)
+                }
+            }
         }
     }
     
@@ -221,5 +239,57 @@ class API {
             prepTimeItems.append(prepTimeName)
         }
         return prepTimeItems
+    }
+    
+    /*
+     * Returns the recipe images from the API call
+     */
+    static func getImages(_ image:NSDictionary, type:String) -> [String] {
+        let imageArray = image[type]! as! NSArray
+        var imageItems: [String] = []
+        
+        for i in 0...imageArray.count - 1 {
+            let imageIndex = imageArray[i] as! NSDictionary
+            let imageName = imageIndex["image"] as! String
+            imageItems.append(imageName)
+        }
+        return imageItems
+    }
+    
+    /*
+     * Returns the list of ingredients from the API call
+     */
+    static func getIngredients(_ ingredients:NSDictionary, type:String) -> [String] {
+        let ingredientsArray = ingredients[type]! as! NSArray
+        var ingredientsItems: [String] = []
+        
+        for i in 0...ingredientsArray.count - 1 {
+            let ingredientsIndex = ingredientsArray[i] as! NSDictionary
+            let ingredientsName = ingredientsIndex["original"] as! String
+            ingredientsItems.append(ingredientsName)
+        }
+        return ingredientsItems
+    }
+    
+    /*
+     * Returns the instruction steps from the API call
+     */
+    static func getInstructions(_ instructions:NSDictionary, type:String) -> [String] {
+        var instructionsItems: [String] = []
+        
+        if let analyzedArray = instructions[type] as? NSArray {
+            if analyzedArray.count == 0 {
+                return ["Sorry, this recipe has no instructions."]
+            }
+            if let analyzedDictionary = analyzedArray[0] as? NSDictionary {
+                let stepsArray = analyzedDictionary["steps"]! as! NSArray
+                for i in 0...stepsArray.count - 1 {
+                    let instructionsIndex = stepsArray[i] as! NSDictionary
+                    let instructionsName = instructionsIndex["step"] as! String
+                    instructionsItems.append(instructionsName)
+                }
+            }
+        }
+        return instructionsItems
     }
 }

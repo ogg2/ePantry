@@ -12,8 +12,9 @@ class Recipe {
     var name: String
     var photo: UIImage?
     var prepTime: Int
+    var id: Int
     
-    init?(name: String, photo: UIImage?, prepTime: Int) {
+    init?(name: String, photo: UIImage?, prepTime: Int, id: Int) {
         
         guard !name.isEmpty else {
             return nil
@@ -22,5 +23,6 @@ class Recipe {
         self.name = name
         self.photo = photo
         self.prepTime = prepTime
+        self.id = id
     }
 }
