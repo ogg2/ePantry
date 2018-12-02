@@ -34,23 +34,31 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     /*private func loadRecipes() {
         let photo1 = UIImage(named: "avocado.png")
-        let photo2 = UIImage(named: "avocado.png")
         
-        /*for i in 0...(recipes.count - 1) {
-            vc.recipes.append(recipes[i])
-        }*/
+        for i in 0...(recipes.count - 1) {
+            
+            guard let recipe1 = Recipe(name: , photo: photo1, prepTime: 45)
+                else {
+                    fatalError("Unable to show meal1")
+            }
+            recipes += [recipe1]
+        }
         
-        guard let recipe1 = Recipe(name: "Pizza", photo: photo1, prepTime: 45)
+        
+        
+        /*guard let recipe1 = Recipe(name: "Pizza", photo: photo1, prepTime: 45)
             else {
                 fatalError("Unable to show meal1")
         }
         
-        guard let recipe2 = Recipe(name: "Tacos", photo: photo2, prepTime: 60)
+        guard let recipe2 = Recipe(name: "Tacos", photo: photo1, prepTime: 60)
             else {
                 fatalError("Unable to show meal2")
         }
         
-        recipes += [recipe1, recipe2]
+    
+        
+        recipes += [recipe1, recipe2]*/
     }*/
     
     func tableView(_ recipeResultsTable: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,6 +68,7 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ recipeResultsTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "RecipeTableViewCell"
         
+        
         guard let cell = recipeResultsTable.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RecipeTableViewCell else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
@@ -68,7 +77,7 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         cell.recipeImage.image = recipe.photo
         cell.recipeLabel.text = recipe.name
-        cell.prepTime.text = "Ready in \(recipe.prepTime) minutes!"
+        cell.prepTime.text = "Ready in \(recipe.prepTime) minutes! "
         
         return cell
     }
@@ -88,7 +97,6 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ recipeResultsTable: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeInstruct") as! RecipeInstructVC
         //let currentCell = recipeResultsTable.cellForRow(at: indexPath)! as UITableViewCell
-        print("This Cell: \(recipes[indexPath.row].name)")
         
         guard let myRecipe = MyRecipe(name: recipes[indexPath.row].name, prepTime: recipes[indexPath.row].prepTime, ingredients: ["chicken", "egg", "bacon"], instructions: ["Cut Chicken into Cubes. This is a really long instruction set.", "Place chicken on cooking sheet", "put chicken in oven"])
             else {

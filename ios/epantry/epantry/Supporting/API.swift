@@ -19,6 +19,7 @@ class API {
             Alamofire.request("https://secret-thicket-47430.herokuapp.com/pantry/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
                 switch response.result {
                 case .success:
+                    print(response)
                     var pantryItems: [String] = []
                     print("Pantry List Clicked")
                     if let result = response.result.value {
@@ -43,7 +44,7 @@ class API {
                 switch response.result {
                 case .success:
                     var groceryItems: [String] = []
-                    print("GRocery List Clicked")
+                    print("Grocery List Clicked")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
                         groceryItems = getStringArray(JSON, type: "groceryList")
@@ -121,15 +122,37 @@ class API {
     /*
      Searching for a variety of recipes given input search conditions
     */
-    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping ([Int], [String], [Int], [UIImage], Error?) -> Void) {
+    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping ([Int], [String], [Int], [String], Error?) -> Void) {
         DispatchQueue.main.async {
             let MY_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA"
             let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
             //let parameters: [String: String] = ["query": query, "cuisine": cuisine]
             Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)", headers: headers).responseJSON{response in
-                //loop 1 - 10
-                //var id[i] = response[0].id
-                print(response)
+                switch response.result {
+                case .success:
+                    var ids: [Int] = []
+                    var names: [String] = []
+                    var prepTimes: [Int] = []
+                    //var images: [String] = []
+                    
+                    print("API Population...")
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        names = getRecipeNames(JSON, type: "results")
+                        ids = getIds(JSON, type: "results")
+                        prepTimes = getPrepTimes(JSON, type: "results")
+                    }
+                    
+                    /*print("First recipe: \(names[0])")
+                    print("First recipe: \(ids[0])")
+                    print("First recipe: \(prepTimes[0])")*/
+                    
+                    completionHandler(ids, names, prepTimes, ["avocado.png"], nil)
+                    
+                case .failure:
+                    print("Failure")
+                    completionHandler([0], [""], [0], [""], nil)
+                }
             }
         }
     }
@@ -155,4 +178,48 @@ class API {
         UserDefaults.standard.set(userId, forKey: "userId")
     }
     
+    /*
+     * Returns the recipe names from the API call
+     */
+    static func getRecipeNames(_ recipe:NSDictionary, type:String) -> [String] {
+        let recipeArray = recipe[type]! as! NSArray
+        var recipeItems: [String] = []
+        
+        for i in 0...recipeArray.count - 1 {
+            let recipeIndex = recipeArray[i] as! NSDictionary
+            let itemName = recipeIndex["title"] as! String
+            recipeItems.append(itemName)
+        }
+        return recipeItems
+    }
+    
+    /*
+     * Returns the ids from the API call
+     */
+    static func getIds(_ id:NSDictionary, type:String) -> [Int] {
+        let idArray = id[type]! as! NSArray
+        var idItems: [Int] = []
+        
+        for i in 0...idArray.count - 1 {
+            let idIndex = idArray[i] as! NSDictionary
+            let idName = idIndex["id"] as! Int
+            idItems.append(idName)
+        }
+        return idItems
+    }
+    
+    /*
+     * Returns the prep times from the API call
+     */
+    static func getPrepTimes(_ prepTime:NSDictionary, type:String) -> [Int] {
+        let prepTimeArray = prepTime[type]! as! NSArray
+        var prepTimeItems: [Int] = []
+        
+        for i in 0...prepTimeArray.count - 1 {
+            let prepTimeIndex = prepTimeArray[i] as! NSDictionary
+            let prepTimeName = prepTimeIndex["readyInMinutes"] as! Int
+            prepTimeItems.append(prepTimeName)
+        }
+        return prepTimeItems
+    }
 }

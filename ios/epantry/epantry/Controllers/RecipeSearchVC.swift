@@ -145,8 +145,6 @@ extension RecipeSearchVC: UISearchBarDelegate {
         let cuisine = thisCuisine.lowercased()
         let photo1 = UIImage(named: "avocado.png")
         
-        print (query)
-        print (cuisine)
         guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
             else {
                 fatalError("Unable to show meal1")
@@ -154,22 +152,26 @@ extension RecipeSearchVC: UISearchBarDelegate {
         print (vc.recipes.count)
         vc.recipes.append(recipe1)
         
-        print (vc.recipes.count)
+        //print (vc.recipes.count)
+        
+        /*API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, images, error) in
+            
+            for i in 0...names.count - 1 {
+                guard let recipe1 = Recipe(name: names[i], photo: photo1, prepTime: prepTimes[i])
+                    else {
+                        fatalError("Unable to show recipe1")
+                }
+                //add to the [Recipe]
+                vc.recipes.append(recipe1)
+            }
+            
+            self.present(vc, animated: true, completion: {
+                print("Search Results Presented with API Call")
+            })
+        })*/
         
         self.present(vc, animated: false, completion: {
             print("Load List of Recipes")
         })
-        /*API.searchRecipes(query: query, cuisine: "japanese", completionHandler: { (ids, names, prepTimes, images, error) in
-            guard let recipe1 = Recipe(name: names[0], photo: images[0], prepTime: 45)
-                else {
-                    fatalError("Unable to show meal1")
-            }
-            
-            //add to the [Recipe]
-            vc.recipes.append(recipe1)
-            self.present(vc, animated: true, completion: {
-                print("Search Results Presented")
-            })
-        })*/
     }
 }
