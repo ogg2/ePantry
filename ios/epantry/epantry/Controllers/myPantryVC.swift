@@ -25,6 +25,7 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        assignbackground()
         print("pantry list loaded")
         pantryListTable.delegate = self
         pantryListTable.dataSource = self
@@ -46,6 +47,19 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
         })
         
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func emptyList() {

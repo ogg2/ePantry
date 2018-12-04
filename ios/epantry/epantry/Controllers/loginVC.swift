@@ -73,6 +73,22 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.password.delegate = self
+        assignbackground()
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pantry.png")!)
+        
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

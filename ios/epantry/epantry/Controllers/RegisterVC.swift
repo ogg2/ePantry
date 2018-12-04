@@ -94,6 +94,21 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.confirmPassword.delegate = self
+        
+        assignbackground()
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
