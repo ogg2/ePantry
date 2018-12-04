@@ -63,13 +63,15 @@ class API {
         let pantryArray = pantry[type]! as! NSArray
         var pantryItems: [String] = []
         
-        for i in 0...pantryArray.count - 1 {
-            let pantryIndex = pantryArray[i] as! NSDictionary
-            let itemName = pantryIndex["itemName"] as! String
-            
-            pantryItems.append(itemName)
-        }
+        if (pantryArray.count > 0) {
         
+            for i in 0...pantryArray.count - 1 {
+                let pantryIndex = pantryArray[i] as! NSDictionary
+                let itemName = pantryIndex["itemName"] as! String
+            
+                pantryItems.append(itemName)
+            }
+        }
         return pantryItems
     }
     

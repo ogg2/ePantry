@@ -40,8 +40,27 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         API.getPantryItems(completionHandler: { items in
             self.pantryList = items
             self.pantryListTable.reloadData()
+            
+            if (self.pantryList.count == 0) {
+                self.emptyList()
+            }
         })
         
+    }
+    
+    func emptyList() {
+        let dialogMessage = UIAlertController(title: "Empty Pantry", message: "Pantry has no items.", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     /*
