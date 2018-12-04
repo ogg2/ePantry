@@ -520,12 +520,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" highlightedImage="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zlc-GJ-k7h">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="5hC-i6-nqc"/>
-                                </constraints>
-                            </imageView>
                             <searchBar contentMode="redraw" placeholder="Search for a Recipe" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
                                 <rect key="frame" x="0.0" y="50" width="375" height="56"/>
                                 <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -581,13 +575,10 @@
                             <constraint firstItem="wIZ-NT-vzK" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="16" id="16T-et-TcX"/>
                             <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="ewu-5O-OQg" secondAttribute="trailing" constant="103" id="1B1-aP-98G"/>
                             <constraint firstItem="WCl-4Y-UsW" firstAttribute="top" secondItem="UcX-7x-rfu" secondAttribute="bottom" constant="30" id="7GV-DF-O7R"/>
-                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="DYH-qi-QYc"/>
                             <constraint firstItem="WCl-4Y-UsW" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="16" id="DlX-Zl-y8H"/>
                             <constraint firstItem="lZa-iu-VnJ" firstAttribute="top" secondItem="ibC-mq-cIT" secondAttribute="top" id="Dpu-cs-LuO"/>
                             <constraint firstItem="wIZ-NT-vzK" firstAttribute="top" secondItem="ewu-5O-OQg" secondAttribute="bottom" constant="21" id="JJA-io-5oT"/>
-                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="bottom" secondItem="ibC-mq-cIT" secondAttribute="bottom" id="L7H-Z6-cxJ"/>
                             <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="wIZ-NT-vzK" secondAttribute="trailing" constant="16" id="QLb-gf-2fL"/>
-                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="top" secondItem="ybC-my-74z" secondAttribute="top" id="T3t-64-zTz"/>
                             <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="WCl-4Y-UsW" secondAttribute="trailing" constant="16" id="atL-Rp-bNt"/>
                             <constraint firstItem="18p-3V-yqU" firstAttribute="top" secondItem="wIZ-NT-vzK" secondAttribute="bottom" constant="30" id="eUz-81-5sp"/>
                             <constraint firstItem="UcX-7x-rfu" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="ee8-LV-Lki"/>
@@ -597,7 +588,6 @@
                             <constraint firstItem="18p-3V-yqU" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="16" id="lET-hQ-V12"/>
                             <constraint firstItem="UcX-7x-rfu" firstAttribute="top" secondItem="lZa-iu-VnJ" secondAttribute="bottom" id="lg3-gw-1AD"/>
                             <constraint firstItem="UcX-7x-rfu" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="m8k-jY-Ps5"/>
-                            <constraint firstItem="Zlc-GJ-k7h" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="zSa-nK-HEk"/>
                             <constraint firstItem="ewu-5O-OQg" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="103" id="zx6-y6-D3S"/>
                             <constraint firstItem="ewu-5O-OQg" firstAttribute="top" secondItem="WCl-4Y-UsW" secondAttribute="bottom" constant="7.5" id="zxj-Qc-H3o"/>
                         </constraints>
@@ -623,9 +613,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="P8M-Sj-iGF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSW-bv-4bl">
                                 <rect key="frame" x="22" y="20" width="37" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -695,10 +682,6 @@
                             <constraint firstItem="XgM-gN-YpF" firstAttribute="bottom" secondItem="K2O-iC-JPq" secondAttribute="bottom" constant="20" id="XAn-HL-M0u"/>
                             <constraint firstItem="mSW-bv-4bl" firstAttribute="leading" secondItem="XgM-gN-YpF" secondAttribute="leading" constant="22" id="apr-SP-u6x"/>
                             <constraint firstItem="mSW-bv-4bl" firstAttribute="top" secondItem="XgM-gN-YpF" secondAttribute="top" id="c4J-Ks-Snq"/>
-                            <constraint firstItem="P8M-Sj-iGF" firstAttribute="top" secondItem="WMJ-xr-k0U" secondAttribute="top" id="gl2-UA-few"/>
-                            <constraint firstItem="P8M-Sj-iGF" firstAttribute="leading" secondItem="XgM-gN-YpF" secondAttribute="leading" id="qJA-UZ-Ck1"/>
-                            <constraint firstItem="P8M-Sj-iGF" firstAttribute="trailing" secondItem="XgM-gN-YpF" secondAttribute="trailing" id="r5i-aO-c2D"/>
-                            <constraint firstItem="P8M-Sj-iGF" firstAttribute="bottom" secondItem="XgM-gN-YpF" secondAttribute="bottom" id="xh6-qD-cOx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XgM-gN-YpF"/>
                     </view>
@@ -721,9 +704,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pantry.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Wl-UO-UeL">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE4-cJ-lDK">
                                 <rect key="frame" x="21" y="20" width="37" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -822,7 +802,6 @@ Avocado</string>
                             <constraint firstItem="bE4-cJ-lDK" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="83O-ra-SS9"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="RxE-Dh-uyT" secondAttribute="trailing" constant="103" id="B14-yz-YPL"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="3K7-h5-Ple" secondAttribute="bottom" constant="29" id="Bb3-qf-IyX"/>
-                            <constraint firstItem="8Wl-UO-UeL" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" id="DcV-8D-BWt"/>
                             <constraint firstItem="UCP-YQ-ydo" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="95" id="EGa-cR-Y08"/>
                             <constraint firstItem="3K7-h5-Ple" firstAttribute="top" secondItem="RxE-Dh-uyT" secondAttribute="bottom" id="FVJ-vX-27s"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="trailing" secondItem="8mY-9E-bDK" secondAttribute="trailingMargin" id="H6Y-3v-eCx"/>
@@ -833,11 +812,8 @@ Avocado</string>
                             <constraint firstItem="3K7-h5-Ple" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="Q6V-jL-gba"/>
                             <constraint firstAttribute="bottom" secondItem="TOe-wi-8A1" secondAttribute="bottom" constant="20" symbolic="YES" id="UJ9-hU-Uc3"/>
                             <constraint firstItem="XSd-2f-Lbb" firstAttribute="leading" secondItem="lVk-oK-BLH" secondAttribute="leading" constant="21" id="UVE-Xi-vQB"/>
-                            <constraint firstItem="8Wl-UO-UeL" firstAttribute="top" secondItem="8mY-9E-bDK" secondAttribute="top" id="VsJ-Y0-jKX"/>
-                            <constraint firstItem="8Wl-UO-UeL" firstAttribute="bottom" secondItem="lVk-oK-BLH" secondAttribute="bottom" id="X0e-gZ-DNe"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="8mY-9E-bDK" secondAttribute="top" constant="381" id="YEo-L0-hBd"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="FxR-Gd-QHp" secondAttribute="trailing" constant="21" id="ZWo-AM-Kl8"/>
-                            <constraint firstItem="8Wl-UO-UeL" firstAttribute="trailing" secondItem="lVk-oK-BLH" secondAttribute="trailing" id="a6Q-F1-lyp"/>
                             <constraint firstItem="TOe-wi-8A1" firstAttribute="top" secondItem="UCP-YQ-ydo" secondAttribute="bottom" id="bmh-pl-vMt"/>
                             <constraint firstItem="lVk-oK-BLH" firstAttribute="trailing" secondItem="UCP-YQ-ydo" secondAttribute="trailing" constant="95" id="cr3-on-mGI"/>
                             <constraint firstItem="XSd-2f-Lbb" firstAttribute="top" secondItem="bE4-cJ-lDK" secondAttribute="bottom" constant="10" id="i0h-Co-5t5"/>
@@ -866,6 +842,5 @@ Avocado</string>
     </scenes>
     <resources>
         <image name="avocado.png" width="449" height="307"/>
-        <image name="pantry.png" width="895" height="1350"/>
     </resources>
 </document>

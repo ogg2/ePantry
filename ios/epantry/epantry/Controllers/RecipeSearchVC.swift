@@ -26,10 +26,24 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        assignbackground()
         /*for i in 1...ingredientArray.count {
             setupButton(idx: i)
         }*/
         self.searchBar.delegate = self
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func setupSearchBar() {

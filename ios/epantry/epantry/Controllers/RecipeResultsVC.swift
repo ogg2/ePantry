@@ -18,11 +18,26 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        assignbackground()
+        
         recipeResultsTable.delegate = self
         recipeResultsTable.dataSource = self
         print("Recipe Results Loaded")
         
         //loadRecipes()
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     @IBAction func backButton(_ sender: Any) {
