@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var loginButton: UIButton!
@@ -58,6 +58,10 @@ class LoginVC: UIViewController {
         self.present(dialogMessage, animated: true, completion: nil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func registerButtonDidClick(_ sender: Any) {
         let vcRegister = self.storyboard?.instantiateViewController(withIdentifier: "RegisterPage") as! RegisterVC
         self.present(vcRegister, animated: true, completion: {
@@ -67,5 +71,12 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.password.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.loginAttempt((Any).self)
+        return true
     }
 }
