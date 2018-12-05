@@ -520,7 +520,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search for a Recipe" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
+                            <searchBar contentMode="redraw" placeholder="Include Any Additional Parameters" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcX-7x-rfu">
                                 <rect key="frame" x="0.0" y="50" width="375" height="56"/>
                                 <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
@@ -538,8 +538,8 @@
                                     <action selector="backButtonDidClick:" destination="Bzg-Yl-aeM" eventType="touchDown" id="5Ty-04-TWn"/>
                                 </connections>
                             </button>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18p-3V-yqU">
-                                <rect key="frame" x="16" y="267" width="343" height="216"/>
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18p-3V-yqU">
+                                <rect key="frame" x="16" y="267" width="343" height="70"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Bzg-Yl-aeM" id="pva-Xm-QT0"/>
                                     <outlet property="delegate" destination="Bzg-Yl-aeM" id="2lf-PE-2lB"/>
@@ -549,8 +549,8 @@
                                 <rect key="frame" x="103" y="167.5" width="169" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
-                                    <segment title="No"/>
                                     <segment title="Yes"/>
+                                    <segment title="No"/>
                                 </segments>
                                 <connections>
                                     <action selector="switchViewAction:" destination="Bzg-Yl-aeM" eventType="valueChanged" id="PnX-I3-h9Z"/>
@@ -562,12 +562,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for African recipes..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIZ-NT-vzK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for African recipes..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIZ-NT-vzK">
                                 <rect key="frame" x="16" y="216.5" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCg-X2-oKW">
+                                <rect key="frame" x="16" y="567" width="343" height="80"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="kkh-Jv-nQE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Initiate Search"/>
+                                <connections>
+                                    <action selector="initSearchDidClick:" destination="Bzg-Yl-aeM" eventType="touchUpInside" id="Gdm-10-x00"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -579,7 +591,9 @@
                             <constraint firstItem="lZa-iu-VnJ" firstAttribute="top" secondItem="ibC-mq-cIT" secondAttribute="top" id="Dpu-cs-LuO"/>
                             <constraint firstItem="wIZ-NT-vzK" firstAttribute="top" secondItem="ewu-5O-OQg" secondAttribute="bottom" constant="21" id="JJA-io-5oT"/>
                             <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="wIZ-NT-vzK" secondAttribute="trailing" constant="16" id="QLb-gf-2fL"/>
+                            <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="gCg-X2-oKW" secondAttribute="trailing" constant="16" id="Y05-HU-e3c"/>
                             <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="WCl-4Y-UsW" secondAttribute="trailing" constant="16" id="atL-Rp-bNt"/>
+                            <constraint firstItem="gCg-X2-oKW" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="16" id="dAb-Wo-YKJ"/>
                             <constraint firstItem="18p-3V-yqU" firstAttribute="top" secondItem="wIZ-NT-vzK" secondAttribute="bottom" constant="30" id="eUz-81-5sp"/>
                             <constraint firstItem="UcX-7x-rfu" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" id="ee8-LV-Lki"/>
                             <constraint firstItem="ibC-mq-cIT" firstAttribute="trailing" secondItem="lZa-iu-VnJ" secondAttribute="trailing" constant="314" id="g8o-p5-Q1s"/>
@@ -588,6 +602,7 @@
                             <constraint firstItem="18p-3V-yqU" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="16" id="lET-hQ-V12"/>
                             <constraint firstItem="UcX-7x-rfu" firstAttribute="top" secondItem="lZa-iu-VnJ" secondAttribute="bottom" id="lg3-gw-1AD"/>
                             <constraint firstItem="UcX-7x-rfu" firstAttribute="trailing" secondItem="ibC-mq-cIT" secondAttribute="trailing" id="m8k-jY-Ps5"/>
+                            <constraint firstItem="ibC-mq-cIT" firstAttribute="bottom" secondItem="gCg-X2-oKW" secondAttribute="bottom" constant="20" id="mzF-4z-qz5"/>
                             <constraint firstItem="ewu-5O-OQg" firstAttribute="leading" secondItem="ibC-mq-cIT" secondAttribute="leading" constant="103" id="zx6-y6-D3S"/>
                             <constraint firstItem="ewu-5O-OQg" firstAttribute="top" secondItem="WCl-4Y-UsW" secondAttribute="bottom" constant="7.5" id="zxj-Qc-H3o"/>
                         </constraints>
@@ -598,6 +613,7 @@
                         <outlet property="cuisineLabel" destination="wIZ-NT-vzK" id="19l-nw-yqb"/>
                         <outlet property="cuisinePicker" destination="18p-3V-yqU" id="JDa-J7-RBX"/>
                         <outlet property="cuisineToggle" destination="ewu-5O-OQg" id="wS8-Dk-BhK"/>
+                        <outlet property="initSearchButton" destination="gCg-X2-oKW" id="LFN-wD-YgJ"/>
                         <outlet property="searchBar" destination="UcX-7x-rfu" id="DKx-Kb-PfH"/>
                     </connections>
                 </viewController>
@@ -641,30 +657,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="91" image="avocado.png" translatesAutoresizingMaskIntoConstraints="NO" id="c62-3X-rnj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="89.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ready In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNR-fJ-xwq">
+                                                    <rect key="frame" x="160" y="58" width="175" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Nqu-wY-DvL">
-                                                    <rect key="frame" x="128" y="0.0" width="207" height="60"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Missing Ingredients" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="EIV-mF-8Mf">
+                                                    <rect key="frame" x="166" y="11" width="169" height="46"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Nqu-wY-DvL">
+                                                    <rect key="frame" x="15" y="11" width="143" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ready In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNR-fJ-xwq">
-                                                    <rect key="frame" x="128" y="58" width="207" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="missingIngredients" destination="EIV-mF-8Mf" id="c3x-j8-fPi"/>
                                             <outlet property="prepTime" destination="UNR-fJ-xwq" id="ei3-VP-qmY"/>
-                                            <outlet property="recipeImage" destination="c62-3X-rnj" id="cZX-9a-KwR"/>
                                             <outlet property="recipeLabel" destination="Nqu-wY-DvL" id="NKw-Ft-Ma3"/>
                                         </connections>
                                     </tableViewCell>
@@ -840,7 +859,4 @@ Avocado</string>
             <point key="canvasLocation" x="2597.5999999999999" y="840.62968515742136"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="avocado.png" width="449" height="307"/>
-    </resources>
 </document>

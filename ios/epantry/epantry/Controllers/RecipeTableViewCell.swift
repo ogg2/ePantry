@@ -12,8 +12,8 @@ class RecipeTableViewCell: UITableViewCell {
     
     //MARK: Properties
     @IBOutlet weak var recipeLabel: UILabel!
-    @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var prepTime: UILabel!
+    @IBOutlet weak var missingIngredients: UILabel!
     
     
     

@@ -124,17 +124,19 @@ class API {
     /*
      Searching for a variety of recipes given input search conditions
     */
-    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping ([Int], [String], [Int], [String], Error?) -> Void) {
+    static func searchRecipes (query: String, cuisine: String, completionHandler: @escaping ([Int], [String], [Int], Error?) -> Void) {
         DispatchQueue.main.async {
             let MY_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA"
             let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
-            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)", headers: headers).responseJSON{response in
+            //https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=burger&cuisine=american&limitLicense=true&offset=0&number=10
+            //"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)"
+            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=\(query)&cuisine=\(cuisine)&limitLicense=true&offset=0&number=10", headers: headers).responseJSON{response in
                 switch response.result {
                 case .success:
                     var ids: [Int] = []
                     var names: [String] = []
                     var prepTimes: [Int] = []
-                    var images: [String] = []
+                    //var images: [String] = []
                     
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
@@ -142,8 +144,8 @@ class API {
                         if json.count != 0 {
                             names = getRecipeNames(JSON, type: "results")
                             ids = getIds(JSON, type: "results")
-                            prepTimes = getPrepTimes(JSON, type: "results")
-                            images = getImages(JSON, type: "results")
+                            //prepTimes = getPrepTimes(JSON, type: "results")
+                            //images = getImages(JSON, type: "results")
                         } /*else {
                             ids = [0]
                             names = [""]
@@ -153,11 +155,11 @@ class API {
                     }
                     
                 
-                    completionHandler(ids, names, prepTimes, images, nil)
+                    completionHandler(ids, names, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], nil)
                     
                 case .failure:
                     print("Failure")
-                    completionHandler([0], [""], [0], [""], nil)
+                    completionHandler([0], [""], [0], nil)
                 }
             }
         }
