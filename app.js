@@ -117,9 +117,7 @@ app.post("/sortByIngredientsNeeded/:userid", (req, res) => {
     return pantryItems;
   }).then(pantryItems=> {
     recipes.forEach(recipe=> {
-      recipe.missingIngredients = recipe.missingIngredients.filter(ingredient=> {
-        return !pantryItems.includes(ingredient);
-      })
+      recipe.missingIngredients = recipe.missingIngredients.filter(ingredient=> !pantryItems.includes(ingredient))
     })
     // console.log(recipes[0].missingIngredients);
     return recipes;
