@@ -254,11 +254,8 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
   for (let i=0; i<itemsToDelete.length; i++){
     itemsToDelete[i] = itemsToDelete[i].toLowerCase();
   }
-
-  console.log("items to delete: " + items);
   User.findById(userid)
   .then(result => {
-    // let newPantry;
 
     result.pantry = result.pantry.filter(item=> {
       return !itemsToDelete.includes(item.itemName.toLowerCase());
