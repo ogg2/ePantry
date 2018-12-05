@@ -111,6 +111,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBAction func initSearchDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
+        let lastVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeInstruct") as! RecipeInstructVC
         var query: String
         if searchBar.text == "" {
             query = ""
@@ -143,10 +144,6 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                     //add to the [Recipe]
                     vc.recipes.append(recipe1)
                 }
-                
-                self.present(vc, animated: true, completion: {
-                    print("Search Results Presented with API Call")
-                })
             }
             else {
                 let dialogMessage = UIAlertController(title: "Sorry!", message: "No recipe's exist for your search parameters.", preferredStyle: .alert)
@@ -160,6 +157,29 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 dialogMessage.addAction(ok)
                 
                 self.present(dialogMessage, animated: true, completion: nil)
+            }
+            
+            for i in 0...vc.recipes.count - 1 {
+                API.getRecipeInfo(id: vc.recipes[i].id, completionHandler: { (name, prepTime, ingredients, ingredientsName, instructions, error) in
+                    
+                    guard let myRecipe = MyRecipe(name: vc.recipes[i].name, prepTime: prepTime, ingredients: ingredients, ingredientsName: ingredientsName, instructions: instructions)
+                        else {
+                            fatalError("Unable to load MyRecipe")
+                    }
+                    
+                    vc.recipes[i].prepTime = myRecipe.prepTime
+                    vc.recipes[i].missingIngredients = myRecipe.ingredientsName
+                    
+                    /*API.sortByIngredientsNeeded(recipes: vc.recipes, completionHandler: { (recipesSorted, error) in
+                        print("MissingIngred: \(vc.recipes[0].missingIngredients)")
+                        vc.recipes = recipesSorted
+                    })*/
+                    if i == vc.recipes.count - 1 {
+                        self.present(vc, animated: true, completion: {
+                            print("Search Results Presented with API Call")
+                        })
+                    }
+                })
             }
         })
     }

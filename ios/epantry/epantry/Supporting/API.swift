@@ -36,6 +36,28 @@ class API {
     }
     
     /*
+     Perform networking code to attempt to register a user
+     */
+    static func sortByIngredientsNeeded(recipes: [Recipe], completionHandler: @escaping ([Recipe], Error?) -> Void) {
+        DispatchQueue.main.async {
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/sortByIngredientsNeeded/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
+                switch response.result {
+                case .success:
+                    print(response)
+                    print("Sending recipes to be sorted...")
+                    if let result = response.result.value {
+                        let JSON = result as! NSArray
+                    }
+                    completionHandler(recipes, nil)
+                case .failure:
+                    print("Failure")
+                    completionHandler(recipes, nil)
+                }
+            }
+        }
+    }
+    
+    /*
      Perform networking code to access grocery list items for specific user
     */
     static func getGroceryListItems(completionHandler: @escaping ([String]) -> Void) {
@@ -99,9 +121,10 @@ class API {
         }
     }
     
+    
     /*
      Perform networking code to attempt to register a user
-    */
+     */
     static func registrationAttempt(username: String, password: String, completionHandler: @escaping (Bool, Any?, Error?) -> Void) {
         let SUCCESS_CODE: Int
         SUCCESS_CODE = 200
@@ -170,7 +193,7 @@ class API {
             let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
             //https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=burger&cuisine=american&limitLicense=true&offset=0&number=10
             //"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)"
-            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=\(query)&cuisine=\(cuisine)&limitLicense=true&offset=0&number=10", headers: headers).responseJSON{response in
+            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=\(query)&cuisine=\(cuisine)&limitLicense=true&offset=0&number=2", headers: headers).responseJSON{response in
                 switch response.result {
                 case .success:
                     var ids: [Int] = []
@@ -208,7 +231,7 @@ class API {
     /*
      Getting inforation for 1 specific recipe
     */
-    static func getRecipeInfo (id: Int, completionHandler: @escaping (String, Int, [String], [String], Error?) -> Void) {
+    static func getRecipeInfo (id: Int, completionHandler: @escaping (String, Int, [String], [String], [String], Error?) -> Void) {
         DispatchQueue.main.async {
             let MY_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA"
             let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
@@ -218,6 +241,7 @@ class API {
                     var name: String
                     var prepTime: Int
                     var ingredients: [String] = []
+                    var ingredientsName: [String] = []
                     var instructions: [String] = []
                     
                     if let result = response.result.value {
@@ -226,16 +250,17 @@ class API {
                         name = JSON["title"] as! String
                         prepTime = JSON["readyInMinutes"] as! Int
                         ingredients = getIngredients(JSON, type: "extendedIngredients")
+                        ingredientsName = getIngredientsName(JSON, type: "extendedIngredients")
                         instructions = getInstructions(JSON, type: "analyzedInstructions")
                         
-                        completionHandler(name, prepTime, ingredients, instructions, nil)
+                        completionHandler(name, prepTime, ingredients, ingredientsName, instructions, nil)
                         //["Cut Chicken into Cubes. This is a really long instruction set.", "Place chicken on cooking sheet", "put chicken in oven"]
                     }
                     
                     
                 case .failure:
                     print("Failure")
-                    completionHandler("", 0, [""], [""], nil)
+                    completionHandler("", 0, [""], [""], [""], nil)
                 }
             }
         }
@@ -319,6 +344,21 @@ class API {
         for i in 0...ingredientsArray.count - 1 {
             let ingredientsIndex = ingredientsArray[i] as! NSDictionary
             let ingredientsName = ingredientsIndex["original"] as! String
+            ingredientsItems.append(ingredientsName)
+        }
+        return ingredientsItems
+    }
+    
+    /*
+     * Returns the list of ingredients (name) from the API call
+     */
+    static func getIngredientsName(_ ingredients:NSDictionary, type:String) -> [String] {
+        let ingredientsArray = ingredients[type]! as! NSArray
+        var ingredientsItems: [String] = []
+        
+        for i in 0...ingredientsArray.count - 1 {
+            let ingredientsIndex = ingredientsArray[i] as! NSDictionary
+            let ingredientsName = ingredientsIndex["name"] as! String
             ingredientsItems.append(ingredientsName)
         }
         return ingredientsItems

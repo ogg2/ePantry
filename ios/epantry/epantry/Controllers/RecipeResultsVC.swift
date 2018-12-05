@@ -134,9 +134,9 @@ class RecipeResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         //performSegue(withIdentifier: "segue", sender: self)
         
-        API.getRecipeInfo(id: recipes[indexPath.row].id, completionHandler: { (name, prepTime, ingredients, instructions, error) in
+        API.getRecipeInfo(id: recipes[indexPath.row].id, completionHandler: { (name, prepTime, ingredients, ingredientsName, instructions, error) in
             
-            guard let myRecipe = MyRecipe(name: self.recipes[indexPath.row].name, prepTime: self.recipes[indexPath.row].prepTime, ingredients: ingredients, instructions: instructions)
+            guard let myRecipe = MyRecipe(name: self.recipes[indexPath.row].name, prepTime: self.recipes[indexPath.row].prepTime, ingredients: ingredients, ingredientsName: ingredientsName, instructions: instructions)
                 else {
                     fatalError("Unable to load MyRecipe")
             }

@@ -13,9 +13,10 @@ class MyRecipe {
     var name: String
     var prepTime: Int
     var ingredients: [String]
+    var ingredientsName: [String]
     var instructions: [String]
     
-    init?(name: String, prepTime: Int, ingredients: [String], instructions: [String]) {
+    init?(name: String, prepTime: Int, ingredients: [String], ingredientsName: [String], instructions: [String]) {
         
         guard !name.isEmpty else {
             return nil
@@ -24,6 +25,7 @@ class MyRecipe {
         self.name = name
         self.prepTime = prepTime
         self.ingredients = ingredients
+        self.ingredientsName = ingredientsName
         self.instructions = instructions
     }
 }
