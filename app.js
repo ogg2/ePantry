@@ -135,7 +135,7 @@ app.get("/groceryList/:userid", (req,res)=> {
   let userid = req.params.userid;
   User.findById(userid)
   .then(result => {
-    res.sendStatus(200).json({groceryList: result.groceryList});
+    res.json({groceryList: result.groceryList});
   })
   .catch(err => {
     res.sendStatus(400).json({error: err});
@@ -181,7 +181,7 @@ app.post("/addToGroceryList/:userid", (req, res) => {
       //map the input array to the correct format for db storage
       items = items.map(eachItem => {
         return {
-          itemName: eachItem
+          itemName: eachItem.toLowerCase()
         }
       })
 
@@ -199,7 +199,9 @@ app.post("/addToGroceryList/:userid", (req, res) => {
 app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
-
+  items.map(eachItem=> {
+    eachItem = eachItem.toLowerCase()
+  });
   User.findById(userid)
   .then(result=> {
 
@@ -234,12 +236,16 @@ app.post("/addToPantry/:userid",(req, res)=> {
 app.post("/removeFromPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
+  items.map(eachItem=> {
+    eachItem = eachItem.toLowerCase()
+  });
+
   console.log("items to delete: " + items);
   User.findById(userid)
   .then(result => {
     // let newPantry;
     result.pantry.forEach((pantryItem, i) => {
-      if (items.indexOf(pantryItem.itemName) > -1){
+      if (items.indexOf(pantryItem.itemName.toLowerCase()) > -1){
         result.pantry.splice(i, 1);
       }
     })
@@ -258,6 +264,11 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
 app.post("/removeFromGroceryList/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
+
+  items.map(eachItem=> {
+    eachItem = eachItem.toLowerCase()
+  });
+
   console.log("items to delete: " + items);
   User.findById(userid)
   .then(result => {
@@ -282,6 +293,10 @@ app.post("/removeFromGroceryList/:userid",(req, res)=> {
 app.post("/moveItemsToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
   let items = req.body.items;
+
+  items.map(eachItem=> {
+    eachItem = eachItem.toLowerCase()
+  });
 
   User.findById(userid)
   .then(result=> {
