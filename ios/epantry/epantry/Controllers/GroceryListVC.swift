@@ -58,7 +58,7 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var importButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var groceryListTable: UITableView!
     
     // Will populate this list from database grocery list items
@@ -87,7 +87,7 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         print("Import items to Pantry")
     }
     
-    @IBAction func editButtonDidClick(_ sender: Any) {
+    @IBAction func addButtonDidClick(_ sender: Any) {
         // Present option to add item?
         // Allow deletion of item or change of text
         print("Edit items now")

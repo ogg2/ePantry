@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b9P-S4-YQ0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bzg-Yl-aeM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -388,6 +388,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afb-Gq-AjD">
+                                <rect key="frame" x="318" y="20" width="37" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Afb-Gq-AjD" secondAttribute="height" multiplier="37:30" id="3jG-QZ-Nv5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonDidClick:" destination="VnT-zb-ORg" eventType="touchDown" id="UTa-9o-7uP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -397,12 +410,15 @@
                             <constraint firstItem="fcl-Ic-bTc" firstAttribute="top" secondItem="js4-58-f97" secondAttribute="top" constant="37" id="D0y-e9-XlH"/>
                             <constraint firstItem="fcl-Ic-bTc" firstAttribute="leading" secondItem="js4-58-f97" secondAttribute="leading" constant="92" id="Whh-V3-Reg"/>
                             <constraint firstItem="js4-58-f97" firstAttribute="trailing" secondItem="Rvo-7K-BmC" secondAttribute="trailing" constant="20" id="jSG-r5-wdZ"/>
+                            <constraint firstItem="Afb-Gq-AjD" firstAttribute="top" secondItem="js4-58-f97" secondAttribute="top" id="lgD-tG-llL"/>
+                            <constraint firstItem="js4-58-f97" firstAttribute="trailing" secondItem="Afb-Gq-AjD" secondAttribute="trailing" constant="20" id="pSG-YB-W4n"/>
                             <constraint firstItem="Rvo-7K-BmC" firstAttribute="top" secondItem="fcl-Ic-bTc" secondAttribute="bottom" constant="9" id="qCg-eD-yFb"/>
                             <constraint firstItem="Rvo-7K-BmC" firstAttribute="bottom" secondItem="js4-58-f97" secondAttribute="bottom" id="yaz-YI-HqO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="js4-58-f97"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="Afb-Gq-AjD" id="7kX-FQ-AhX"/>
                         <outlet property="backButton" destination="HQZ-gi-v4r" id="hro-PF-6x9"/>
                         <outlet property="pantryListTable" destination="Rvo-7K-BmC" id="xop-4W-QRL"/>
                     </connections>
@@ -473,11 +489,11 @@
                                     <constraint firstAttribute="width" constant="30" id="a28-fr-ANb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Edit">
+                                <state key="normal" title="Add">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="editButtonDidClick:" destination="vlg-83-sIh" eventType="touchDown" id="BwO-Xj-zSN"/>
+                                    <action selector="addButtonDidClick:" destination="vlg-83-sIh" eventType="touchDown" id="xXb-e2-376"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -502,8 +518,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ugz-wK-Jot"/>
                     <connections>
+                        <outlet property="addButton" destination="ePY-nc-U0n" id="5CT-8D-2LB"/>
                         <outlet property="backButton" destination="fbg-v0-vQr" id="Jcp-bM-ror"/>
-                        <outlet property="editButton" destination="ePY-nc-U0n" id="71e-7Z-JDG"/>
                         <outlet property="groceryListTable" destination="yJu-UD-1wF" id="3aI-ez-PuO"/>
                         <outlet property="importButton" destination="RTo-ei-vlZ" id="jTW-4q-REN"/>
                     </connections>

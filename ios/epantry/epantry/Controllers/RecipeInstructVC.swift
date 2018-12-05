@@ -25,7 +25,7 @@ class RecipeInstructVC: UIViewController {
     
     
     var recipes = [Recipe]()
-    var myRecipe = MyRecipe(name: "", prepTime: 0, ingredients: [""], instructions: [""])
+    var myRecipe = MyRecipe(name: "", prepTime: 0, ingredients: [""], ingredientsName: [""], instructions: [""])
     
     //let listofIngredients = ["1 Cup of Milk", "1 T of Pepper"]
     
