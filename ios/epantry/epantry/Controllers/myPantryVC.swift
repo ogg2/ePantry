@@ -13,12 +13,56 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var pantryListTable: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")
         self.present(vc!, animated: false, completion: {
             print("Back to Home")
         })
+    }
+    
+    @IBAction func addButtonDidClick(_ sender: Any) {
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Add item to Pantry", preferredStyle: .alert)
+        
+        dialogMessage.addTextField(configurationHandler: {(textField) in
+            textField.placeholder = "Item to add"
+        })
+        
+        let textField: UITextField = dialogMessage.textFields![0] as UITextField
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+            let item: String = textField.text!
+            print(item)
+            API.addItemToPantry(item: item, completionHandler: { success in
+                if (success) {
+                    API.getPantryItems(completionHandler: { items in
+                        self.pantryList = items
+                        self.pantryListTable.reloadData()
+                        
+                        if (self.pantryList.count == 0) {
+                            self.emptyList()
+                        }
+                    })
+                } else {
+                    print("Failed to add")
+                }
+            })
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     var pantryList: [String] = []
@@ -85,7 +129,6 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ groceryList: UITableView, numberOfRowsInSection section: Int) -> Int {
         // This will be the number of grocery list unique items in their data base table
-        print(pantryList.count)
         return pantryList.count
     }
     
@@ -97,7 +140,46 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ groceryList: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = groceryList.cellForRow(at:indexPath)! as UITableViewCell
+        let item: String = currentCell.textLabel!.text!
+        removeFromPantryOption(item: item)
+        print(currentCell.textLabel!.text!)
         print(indexPath)
+    }
+    
+    func removeFromPantryOption(item: String) {
+        let dialogMessage = UIAlertController(title: "Remove Item", message: "Are you sure you want to remove this item?", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+            API.removeItemFromPantry(item: item, completionHandler: { success in
+                if (success) {
+                    print("Item removed")
+                    API.getPantryItems(completionHandler: { items in
+                        self.pantryList = items
+                        self.pantryListTable.reloadData()
+                        
+                        if (self.pantryList.count == 0) {
+                            self.emptyList()
+                        }
+                    })
+                } else {
+                    print("Failed to remove")
+                }
+            })
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
 }
