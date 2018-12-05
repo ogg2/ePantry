@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var username: UITextField!
     
@@ -92,5 +92,31 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.confirmPassword.delegate = self
+        
+        assignbackground()
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.registerButtonDidClick((Any).self)
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

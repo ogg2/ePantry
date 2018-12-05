@@ -25,6 +25,7 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        assignbackground()
         print("pantry list loaded")
         pantryListTable.delegate = self
         pantryListTable.dataSource = self
@@ -40,8 +41,40 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         API.getPantryItems(completionHandler: { items in
             self.pantryList = items
             self.pantryListTable.reloadData()
+            
+            if (self.pantryList.count == 0) {
+                self.emptyList()
+            }
         })
         
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+    
+    func emptyList() {
+        let dialogMessage = UIAlertController(title: "Empty Pantry", message: "Pantry has no items.", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     /*

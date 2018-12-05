@@ -10,18 +10,18 @@ import Foundation
 
 class Recipe {
     var name: String
-    var photo: UIImage?
+    var missingIngredients: [String]
     var prepTime: Int
     var id: Int
     
-    init?(name: String, photo: UIImage?, prepTime: Int, id: Int) {
+    init?(name: String, missingIngredients: [String], prepTime: Int, id: Int) {
         
         guard !name.isEmpty else {
             return nil
         }
         
         self.name = name
-        self.photo = photo
+        self.missingIngredients = missingIngredients
         self.prepTime = prepTime
         self.id = id
     }

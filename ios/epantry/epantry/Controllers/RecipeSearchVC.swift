@@ -18,6 +18,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var cuisinePicker: UIPickerView!
     @IBOutlet weak var cuisineToggle: UISegmentedControl!
     @IBOutlet weak var cuisineLabel: UILabel!
+    @IBOutlet weak var initSearchButton: UIButton!
     
     let cuisinesArray = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
     
@@ -26,10 +27,25 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        assignbackground()
         /*for i in 1...ingredientArray.count {
             setupButton(idx: i)
         }*/
         self.searchBar.delegate = self
+        initSearchButton.layer.cornerRadius = 17
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func setupSearchBar() {
@@ -38,13 +54,13 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 1:
-            cuisinePicker.isHidden = false
-            cuisineLabel.isHidden = false
-            thisCuisine = "African"
-        default:
             cuisinePicker.isHidden = true
             cuisineLabel.isHidden = true
             thisCuisine = ""
+        default:
+            cuisinePicker.isHidden = false
+            cuisineLabel.isHidden = false
+            thisCuisine = "African"
         }
     }
     
@@ -60,9 +76,10 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         let title = UILabel()
         
-        title.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight.bold)
+        title.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.bold)
         title.text =  cuisinesArray[row]
         title.textAlignment = .center
+        
         
         return title
         
@@ -91,6 +108,61 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         return joinedParam
     }
+    
+    @IBAction func initSearchDidClick(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
+        var query: String
+        if searchBar.text == "" {
+            query = ""
+        } else {
+            query = splitAndJoinString(text: searchBar.text!)
+        }
+        let cuisine = thisCuisine.lowercased()
+        
+        
+        /*guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
+         else {
+         fatalError("Unable to show meal1")
+         }
+         print (vc.recipes.count)
+         vc.recipes.append(recipe1)*/
+        
+        //print (vc.recipes.count)
+        
+        API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, error) in
+            
+            if names.count > 0 {
+                for i in 0...names.count - 1 {
+                    
+                    //let photo = UIImage(named: "https://spoonacular.com/recipeImages/\(images[i])")
+                    
+                    guard let recipe1 = Recipe(name: names[i], missingIngredients: [], prepTime: prepTimes[i], id: ids[i])
+                        else {
+                            fatalError("Unable to show recipe1")
+                    }
+                    //add to the [Recipe]
+                    vc.recipes.append(recipe1)
+                }
+                
+                self.present(vc, animated: true, completion: {
+                    print("Search Results Presented with API Call")
+                })
+            }
+            else {
+                let dialogMessage = UIAlertController(title: "Sorry!", message: "No recipe's exist for your search parameters.", preferredStyle: .alert)
+                
+                // Create OK button with action handler
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button tapped")
+                })
+                
+                //Add OK to dialog message
+                dialogMessage.addAction(ok)
+                
+                self.present(dialogMessage, animated: true, completion: nil)
+            }
+        })
+    }
 }
 
 extension RecipeSearchVC: UISearchBarDelegate {
@@ -104,7 +176,12 @@ extension RecipeSearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
-        let query = splitAndJoinString(text: searchBar.text!)
+        var query: String
+        if searchBar.text == "" {
+            query = ""
+        } else {
+            query = splitAndJoinString(text: searchBar.text!)
+        }
         let cuisine = thisCuisine.lowercased()
         
         /*guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
@@ -116,14 +193,14 @@ extension RecipeSearchVC: UISearchBarDelegate {
         
         //print (vc.recipes.count)
         
-        API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, images, error) in
+        API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, error) in
             
             if names.count > 0 {
                 for i in 0...names.count - 1 {
                     
-                    let photo = UIImage(named: "https://spoonacular.com/recipeImages/\(images[i])")
+                    //let photo = UIImage(named: "https://spoonacular.com/recipeImages/\(images[i])")
                     
-                    guard let recipe1 = Recipe(name: names[i], photo: photo, prepTime: prepTimes[i], id: ids[i])
+                    guard let recipe1 = Recipe(name: names[i], missingIngredients: ["salmon"], prepTime: prepTimes[i], id: ids[i])
                         else {
                             fatalError("Unable to show recipe1")
                     }

@@ -13,6 +13,7 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        assignbackground()
         print("grocery list loaded")
         groceryListTable.delegate = self
         groceryListTable.dataSource = self
@@ -20,7 +21,39 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         API.getGroceryListItems(completionHandler: { items in
             self.groceryList = items
             self.groceryListTable.reloadData()
+            
+            if (self.groceryList.count == 0) {
+                self.emptyList()
+            }
         })
+    }
+    
+    func assignbackground(){
+        let background = UIImage(named: "pantry.png")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+    
+    func emptyList() {
+        let dialogMessage = UIAlertController(title: "Empty Grocery List", message: "Grocery list has no items.", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     @IBOutlet weak var backButton: UIButton!
