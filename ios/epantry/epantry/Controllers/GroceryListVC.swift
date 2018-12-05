@@ -46,7 +46,7 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            print("Ok button tapped")
+            print("empty list OK")
         })
         
         //Add OK and Cancel button to dialog message
@@ -64,13 +64,6 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     // Will populate this list from database grocery list items
     var groceryList: [String] = []
     
-    /*
-     Need a function to populate the grocery list from the database
-     Need a function to update the database when the list is updated
-        Don't need to send data between view controllers because it is all being stored on the backend
-        Just need to make sure that the presentation is correct
-    */
-    
     @IBAction func backButtonDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LaunchPage")
         self.present(vc!, animated: false, completion: {
@@ -79,18 +72,114 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func importButtonDidClick(_ sender: Any) {
-        // Present check boxes for selecting items
-        // Selected items will be removed from list and moved to pantry
-        // Non selected items will stay on list
-        // Database operation to add selected items to pantry
-        // Database operation to remove selected items from grocery list
-        print("Import items to Pantry")
+        
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to import all items to your pantry?", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            API.moveItemsToPantry(items: self.groceryList, completionHandler: { success in
+                if (success) {
+                    API.getGroceryListItems(completionHandler: { items in
+                        self.groceryList = items
+                        self.groceryListTable.reloadData()
+                        
+                        if (self.groceryList.count == 0) {
+                            self.emptyList()
+                        }
+                    })
+                    self.importSuccessful()
+                } else {
+                    self.itemsNotImported()
+                }
+            })
+            print("Import items to Pantry")
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "No", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+        
+    }
+    
+    func itemsNotImported() {
+        let dialogMessage = UIAlertController(title: "Import Failed", message: "Could not import items to pantry", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    func importSuccessful() {
+        let dialogMessage = UIAlertController(title: "Import Success", message: "Items successfully imported to pantry", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     @IBAction func addButtonDidClick(_ sender: Any) {
-        // Present option to add item?
-        // Allow deletion of item or change of text
-        print("Edit items now")
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Add item to Grocery List", preferredStyle: .alert)
+        
+        dialogMessage.addTextField(configurationHandler: {(textField) in
+            textField.placeholder = "Item to add"
+        })
+        
+        let textField: UITextField = dialogMessage.textFields![0] as UITextField
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+            let item: String = textField.text!
+            print(item)
+            API.addItemToGrocery(item: item, completionHandler: { success in
+                if (success) {
+                    API.getGroceryListItems(completionHandler: { items in
+                        self.groceryList = items
+                        self.groceryListTable.reloadData()
+                        
+                        if (self.groceryList.count == 0) {
+                            self.emptyList()
+                        }
+                    })
+                } else {
+                    print("Failed to add")
+                }
+            })
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     func tableView(_ groceryListTable: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +195,45 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ groceryListTable: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = groceryListTable.cellForRow(at:indexPath)! as UITableViewCell
-        print(indexPath.row)
+        let item: String = currentCell.textLabel!.text!
+        removeFromGroceryList(item: item)
+        print(currentCell.textLabel!.text!)
+    }
+    
+    func removeFromGroceryList(item: String) {
+        let dialogMessage = UIAlertController(title: "Remove Item", message: "Are you sure you want to remove this item?", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+            API.removeItemFromGroceryList(item: item, completionHandler: { success in
+                if (success) {
+                    print("Item removed")
+                    API.getGroceryListItems(completionHandler: { items in
+                        self.groceryList = items
+                        self.groceryListTable.reloadData()
+                        
+                        if (self.groceryList.count == 0) {
+                            self.emptyList()
+                        }
+                    })
+                } else {
+                    print("Failed to remove")
+                }
+            })
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
 }

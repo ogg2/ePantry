@@ -164,6 +164,26 @@ class API {
         }
     }
     
+    static func removeItemFromGroceryList(item: String, completionHandler: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            var items: [String] = []
+            items.append(item)
+            let SUCCESS_CODE = 200
+            let parameters: [String: [String]] = ["items": items]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/removeFromGroceryList/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true)
+                } else {
+                    print("Error")
+                    completionHandler(false)
+                }
+            }
+        }
+    }
+    
     static func addItemToPantry(item: String, completionHandler: @escaping (Bool) -> Void) {
         DispatchQueue.main.async {
             var items: [String] = []
@@ -171,6 +191,44 @@ class API {
             let SUCCESS_CODE = 200
             let parameters: [String: [String]] = ["items": items]
             Alamofire.request("https://secret-thicket-47430.herokuapp.com/addToPantry/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true)
+                } else {
+                    print("Error")
+                    completionHandler(false)
+                }
+            }
+        }
+    }
+    
+    static func addItemToGrocery(item: String, completionHandler: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            var items: [String] = []
+            items.append(item)
+            let SUCCESS_CODE = 200
+            let parameters: [String: [String]] = ["items": items]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/addToGroceryList/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true)
+                } else {
+                    print("Error")
+                    completionHandler(false)
+                }
+            }
+        }
+    }
+    
+    static func moveItemsToPantry(items: [String], completionHandler: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            let SUCCESS_CODE = 200
+            let parameters: [String: [String]] = ["items": items]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/moveItemsToPantry/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
                 var statusCode: Int
                 statusCode = response.response!.statusCode
                 if (statusCode == SUCCESS_CODE) {
