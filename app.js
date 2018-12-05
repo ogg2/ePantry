@@ -124,9 +124,7 @@ app.post("/sortByIngredientsNeeded/:userid", (req, res) => {
     // console.log(recipes[0].missingIngredients);
     return recipes;
   }).then(recipes=> {
-    recipes.sort((a, b) => {
-      return a.missingIngredients.length - b.missingIngredients.length;
-    })
+    recipes.sort((a, b) => a.missingIngredients.length - b.missingIngredients.length)
     res.json({recipes: recipes});
   }).catch(err=> {
     res.sendStatus(400).json({error: err});
