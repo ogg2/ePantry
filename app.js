@@ -3,7 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 let router=express.Router;
-
+var unirest = require('unirest');
+let RECIPE_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA";
 let app = express();
 app.listen(process.env.PORT || 8888);
 
@@ -11,6 +12,14 @@ mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
 
 let User = require('./models.js').User;
 // User.createIndex( "username: 1", { unique: true } );
@@ -81,6 +90,45 @@ User.findOne({username: username})
   console.log(err);
 })
 
+})
+
+// fmldskfmlsdk.heroku.come/sortByIngredientsNeeded/23456789
+// takes recipes, sends back recipes sorted by number of ingredients still needed
+// get: https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/%5C(id)/information
+// input list of ids
+/* output : {
+sorted by number of ingredients still needed
+  the recipe given by the api, with the list of extra ingredients needed
+  ingredientsNeeded: []
+}
+
+name, preptime, missingIngredients, id
+*/
+app.post("/sortByIngredientsNeeded/:userid", (req, res) => {
+  let recipes = req.body.recipes;
+  let userid = req.params.userid;
+  // let allRecipes = [];
+  let pantryItems = [];
+  User.findById(userid)
+  .then( user=> {
+    user.pantry.forEach(pantryItem => {
+      pantryItems.push(pantryItem.itemName);
+    })
+    return pantryItems;
+  }).then(pantryItems=> {
+    recipes.forEach(recipe=> {
+      console.log("1 " + recipe.missingIngredients);
+      recipe.missingIngredients = recipe.missingIngredients.filter(ingredient=> {
+        return !pantryItems.includes(ingredient);
+      })
+    })
+    // console.log(recipes[0].missingIngredients);
+    return recipes;
+  }).then(recipes=> {
+    res.json({recipes: recipes});
+  }).catch(err=> {
+    res.sendStatus(400).json({error: err});
+  })
 })
 
 /* returns the user's groceryList as groceryList: [a, b, c]
