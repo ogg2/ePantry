@@ -255,6 +255,29 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
   })
 })
 
+app.post("/removeFromGroceryList/:userid",(req, res)=> {
+  let userid = req.params.userid;
+  let items = req.body.items;
+  console.log("items to delete: " + items);
+  User.findById(userid)
+  .then(result => {
+    result.groceryList.forEach((groceryItem, i) => {
+      if (items.indexOf(groceryItem.itemName) > -1){
+        result.groceryList.splice(i, 1);
+      }
+    })
+
+    // result.pantry = newPantry;
+    result.save(err=> {
+      if (err){
+        res.sendStatus(400);
+      }else{
+        res.sendStatus(200);
+      }
+    })
+  })
+})
+
 /* from grocery list to pantry */
 app.post("/moveItemsToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
