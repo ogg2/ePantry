@@ -117,7 +117,6 @@ app.post("/sortByIngredientsNeeded/:userid", (req, res) => {
     return pantryItems;
   }).then(pantryItems=> {
     recipes.forEach(recipe=> {
-      console.log("1 " + recipe.missingIngredients);
       recipe.missingIngredients = recipe.missingIngredients.filter(ingredient=> {
         return !pantryItems.includes(ingredient);
       })
@@ -125,6 +124,9 @@ app.post("/sortByIngredientsNeeded/:userid", (req, res) => {
     // console.log(recipes[0].missingIngredients);
     return recipes;
   }).then(recipes=> {
+    recipes.sort((a, b) => {
+      return a.missingIngredients.length - b.missingIngredients.length;
+    })
     res.json({recipes: recipes});
   }).catch(err=> {
     res.sendStatus(400).json({error: err});
