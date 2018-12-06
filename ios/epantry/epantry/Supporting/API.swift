@@ -237,6 +237,7 @@ class API {
                     var prepTimes: [Int] = []
                     
                     if let result = response.result.value {
+                        print (result)
                         let JSON = result as! NSDictionary
                         let json = JSON["results"] as! NSArray
                         if json.count != 0 {
@@ -254,6 +255,7 @@ class API {
                     completionHandler(ids, names, [45, 45, 45, 45, 45, 45, 45, 45, 45, 45], nil)
                     
                 case .failure:
+                    print (response)
                     print("Failure")
                     completionHandler([0], [""], [0], nil)
                 }

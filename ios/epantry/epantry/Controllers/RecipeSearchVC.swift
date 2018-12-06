@@ -119,7 +119,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         } else {
             query = splitAndJoinString(text: searchBar.text!)
         }
-        let cuisine = thisCuisine.lowercased()
+        let cuisine = splitAndJoinString(text: thisCuisine.lowercased())
         
         var pantryList: [String] = [""]
         
@@ -138,6 +138,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                         else {
                             fatalError("Unable to show recipe1")
                     }
+                    print (recipe1.name)
                     //add to the [Recipe]
                     vc.recipes.append(recipe1)
                 }
