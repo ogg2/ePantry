@@ -182,24 +182,6 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.present(dialogMessage, animated: true, completion: nil)
     }
     
-    func tableView(_ groceryListTable: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // This will be the number of unique grocery list items in their data base table
-        return groceryList.count
-    }
-    
-    func tableView(_ groceryListTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = groceryListTable.dequeueReusableCell(withIdentifier: "groceryItemCell", for: indexPath)
-        cell.textLabel?.text = groceryList[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ groceryListTable: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCell = groceryListTable.cellForRow(at:indexPath)! as UITableViewCell
-        let item: String = currentCell.textLabel!.text!
-        removeFromGroceryList(item: item)
-        print(currentCell.textLabel!.text!)
-    }
-    
     func removeFromGroceryList(item: String) {
         let dialogMessage = UIAlertController(title: "Remove Item", message: "Are you sure you want to remove this item?", preferredStyle: .alert)
         
@@ -234,6 +216,25 @@ class GroceryListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         // Present dialog message to user
         self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    func tableView(_ groceryListTable: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // This will be the number of unique grocery list items in their data base table
+        return groceryList.count
+    }
+    
+    func tableView(_ groceryListTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = groceryListTable.dequeueReusableCell(withIdentifier: "groceryItemCell", for: indexPath)
+        cell.textLabel?.text = groceryList[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ groceryListTable: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = groceryListTable.cellForRow(at:indexPath)! as UITableViewCell
+        //currentCell.accessoryType = UITableViewCell.AccessoryType.checkmark
+        let item: String = currentCell.textLabel!.text!
+        removeFromGroceryList(item: item)
+        print(currentCell.textLabel!.text!)
     }
     
 }
