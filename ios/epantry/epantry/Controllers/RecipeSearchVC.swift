@@ -23,7 +23,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let cuisinesArray = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
     
     
-    var thisCuisine : String = ""
+    var thisCuisine : String = "African"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,6 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         default:
             cuisinePicker.isHidden = false
             cuisineLabel.isHidden = false
-            thisCuisine = "African"
         }
     }
     
@@ -111,75 +110,87 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBAction func initSearchDidClick(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
-        let lastVC = self.storyboard?.instantiateViewController(withIdentifier: "RecipeInstruct") as! RecipeInstructVC
+        
+        vc.recipes = []
+        
         var query: String
         if searchBar.text == "" {
             query = ""
         } else {
             query = splitAndJoinString(text: searchBar.text!)
         }
-        let cuisine = thisCuisine.lowercased()
+        let cuisine = splitAndJoinString(text: thisCuisine.lowercased())
         
+        var pantryList: [String] = [""]
         
-        /*guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
-         else {
-         fatalError("Unable to show meal1")
-         }
-         print (vc.recipes.count)
-         vc.recipes.append(recipe1)*/
-        
-        //print (vc.recipes.count)
+        API.getPantryItems(completionHandler: { items in
+            pantryList = items
+            if (pantryList.count == 0) {
+                pantryList = [""]
+            }
+        })
         
         API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, error) in
             
             if names.count > 0 {
                 for i in 0...names.count - 1 {
-                    
-                    //let photo = UIImage(named: "https://spoonacular.com/recipeImages/\(images[i])")
-                    
                     guard let recipe1 = Recipe(name: names[i], missingIngredients: [], prepTime: prepTimes[i], id: ids[i])
                         else {
                             fatalError("Unable to show recipe1")
                     }
+                    print (recipe1.name)
                     //add to the [Recipe]
                     vc.recipes.append(recipe1)
+                }
+                
+                for i in 0...vc.recipes.count - 1 {
+                    API.getRecipeInfo(id: vc.recipes[i].id, completionHandler: { (name, prepTime, ingredients, ingredientsName, instructions, error) in
+                        
+                        guard let myRecipe = MyRecipe(name: vc.recipes[i].name, prepTime: prepTime, ingredients: ingredients, ingredientsName: ingredientsName, instructions: instructions)
+                            else {
+                                fatalError("Unable to load MyRecipe")
+                        }
+                        
+                        vc.recipes[i].prepTime = myRecipe.prepTime
+                        vc.recipes[i].missingIngredients = myRecipe.ingredientsName
+                        
+                        var indexes: [Int] = []
+                        for j in 0...vc.recipes[i].missingIngredients.count - 1 {
+                            if pantryList.contains(where: vc.recipes[i].missingIngredients[j].contains) {
+                                indexes.append(j)
+                            }
+                        }
+                        if indexes.count != 0 {
+                            for k in 0...indexes.count - 1 {
+                                print ("Removed\(i): \(vc.recipes[i].missingIngredients[indexes[indexes.count - 1 - k]])")
+                                vc.recipes[i].missingIngredients.remove(at: indexes[indexes.count - 1 - k])
+                                if i == vc.recipes.count - 1 && k == indexes.count - 1{
+                                    vc.recipes.sort(by: { $0.missingIngredients.count < $1.missingIngredients.count })
+                                    self.present(vc, animated: true, completion: {
+                                        print("Search Results Presented with API Call")
+                                    })
+                                }
+                            }
+                        } else {
+                            if i == vc.recipes.count - 1 {
+                                vc.recipes.sort(by: { $0.missingIngredients.count < $1.missingIngredients.count })
+                                self.present(vc, animated: true, completion: {
+                                    print("Search Results Presented with API Call")
+                                })
+                            }
+                        }
+                    })
                 }
             }
             else {
                 let dialogMessage = UIAlertController(title: "Sorry!", message: "No recipe's exist for your search parameters.", preferredStyle: .alert)
-                
                 // Create OK button with action handler
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                     print("Ok button tapped")
                 })
-                
                 //Add OK to dialog message
                 dialogMessage.addAction(ok)
-                
                 self.present(dialogMessage, animated: true, completion: nil)
-            }
-            
-            for i in 0...vc.recipes.count - 1 {
-                API.getRecipeInfo(id: vc.recipes[i].id, completionHandler: { (name, prepTime, ingredients, ingredientsName, instructions, error) in
-                    
-                    guard let myRecipe = MyRecipe(name: vc.recipes[i].name, prepTime: prepTime, ingredients: ingredients, ingredientsName: ingredientsName, instructions: instructions)
-                        else {
-                            fatalError("Unable to load MyRecipe")
-                    }
-                    
-                    vc.recipes[i].prepTime = myRecipe.prepTime
-                    vc.recipes[i].missingIngredients = myRecipe.ingredientsName
-                    
-                    /*API.sortByIngredientsNeeded(recipes: vc.recipes, completionHandler: { (recipesSorted, error) in
-                        print("MissingIngred: \(vc.recipes[0].missingIngredients)")
-                        vc.recipes = recipesSorted
-                    })*/
-                    if i == vc.recipes.count - 1 {
-                        self.present(vc, animated: true, completion: {
-                            print("Search Results Presented with API Call")
-                        })
-                    }
-                })
             }
         })
     }
@@ -187,7 +198,6 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
 extension RecipeSearchVC: UISearchBarDelegate {
     func searchBar ( searchBar: UISearchBar, textDidChange searchText: String) {
-        //ingredient = ingredientArray.filter({$0.prefix(searchText.count) == searchText})
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -195,56 +205,6 @@ extension RecipeSearchVC: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
-        var query: String
-        if searchBar.text == "" {
-            query = ""
-        } else {
-            query = splitAndJoinString(text: searchBar.text!)
-        }
-        let cuisine = thisCuisine.lowercased()
-        
-        /*guard let recipe1 = Recipe(name: query, photo: photo1, prepTime: 3)
-            else {
-                fatalError("Unable to show meal1")
-        }
-        print (vc.recipes.count)
-        vc.recipes.append(recipe1)*/
-        
-        //print (vc.recipes.count)
-        
-        API.searchRecipes(query: query, cuisine: cuisine, completionHandler: { (ids, names, prepTimes, error) in
-            
-            if names.count > 0 {
-                for i in 0...names.count - 1 {
-                    
-                    //let photo = UIImage(named: "https://spoonacular.com/recipeImages/\(images[i])")
-                    
-                    guard let recipe1 = Recipe(name: names[i], missingIngredients: ["salmon"], prepTime: prepTimes[i], id: ids[i])
-                        else {
-                            fatalError("Unable to show recipe1")
-                    }
-                    //add to the [Recipe]
-                    vc.recipes.append(recipe1)
-                }
-                
-                self.present(vc, animated: true, completion: {
-                    print("Search Results Presented with API Call")
-                })
-            }
-            else {
-                let dialogMessage = UIAlertController(title: "Sorry!", message: "No recipe's exist for your search parameters.", preferredStyle: .alert)
-                
-                // Create OK button with action handler
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                    print("Ok button tapped")
-                })
-                
-                //Add OK to dialog message
-                dialogMessage.addAction(ok)
-                
-                self.present(dialogMessage, animated: true, completion: nil)
-            }
-        })
+        initSearchDidClick((Any).self)
     }
 }

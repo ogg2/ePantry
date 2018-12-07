@@ -36,28 +36,6 @@ class API {
     }
     
     /*
-     Perform networking code to attempt to register a user
-     */
-    static func sortByIngredientsNeeded(recipes: [Recipe], completionHandler: @escaping ([Recipe], Error?) -> Void) {
-        DispatchQueue.main.async {
-            Alamofire.request("https://secret-thicket-47430.herokuapp.com/sortByIngredientsNeeded/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
-                switch response.result {
-                case .success:
-                    print(response)
-                    print("Sending recipes to be sorted...")
-                    if let result = response.result.value {
-                        let JSON = result as! NSArray
-                    }
-                    completionHandler(recipes, nil)
-                case .failure:
-                    print("Failure")
-                    completionHandler(recipes, nil)
-                }
-            }
-        }
-    }
-    
-    /*
      Perform networking code to access grocery list items for specific user
     */
     static func getGroceryListItems(completionHandler: @escaping ([String]) -> Void) {
@@ -164,6 +142,26 @@ class API {
         }
     }
     
+    static func removeItemFromGroceryList(item: String, completionHandler: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            var items: [String] = []
+            items.append(item)
+            let SUCCESS_CODE = 200
+            let parameters: [String: [String]] = ["items": items]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/removeFromGroceryList/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true)
+                } else {
+                    print("Error")
+                    completionHandler(false)
+                }
+            }
+        }
+    }
+    
     static func addItemToPantry(item: String, completionHandler: @escaping (Bool) -> Void) {
         DispatchQueue.main.async {
             var items: [String] = []
@@ -171,6 +169,44 @@ class API {
             let SUCCESS_CODE = 200
             let parameters: [String: [String]] = ["items": items]
             Alamofire.request("https://secret-thicket-47430.herokuapp.com/addToPantry/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true)
+                } else {
+                    print("Error")
+                    completionHandler(false)
+                }
+            }
+        }
+    }
+    
+    static func addItemToGrocery(item: String, completionHandler: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            var items: [String] = []
+            items.append(item)
+            let SUCCESS_CODE = 200
+            let parameters: [String: [String]] = ["items": items]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/addToGroceryList/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+                var statusCode: Int
+                statusCode = response.response!.statusCode
+                if (statusCode == SUCCESS_CODE) {
+                    print("Validation Successful")
+                    completionHandler(true)
+                } else {
+                    print("Error")
+                    completionHandler(false)
+                }
+            }
+        }
+    }
+    
+    static func moveItemsToPantry(items: [String], completionHandler: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            let SUCCESS_CODE = 200
+            let parameters: [String: [String]] = ["items": items]
+            Alamofire.request("https://secret-thicket-47430.herokuapp.com/moveItemsToPantry/" + getUserId(), method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
                 var statusCode: Int
                 statusCode = response.response!.statusCode
                 if (statusCode == SUCCESS_CODE) {
@@ -193,22 +229,20 @@ class API {
             let headers: HTTPHeaders = ["X-Mashape-Key": MY_API_KEY, "Accept": "application/json"]
             //https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=burger&cuisine=american&limitLicense=true&offset=0&number=10
             //"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=\(cuisine)&number=10&offset=0&query=\(query)"
-            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=\(query)&cuisine=\(cuisine)&limitLicense=true&offset=0&number=2", headers: headers).responseJSON{response in
+            Alamofire.request("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?query=\(query)&cuisine=\(cuisine)&limitLicense=true&offset=0&number=10", headers: headers).responseJSON{response in
                 switch response.result {
                 case .success:
                     var ids: [Int] = []
                     var names: [String] = []
                     var prepTimes: [Int] = []
-                    //var images: [String] = []
                     
                     if let result = response.result.value {
+                        print (result)
                         let JSON = result as! NSDictionary
                         let json = JSON["results"] as! NSArray
                         if json.count != 0 {
                             names = getRecipeNames(JSON, type: "results")
                             ids = getIds(JSON, type: "results")
-                            //prepTimes = getPrepTimes(JSON, type: "results")
-                            //images = getImages(JSON, type: "results")
                         } /*else {
                             ids = [0]
                             names = [""]
@@ -218,9 +252,10 @@ class API {
                     }
                     
                 
-                    completionHandler(ids, names, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], nil)
+                    completionHandler(ids, names, [45, 45, 45, 45, 45, 45, 45, 45, 45, 45], nil)
                     
                 case .failure:
+                    print (response)
                     print("Failure")
                     completionHandler([0], [""], [0], nil)
                 }
@@ -254,7 +289,6 @@ class API {
                         instructions = getInstructions(JSON, type: "analyzedInstructions")
                         
                         completionHandler(name, prepTime, ingredients, ingredientsName, instructions, nil)
-                        //["Cut Chicken into Cubes. This is a really long instruction set.", "Place chicken on cooking sheet", "put chicken in oven"]
                     }
                     
                     
@@ -317,21 +351,6 @@ class API {
             prepTimeItems.append(prepTimeName)
         }
         return prepTimeItems
-    }
-    
-    /*
-     * Returns the recipe images from the API call
-     */
-    static func getImages(_ image:NSDictionary, type:String) -> [String] {
-        let imageArray = image[type]! as! NSArray
-        var imageItems: [String] = []
-        
-        for i in 0...imageArray.count - 1 {
-            let imageIndex = imageArray[i] as! NSDictionary
-            let imageName = imageIndex["image"] as! String
-            imageItems.append(imageName)
-        }
-        return imageItems
     }
     
     /*
