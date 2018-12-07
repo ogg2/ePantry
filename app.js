@@ -8,6 +8,11 @@ let RECIPE_API_KEY = "buXuEHzSQhmshfqC8qohBjM7jeJ8p1HIjrtjsnoI3nlENPgxKA";
 let app = express();
 app.listen(process.env.PORT || 8888);
 
+var binarySearchInsert = require('binary-search-insert');
+var bs = require("binary-search");
+var comparator = function (a, b) { return a - b; }
+
+
 mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.json());
@@ -47,37 +52,37 @@ app.get("/", (req, res)=> {
   res.send("Welcome to ePantry backend").sendStatus(200);
 })
 
-app.get("/sortPantryItems", (req, res)=> {
-  User.find()
-  .then(results => {
-    results.forEach(user=> {
-      user.pantry.sort((a, b) => {
-        if (a.itemName > b.itemName) return 1;
-        else return -1;
-      })
-
-      user.groceryList.sort((a, b) => {
-        if (a.itemName > b.itemName) return 1;
-        else return -1;
-      })
-      user.save(err=> {
-        if (err){
-          console.log(err);
-        }else{
-          console.log(user.pantry.toString());
-        }
-      })
-    })
-
-    // return results;
-  }).then(results=> {
-    res.sendStatus(200);
-
-  }).catch(err=> {
-    console.log(err);
-    res.sendStatus(400);
-  })
-})
+// app.get("/sortPantryItems", (req, res)=> {
+//   User.find()
+//   .then(results => {
+//     results.forEach(user=> {
+//       user.pantry.sort((a, b) => {
+//         if (a.itemName > b.itemName) return 1;
+//         else return -1;
+//       })
+//
+//       user.groceryList.sort((a, b) => {
+//         if (a.itemName > b.itemName) return 1;
+//         else return -1;
+//       })
+//       user.save(err=> {
+//         if (err){
+//           console.log(err);
+//         }else{
+//           console.log(user.pantry.toString());
+//         }
+//       })
+//     })
+//
+//     // return results;
+//   }).then(results=> {
+//     res.sendStatus(200);
+//
+//   }).catch(err=> {
+//     console.log(err);
+//     res.sendStatus(400);
+//   })
+// })
 
 app.post("/login", (req, res)=> {
   let username = req.body.username.toLowerCase();
@@ -232,7 +237,11 @@ app.post("/addToGroceryList/:userid", (req, res) => {
         }
       })
 
-      result.groceryList = result.groceryList.concat(items);
+      var comparator = function (a, b) { if (a.itemName > b.itemName) return 1; else return -1;}
+      itemsToAdd.forEach(item=> {
+        binarySearchInsert(result.pantry, comparator, item);
+      })
+
       result.save()
       .then(()=> {
         res.sendStatus(200);
@@ -245,33 +254,34 @@ app.post("/addToGroceryList/:userid", (req, res) => {
 
 app.post("/addToPantry/:userid",(req, res)=> {
   let userid = req.params.userid;
-  let items = req.body.items;
+  let itemsToAdd = req.body.items;
 
-  for (let i=0; i<items.length; i++){
-    items[i] = items[i].toLowerCase();
+  for (let i=0; i<itemsToAdd.length; i++){
+    itemsToAdd[i] = itemsToAdd[i].toLowerCase();
   }
 
   User.findById(userid)
   .then(result=> {
 
-    //if the pantry contains these items already, do not re-add them
-    items.forEach((addItem, i) => {
-      result.pantry.forEach(pantryItem => {
-        if (pantryItem.itemName === addItem.toLowerCase()){
-          items.splice(i, 1);
-        }
-      })
+
+    /* removes the old version of any duplicate items in the pantry */
+    result.pantry = result.pantry.filter(item=> {
+      return !itemsToAdd.includes(item.itemName.toLowerCase());
     })
 
     //map the input array to the correct format for db storage
-    items = items.map(eachItem => {
+    itemsToAdd = itemsToAdd.map(eachItem => {
       return {
         itemName: eachItem,
         purchaseDate: new Date().toString().slice(4, 15)
       };
     })
 
-    result.pantry = result.pantry.concat(items);
+    var comparator = function (a, b) { if (a.itemName > b.itemName) return 1; else return -1;}
+    itemsToAdd.forEach(item=> {
+      binarySearchInsert(result.pantry, comparator, item);
+    })
+
     result.save()
     .then(()=> {
       res.sendStatus(200);
@@ -296,11 +306,11 @@ app.post("/removeFromPantry/:userid",(req, res)=> {
       return !itemsToDelete.includes(item.itemName.toLowerCase());
     })
 
-    // result.pantry.forEach((pantryItem, i) => {
-    //   if (items.indexOf(pantryItem.itemName.toLowerCase()) > -1){
-    //     result.pantry.splice(i, 1);
-    //   }
+    // itemsToDelete.forEach(item => {
+    //   let index = bs(result.pantry, item, function(a, b) { if (a.itemName > b.itemName) return 1; else return -1;});
+    //   result.pantry.splice(index, 1);
     // })
+
     result.save(err=> {
       if (err){
         res.sendStatus(400);
@@ -328,13 +338,6 @@ app.post("/removeFromGroceryList/:userid",(req, res)=> {
     .then(()=> {
       res.sendStatus(200);
     })
-    // result.groceryList.forEach((groceryItem, i) => {
-    //   if (items.indexOf(groceryItem.itemName.toLowerCase()) > -1){
-    //     result.groceryList.splice(i, 1);
-    //   }
-    // })
-
-    // result.pantry = newPantry;
 
   }).catch(err=> {
     console.log(err);
@@ -374,11 +377,6 @@ app.post("/moveItemsToPantry/:userid",(req, res)=> {
       return itemsToMove.indexOf(groceryItem.itemName.toLowerCase()) === -1;
     })
 
-    // result.groceryList.forEach((groceryItem, i) => {
-    //   if (items.indexOf(groceryItem.itemName.toLowerCase()) > -1){
-    //     result.groceryList.splice(i, 1);
-    //   }
-    // })
     result.save()
     .then( ()=> {
       res.sendStatus(200);
