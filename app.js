@@ -12,6 +12,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+let User = require('./models.js').User;
 
 function equalsIgnoreCase(s){
   if (this.toLowerCase() === s.toLowerCase()){
@@ -29,7 +30,6 @@ function indexOfIgnoreCase(s){
   return -1;
 }
 
-let User = require('./models.js').User;
 // User.createIndex( "username: 1", { unique: true } );
 
 /* returns the userid
@@ -45,6 +45,38 @@ userid: userid
 
 app.get("/", (req, res)=> {
   res.send("Welcome to ePantry backend").sendStatus(200);
+})
+
+app.get("/sortPantryItems", (req, res)=> {
+  User.find()
+  .then(results => {
+    results.forEach(user=> {
+      user.pantry.sort((a, b) => {
+        if (a.itemName > b.itemName) return 1;
+        else return -1;
+      })
+
+      user.groceryList.sort((a, b) => {
+        if (a.itemName > b.itemName) return 1;
+        else return -1;
+      })
+      user.save(err=> {
+        if (err){
+          console.log(err);
+        }else{
+          console.log(user.pantry.toString());
+        }
+      })
+    })
+
+    // return results;
+  }).then(results=> {
+    res.sendStatus(200);
+
+  }).catch(err=> {
+    console.log(err);
+    res.sendStatus(400);
+  })
 })
 
 app.post("/login", (req, res)=> {
@@ -158,13 +190,16 @@ app.get("/pantry/:userid", (req,res) => {
     let mappedPantry = result.pantry.map(item => {
       return {
         itemName: item.itemName,
-        daysSincePurchase: item.daysSincePurchase
+        purchaseDate: item.purchaseDate
       };
-    })
+    });
+    return mappedPantry;
+  }).then(mappedPantry=>{
     res.json({pantry: mappedPantry})
   })
   .catch(err => {
-    res.sendStatus(400).json({error: err});
+    console.log(err);
+    res.sendStatus(400);
   })
 });
 
@@ -232,7 +267,7 @@ app.post("/addToPantry/:userid",(req, res)=> {
     items = items.map(eachItem => {
       return {
         itemName: eachItem,
-        daysSincePurchase: 0
+        purchaseDate: new Date().toString().slice(4, 15)
       };
     })
 

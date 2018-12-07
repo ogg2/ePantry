@@ -14,7 +14,7 @@ let userSchema = new Schema ({
   }],
   pantry: [{
     itemName: String,
-    daysSincePurchase: Number
+    purchaseDate: String
   }]
 });
 
