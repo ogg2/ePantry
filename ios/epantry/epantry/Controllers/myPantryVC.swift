@@ -38,8 +38,9 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             print(item)
             API.addItemToPantry(item: item, completionHandler: { success in
                 if (success) {
-                    API.getPantryItems(completionHandler: { items in
+                    API.getPantryItems(completionHandler: { items, dates in
                         self.pantryList = items
+                        self.purchaseDates = dates
                         self.pantryListTable.reloadData()
                         
                         if (self.pantryList.count == 0) {
@@ -66,6 +67,7 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     var pantryList: [String] = []
+    var purchaseDates: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,8 +84,9 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         in to that file and not dealt with in our view controllers
         */
         
-        API.getPantryItems(completionHandler: { items in
+        API.getPantryItems(completionHandler: { items, dates in
             self.pantryList = items
+            self.purchaseDates = dates
             self.pantryListTable.reloadData()
             
             if (self.pantryList.count == 0) {
@@ -141,13 +144,15 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ groceryList: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = groceryList.cellForRow(at:indexPath)! as UITableViewCell
         let item: String = currentCell.textLabel!.text!
-        removeFromPantryOption(item: item)
+        removeFromPantryOption(item: item, indexPath: indexPath.row)
         print(currentCell.textLabel!.text!)
         print(indexPath)
     }
     
-    func removeFromPantryOption(item: String) {
-        let dialogMessage = UIAlertController(title: "Remove Item", message: "Are you sure you want to remove this item?", preferredStyle: .alert)
+    func removeFromPantryOption(item: String, indexPath: Int) {
+        let message = "Date Purchased: " + purchaseDates[indexPath] + "\nAre you sure you want to remove this item?"
+        
+        let dialogMessage = UIAlertController(title: "Remove Item", message: message, preferredStyle: .alert)
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
@@ -155,8 +160,9 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             API.removeItemFromPantry(item: item, completionHandler: { success in
                 if (success) {
                     print("Item removed")
-                    API.getPantryItems(completionHandler: { items in
+                    API.getPantryItems(completionHandler: { items, dates in
                         self.pantryList = items
+                        self.purchaseDates = dates
                         self.pantryListTable.reloadData()
                         
                         if (self.pantryList.count == 0) {

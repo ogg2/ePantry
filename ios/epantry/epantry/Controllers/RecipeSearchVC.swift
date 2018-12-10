@@ -123,7 +123,7 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         var pantryList: [String] = [""]
         
-        API.getPantryItems(completionHandler: { items in
+        API.getPantryItems(completionHandler: { items, dates in
             pantryList = items
             if (pantryList.count == 0) {
                 pantryList = [""]

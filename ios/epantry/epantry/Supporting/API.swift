@@ -14,22 +14,24 @@ class API {
     /*
      Perform networking code in here to access backend and get pantry items for specific user
      */
-    static func getPantryItems(completionHandler: @escaping ([String]) -> Void) {
+    static func getPantryItems(completionHandler: @escaping ([String], [String]) -> Void) {
         DispatchQueue.main.async {
             Alamofire.request("https://secret-thicket-47430.herokuapp.com/pantry/" + getUserId(), method: .get, encoding: JSONEncoding.default).responseJSON{ response in
                 switch response.result {
                 case .success:
                     print(response)
                     var pantryItems: [String] = []
+                    var dates: [String] = []
                     print("Pantry List Clicked")
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
                         pantryItems = getStringArray(JSON, type: "pantry")
+                        dates = getPurchaseDate(JSON)
                     }
-                    completionHandler(pantryItems)
+                    completionHandler(pantryItems, dates)
                 case .failure:
                     print("Failure")
-                    completionHandler([])
+                    completionHandler([], [])
                 }
             }
         }
@@ -73,6 +75,21 @@ class API {
             }
         }
         return pantryItems
+    }
+    
+    static func getPurchaseDate(_ pantry: NSDictionary) -> [String] {
+        let pantryArray = pantry["pantry"] as! NSArray
+        var pantryDates: [String] = []
+        
+        if (pantryArray.count > 0) {
+            for i in 0...pantryArray.count - 1 {
+                let pantryIndex = pantryArray[i] as! NSDictionary
+                let date = pantryIndex["purchaseDate"] as! String
+                
+                pantryDates.append(date)
+            }
+        }
+        return pantryDates
     }
     
     /*
