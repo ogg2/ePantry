@@ -212,26 +212,30 @@ app.get("/pantry/:userid", (req,res) => {
 /* adds an array of items to user's grocery list */
 app.post("/addToGroceryList/:userid", (req, res) => {
   let userid = req.params.userid;
-  let items = req.body.items;
+  let itemsToAdd = req.body.items;
 
-  for (let i=0; i<items.length; i++){
-    items[i] = items[i].toLowerCase();
+  for (let i=0; i<itemsToAdd.length; i++){
+    itemsToAdd[i] = itemsToAdd[i].toLowerCase();
   }
 
   User.findByIdAndUpdate(userid)
   .then(result => {
 
-    //do not allow duplicate items in groceryList
-    items.forEach((addItem, i) => {
-      result.groceryList.forEach(groceryItem => {
-        if (groceryItem.itemName === addItem.toLowerCase()){
-          items.splice(i, 1);
-        }
-      })
+    // deletes duplicates in grocery list
+    result.groceryList = result.groceryList.filter(item=> {
+      return !itemsToAdd.includes(item.itemName.toLowerCase());
     })
 
+    // items.forEach((addItem, i) => {
+    //   result.groceryList.forEach(groceryItem => {
+    //     if (groceryItem.itemName === addItem.toLowerCase()){
+    //       items.splice(i, 1);
+    //     }
+    //   })
+    // })
+
       //map the input array to the correct format for db storage
-      items = items.map(eachItem => {
+      itemsToAdd = itemsToAdd.map(eachItem => {
         return {
           itemName: eachItem
         }
@@ -277,6 +281,7 @@ app.post("/addToPantry/:userid",(req, res)=> {
       };
     })
 
+    /* insert each item in alphabetical order */
     var comparator = function (a, b) { if (a.itemName > b.itemName) return 1; else return -1;}
     itemsToAdd.forEach(item=> {
       binarySearchInsert(result.pantry, comparator, item);
