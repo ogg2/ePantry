@@ -137,6 +137,7 @@ class myPantryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ groceryList: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = groceryList.dequeueReusableCell(withIdentifier: "pantryItemCell", for: indexPath)
+        cell.detailTextLabel?.text = "purchased: " + purchaseDates[indexPath.row]
         cell.textLabel?.text = pantryList[indexPath.row]
         return cell
     }
