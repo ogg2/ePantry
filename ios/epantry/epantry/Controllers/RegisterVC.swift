@@ -24,8 +24,13 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBAction func registerButtonDidClick(_ sender: Any) {
         DispatchQueue.main.async {
             let user = self.username.text!
-            let pw = self.password.text!
-            let pwConfirm = self.confirmPassword.text!
+            var pw = self.password.text!
+            var pwConfirm = self.confirmPassword.text!
+            
+            pw = API.passwordHash(username: user, password: pw)
+            pwConfirm = API.passwordHash(username: user, password: pwConfirm)
+            print(pw)
+            print(pwConfirm)
         
             var registered: Bool = Bool()
         

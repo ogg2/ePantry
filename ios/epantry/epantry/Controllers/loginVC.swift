@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CryptoSwift
 
 class LoginVC: UIViewController, UITextFieldDelegate {
     
@@ -23,7 +24,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBAction func loginAttempt(_ sender: Any) {
         DispatchQueue.main.async {
             let user = self.username.text!
-            let pw = self.password.text!
+            var pw = self.password.text!
+            
+            pw = API.passwordHash(username: user, password: pw)
             
             var loggedIn: Bool = Bool()
             

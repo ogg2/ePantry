@@ -404,4 +404,10 @@ class API {
         }
         return instructionsItems
     }
+    
+    class func passwordHash(username: String, password: String) -> String {
+        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND"
+        return "\(password).\(username).\(salt)".sha256()
+    }
+
 }
