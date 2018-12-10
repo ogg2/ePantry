@@ -243,8 +243,10 @@ app.post("/addToGroceryList/:userid", (req, res) => {
 
       var comparator = function (a, b) { if (a.itemName > b.itemName) return 1; else return -1;}
       itemsToAdd.forEach(item=> {
-        binarySearchInsert(result.pantry, comparator, item);
+        binarySearchInsert(result.groceryList, comparator, item);
       })
+
+      console.log(result.pantry);
 
       result.save()
       .then(()=> {
