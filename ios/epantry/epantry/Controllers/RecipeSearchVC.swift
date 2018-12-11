@@ -19,11 +19,12 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var cuisineToggle: UISegmentedControl!
     @IBOutlet weak var cuisineLabel: UILabel!
     @IBOutlet weak var initSearchButton: UIButton!
+    @IBOutlet weak var searchingLabel: UILabel!
     
     let cuisinesArray = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
     
     
-    var thisCuisine : String = "African"
+    var thisCuisine : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +55,13 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 1:
+            cuisinePicker.isHidden = false
+            cuisineLabel.isHidden = false
+            thisCuisine = "African"
+        default:
             cuisinePicker.isHidden = true
             cuisineLabel.isHidden = true
             thisCuisine = ""
-        default:
-            cuisinePicker.isHidden = false
-            cuisineLabel.isHidden = false
         }
     }
     
@@ -109,6 +111,8 @@ class RecipeSearchVC: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     @IBAction func initSearchDidClick(_ sender: Any) {
+        
+        searchingLabel.isHidden = false
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecipeResults") as! RecipeResultsVC
         
         vc.recipes = []
